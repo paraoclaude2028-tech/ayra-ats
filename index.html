@@ -2826,7 +2826,7 @@ function initPDScreen() {
         fullName:'Nome', email:'E-mail', phone:'Telefone', city:'Cidade', linkedin:'LinkedIn', portfolio:'Portfólio'
       }[k] || k)).filter(Boolean);
       const missing = (S.extraction.missingFields || []);
-      let msg = `Extração concluída com ${conf}% de confiança (${({HIGH:'ALTA',MEDIUM:'MÉDIA',LOW:'BAIXA'}[lvl]||lvl}}).`;
+      let msg = `Extração concluída com ${conf}% de confiança (${({HIGH:'ALTA',MEDIUM:'MÉDIA',LOW:'BAIXA'}[lvl]||lvl)}).`;
       if (found.length)   msg += ` Identificamos: ${found.join(', ')}.`;
       if (missing.length) msg += ` Não foi localizado: ${missing.join(', ')}.`;
       msg += ' <strong>Revise e confirme cada informação</strong> antes de continuar.';
