@@ -1,0 +1,39 @@
+# =============================================
+# .gitignore — Ayra ATS
+# =============================================
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+Desktop.ini
+ehthumbs.db
+
+# Temporários do Microsoft Office / LibreOffice
+~$*.docx
+~$*.doc
+~$*.xlsx
+~$*.xls
+*.tmp
+
+# Logs
+*.log
+
+# Node.js (caso o projeto evolua)
+node_modules/
+npm-debug.log*
+yarn-error.log*
+
+# Exports gerados pelo ATS (currículos exportados pelo usuário final)
+*_CV_v*.pdf
+*_CV_v*.docx
+
+# IDE / Editores
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Builds e caches
+dist/
+.cache/
