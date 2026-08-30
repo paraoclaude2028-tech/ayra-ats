@@ -322,6 +322,26 @@ input,select,textarea{font-family:inherit;font-size:inherit}
 /* =============================================
    SKILL 05 — DEFINIÇÃO DE ALVO
    ============================================= */
+
+/* Painel editorial — coluna esquerda */
+#td-img-panel{overflow:hidden}
+#td-img-panel.missing{background:#1a0a0a}
+.td-editorial-inner{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding:36px 40px 40px;background:linear-gradient(150deg,#0a0a1a 0%,#08102a 55%,#0a0a1a 100%)}
+.td-brand-row{display:flex;justify-content:flex-end}
+.td-brand-chip{font-size:.625rem;font-weight:800;letter-spacing:.2em;color:#fff;background:var(--red);padding:4px 10px;border-radius:4px;text-transform:uppercase}
+.td-visual-area{flex:1;display:flex;align-items:center;justify-content:center;padding:20px 0}
+.td-target-wrap{position:relative;width:160px;height:160px}
+.td-ring{position:absolute;border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%)}
+.td-ring:nth-child(1){width:160px;height:160px;border:1px solid rgba(255,255,255,.07)}
+.td-ring:nth-child(2){width:118px;height:118px;border:1px solid rgba(255,255,255,.11)}
+.td-ring:nth-child(3){width:80px;height:80px;border:1px solid rgba(255,255,255,.17)}
+.td-ring:nth-child(4){width:48px;height:48px;background:var(--red);opacity:.9}
+.td-editorial-content{flex-shrink:0}
+.td-step-tag{display:inline-block;font-size:.6875rem;font-weight:600;color:rgba(255,255,255,.45);letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px;border:1px solid rgba(255,255,255,.15);padding:3px 10px;border-radius:999px}
+.td-headline{font-size:clamp(1.4rem,2.2vw,1.9rem);font-weight:800;color:#fff;line-height:1.15;margin-bottom:12px;letter-spacing:-.02em}
+.td-headline-accent{color:var(--red)}
+.td-subheadline{font-size:.875rem;color:rgba(255,255,255,.5);line-height:1.65;max-width:280px;margin:0}
+
 .target-card-opt{
   border:2px solid var(--border);border-radius:var(--r-lg);
   padding:22px 24px;cursor:pointer;text-align:left;width:100%;
@@ -410,6 +430,16 @@ input,select,textarea{font-family:inherit;font-size:inherit}
   .pd-step-tag{display:none}
   .pd-headline{font-size:1.25rem;margin-bottom:4px}
   .pd-subheadline{font-size:.8125rem}
+  .td-editorial-inner{padding:20px 28px 24px}
+  .td-visual-area{display:none}
+  .td-step-tag{display:none}
+  .td-headline{font-size:1.2rem;margin-bottom:4px}
+  .td-subheadline{font-size:.8125rem}
+  .itv-editorial-inner{padding:20px 28px 24px}
+  .itv-visual-area{display:none}
+  .itv-step-tag{display:none}
+  .itv-headline{font-size:1.2rem;margin-bottom:4px}
+  .itv-subheadline{font-size:.8125rem}
 }
 @media(max-width:480px){
   .split-body{padding:24px 16px}
@@ -421,6 +451,12 @@ input,select,textarea{font-family:inherit;font-size:inherit}
   .pd-editorial-inner{padding:16px 20px 20px}
   .pd-headline{font-size:1.1rem;margin-bottom:0}
   .pd-subheadline{display:none}
+  .td-editorial-inner{padding:16px 20px 20px}
+  .td-headline{font-size:1.05rem;margin-bottom:0}
+  .td-subheadline{display:none}
+  .itv-editorial-inner{padding:16px 20px 20px}
+  .itv-headline{font-size:1.05rem;margin-bottom:0}
+  .itv-subheadline{display:none}
 }
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important}
@@ -429,6 +465,29 @@ input,select,textarea{font-family:inherit;font-size:inherit}
 /* =============================================
    SKILL 06 — ENTREVISTA DIRECIONADA
    ============================================= */
+/* Painel editorial — coluna esquerda */
+#itv-img-panel{overflow:hidden}
+#itv-img-panel.missing{background:#071a18}
+.itv-editorial-inner{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding:36px 40px 40px;background:linear-gradient(150deg,#071a18 0%,#0B2F2D 55%,#071a18 100%)}
+.itv-brand-row{display:flex;justify-content:flex-end}
+.itv-brand-chip{font-size:.625rem;font-weight:800;letter-spacing:.2em;color:#fff;background:var(--red);padding:4px 10px;border-radius:4px;text-transform:uppercase}
+.itv-visual-area{flex:1;display:flex;align-items:center;justify-content:center;padding:20px 0}
+.itv-build-wrap{display:flex;flex-direction:column;gap:10px;width:100%;max-width:200px}
+.itv-build-row{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:10px 14px}
+.itv-build-row.active{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.15)}
+.itv-build-lines{flex:1;display:flex;flex-direction:column;gap:5px}
+.itv-build-line{height:5px;border-radius:3px;background:rgba(255,255,255,.2)}
+.itv-build-line:last-child{width:60%}
+.itv-build-dot{width:16px;height:16px;border-radius:50%;flex-shrink:0}
+.itv-dot-done{background:rgba(52,211,153,.8)}
+.itv-dot-active{background:rgba(251,191,36,.7)}
+.itv-dot-todo{border:1.5px solid rgba(255,255,255,.2)}
+.itv-editorial-content{flex-shrink:0}
+.itv-step-tag{display:inline-block;font-size:.6875rem;font-weight:600;color:rgba(255,255,255,.45);letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px;border:1px solid rgba(255,255,255,.15);padding:3px 10px;border-radius:999px}
+.itv-headline{font-size:clamp(1.4rem,2.2vw,1.9rem);font-weight:800;color:#fff;line-height:1.15;margin-bottom:12px;letter-spacing:-.02em}
+.itv-headline-accent{color:var(--red)}
+.itv-subheadline{font-size:.875rem;color:rgba(255,255,255,.5);line-height:1.65;max-width:280px;margin:0}
+
 .blk-nav{display:flex;gap:0;flex-wrap:nowrap;overflow-x:auto;margin-bottom:24px;border-bottom:2px solid var(--border);padding-bottom:0;-webkit-overflow-scrolling:touch}
 .blk-tab{padding:9px 14px;font-size:.8rem;font-weight:600;color:var(--text2);cursor:pointer;border:none;background:none;border-bottom:3px solid transparent;margin-bottom:-2px;white-space:nowrap;transition:color var(--t),border-color var(--t);flex-shrink:0}
 .blk-tab:hover{color:var(--text)}
@@ -945,7 +1004,26 @@ input,select,textarea{font-family:inherit;font-size:inherit}
 <div id="screen-target-definition" class="screen" aria-label="Definição do alvo profissional">
   <div class="split">
     <div id="td-img-panel" class="split-img">
-      <img id="td-img" src="Definição de publico alvo.png" alt="Ayra Consultoria — definição de alvo profissional">
+      <!-- img preservado para o imgErr listener em bind() -->
+      <img id="td-img" src="Definição de publico alvo.png" alt="" aria-hidden="true" style="display:none">
+      <div class="td-editorial-inner">
+        <div class="td-brand-row">
+          <span class="td-brand-chip">AYRA</span>
+        </div>
+        <div class="td-visual-area" aria-hidden="true">
+          <div class="td-target-wrap">
+            <div class="td-ring"></div>
+            <div class="td-ring"></div>
+            <div class="td-ring"></div>
+            <div class="td-ring"></div>
+          </div>
+        </div>
+        <div class="td-editorial-content">
+          <span class="td-step-tag">Etapa 2 · Objetivo profissional</span>
+          <h2 class="td-headline">Defina o rumo do<br><span class="td-headline-accent">seu currículo.</span></h2>
+          <p class="td-subheadline">Direcione para uma vaga específica ou para uma área de atuação — seu currículo será adaptado para esse foco.</p>
+        </div>
+      </div>
     </div>
     <div class="split-body">
 
@@ -1103,7 +1181,40 @@ input,select,textarea{font-family:inherit;font-size:inherit}
 <div id="screen-interview" class="screen" aria-label="Entrevista direcionada">
   <div class="split">
     <div id="itv-img-panel" class="split-img">
-      <img id="itv-img" src="Entrevista.png" alt="Ayra Consultoria — entrevista direcionada">
+      <img id="itv-img" src="Entrevista.png" alt="" aria-hidden="true" style="display:none">
+      <div class="itv-editorial-inner">
+        <div class="itv-brand-row"><span class="itv-brand-chip">AYRA</span></div>
+        <div class="itv-visual-area" aria-hidden="true">
+          <div class="itv-build-wrap">
+            <div class="itv-build-row">
+              <div class="itv-build-lines">
+                <div class="itv-build-line"></div>
+                <div class="itv-build-line"></div>
+              </div>
+              <div class="itv-build-dot itv-dot-done"></div>
+            </div>
+            <div class="itv-build-row active">
+              <div class="itv-build-lines">
+                <div class="itv-build-line"></div>
+                <div class="itv-build-line"></div>
+              </div>
+              <div class="itv-build-dot itv-dot-active"></div>
+            </div>
+            <div class="itv-build-row">
+              <div class="itv-build-lines">
+                <div class="itv-build-line"></div>
+                <div class="itv-build-line"></div>
+              </div>
+              <div class="itv-build-dot itv-dot-todo"></div>
+            </div>
+          </div>
+        </div>
+        <div class="itv-editorial-content">
+          <span class="itv-step-tag">Etapa 3 · Construção do currículo</span>
+          <h2 class="itv-headline">Vamos estruturar<br><span class="itv-headline-accent">seu currículo.</span></h2>
+          <p class="itv-subheadline">Cada resposta transforma uma informação em estratégia — construindo um currículo que representa você de verdade.</p>
+        </div>
+      </div>
     </div>
     <div class="split-body" style="justify-content:flex-start;padding-top:32px">
 
