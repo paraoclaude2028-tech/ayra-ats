@@ -475,6 +475,14 @@ input,select,textarea{font-family:inherit;font-size:inherit}
   .fmt-step-tag{display:none}
   .fmt-headline{font-size:1.2rem;margin-bottom:4px}
   .fmt-right{padding:32px 24px}
+  .aud-split{flex-direction:column}
+  .aud-left{width:100%;height:220px;flex-shrink:0}
+  .aud-editorial-inner{padding:20px 28px 24px}
+  .aud-visual-area{display:none}
+  .aud-step-tag{display:none}
+  .aud-headline{font-size:1.2rem;margin-bottom:12px}
+  .aud-subheadline{display:none}
+  .aud-right{padding:32px 24px}
 }
 @media(max-width:480px){
   .split-body{padding:24px 16px}
@@ -495,6 +503,9 @@ input,select,textarea{font-family:inherit;font-size:inherit}
   .fmt-editorial-inner{padding:16px 20px 20px}
   .fmt-headline{font-size:1.05rem;margin-bottom:0}
   .fmt-right{padding:24px 16px}
+  .aud-editorial-inner{padding:16px 20px 20px}
+  .aud-headline{font-size:1.05rem;margin-bottom:0}
+  .aud-right{padding:24px 16px}
 }
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important}
@@ -661,40 +672,73 @@ input,select,textarea{font-family:inherit;font-size:inherit}
 /* =============================================
    SKILL 08 — AUDITORIA FINAL ATS
    ============================================= */
-#screen-audit{align-items:center;justify-content:center;background:var(--bg);padding:40px 24px}
-.aud-card{background:var(--surface);border-radius:var(--r-lg);padding:48px 44px;max-width:580px;width:100%;box-shadow:var(--sh-lg);text-align:center}
-.aud-img-wrap{height:160px;border-radius:var(--r);overflow:hidden;margin-bottom:28px;background:linear-gradient(135deg,#1a0a0a,#8B0000 60%,#CC0000)}
-.aud-img-wrap img{width:100%;height:100%;object-fit:cover}
-.aud-img-wrap.missing img{display:none}
-.aud-title{font-size:1.25rem;font-weight:700;color:var(--text);margin-bottom:6px}
-.aud-sub{font-size:.9rem;color:var(--text2);margin-bottom:28px}
+#screen-audit{padding:0;background:#0b040d}
+.aud-split{display:flex;width:100%;min-height:100vh}
+.aud-left{width:45%;position:relative;overflow:hidden;flex-shrink:0}
+.aud-img-wrap{display:none}
+.aud-editorial-inner{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding:36px 40px 40px;background:linear-gradient(150deg,#0b040d 0%,#1e0810 55%,#0b040d 100%)}
+.aud-brand-row{display:flex;justify-content:flex-end}
+.aud-brand-chip{font-size:.625rem;font-weight:800;letter-spacing:.2em;color:#fff;background:var(--red);padding:4px 10px;border-radius:4px;text-transform:uppercase}
+.aud-visual-area{flex:1;display:flex;align-items:center;justify-content:center;padding:20px 0}
+.aud-resume-card{width:100%;max-width:215px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:11px}
+.aud-card-head{display:flex;align-items:center;gap:10px}
+.aud-card-avatar{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#8B0000,#CC0000);flex-shrink:0}
+.aud-card-namelines{flex:1;display:flex;flex-direction:column;gap:5px}
+.aud-card-nameline{height:6px;border-radius:3px;background:rgba(255,255,255,.22)}
+.aud-card-nameline:last-child{width:55%}
+.aud-card-section{display:flex;flex-direction:column;gap:4px;border-left:2px solid transparent;padding-left:6px}
+.aud-section-lbl{font-size:.5rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:1px}
+.aud-section-line{height:4px;border-radius:3px;background:rgba(255,255,255,.1)}
+.aud-section-line.short{width:65%}
+.aud-skill-chips{display:flex;gap:5px}
+.aud-skill-chip{height:13px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1)}
+.aud-skill-chip:nth-child(1){width:34px}
+.aud-skill-chip:nth-child(2){width:46px}
+.aud-skill-chip:nth-child(3){width:28px}
+.aud-sec-done{border-left-color:rgba(255,255,255,.35)}
+.aud-sec-done .aud-section-lbl{color:rgba(255,255,255,.6)}
+.aud-sec-done .aud-section-line{background:rgba(255,255,255,.2)}
+.aud-sec-done .aud-skill-chip{background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.18)}
+.aud-editorial-content{flex-shrink:0}
+.aud-step-tag{display:inline-block;font-size:.6875rem;font-weight:600;color:rgba(255,255,255,.45);letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px;border:1px solid rgba(255,255,255,.15);padding:3px 10px;border-radius:999px}
+.aud-headline{font-size:clamp(1.4rem,2.2vw,1.9rem);font-weight:800;color:#fff;line-height:1.15;margin-bottom:12px;letter-spacing:-.02em}
+.aud-headline-accent{color:var(--red)}
+.aud-subheadline{font-size:.875rem;color:rgba(255,255,255,.5);line-height:1.65;max-width:280px;margin:0}
+/* Right panel */
+.aud-right{flex:1;display:flex;flex-direction:column;padding:48px 56px;background:var(--bg)}
 /* Loading */
-.aud-spinner{display:flex;justify-content:center;gap:8px;margin-bottom:20px}
-.aud-dot{width:10px;height:10px;border-radius:50%;background:var(--red);animation:audbounce .9s ease-in-out infinite}
-.aud-dot:nth-child(2){animation-delay:.15s}
-.aud-dot:nth-child(3){animation-delay:.3s}
-@keyframes audbounce{0%,80%,100%{transform:scale(.6);opacity:.35}40%{transform:scale(1.2);opacity:1}}
-.aud-status-msg{font-size:.9375rem;color:var(--text);font-weight:600;margin-bottom:20px;min-height:1.4em}
-.aud-steps{display:flex;flex-direction:column;gap:5px;text-align:left}
-.aud-step{font-size:.8125rem;color:var(--text3);padding:7px 12px;border-radius:4px;display:flex;align-items:center;gap:10px}
-.aud-step.step-done{color:var(--ok);background:var(--ok-bg)}
+.aud-status-msg{font-size:1rem;color:var(--text);font-weight:700;margin-bottom:20px;min-height:1.4em}
+.aud-steps{display:flex;flex-direction:column;gap:4px}
+.aud-step{font-size:.875rem;color:var(--text3);padding:8px 12px;border-radius:6px;display:flex;align-items:center;gap:12px;transition:background var(--t),color var(--t)}
+.aud-step.step-done{color:var(--ok)}
 .aud-step.step-active{color:var(--text);background:#F3F4F6;font-weight:600}
-.aud-step-ico{width:16px;text-align:center;flex-shrink:0}
+.aud-step-ico{width:18px;text-align:center;flex-shrink:0;font-size:.875rem}
+@keyframes aud-spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+.aud-ico-spin{display:inline-block;animation:aud-spin 1.2s linear infinite;color:var(--red)}
 /* Result */
-.aud-result{display:none;text-align:left}
+.aud-result{display:none}
 .aud-result.on{display:block}
 .aud-badge{display:inline-block;padding:6px 16px;border-radius:999px;font-size:.875rem;font-weight:700;margin-bottom:20px}
 .aud-badge-approved{background:var(--ok-bg);color:var(--ok);border:1px solid #A7F3D0}
 .aud-badge-warn{background:var(--warn-bg);color:var(--warn);border:1px solid #FCD34D}
 .aud-badge-block{background:var(--error-bg);color:var(--error);border:1px solid #FCA5A5}
+.aud-badge-excellent{background:#ECFDF5;color:#059669;border:1px solid #6EE7B7}
+.aud-score-bar{background:#F9FAFB;border:1.5px solid var(--border);border-radius:var(--r);padding:16px;margin-bottom:20px}
+.aud-score-num{font-size:2.5rem;font-weight:800;line-height:1;margin-bottom:4px}
+.aud-score-num.excellent{color:#059669}.aud-score-num.good{color:#2563EB}.aud-score-num.warn{color:var(--warn)}.aud-score-num.low{color:var(--error)}
+.aud-score-label{font-size:.8125rem;color:var(--text2);margin-bottom:10px}
+.aud-score-breakdown{display:flex;flex-wrap:wrap;gap:5px}
+.aud-score-item{font-size:.75rem;background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:2px 9px;color:var(--text2)}
 .aud-pillars{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
 .aud-pillar{background:#F9FAFB;border:1.5px solid var(--border);border-radius:var(--r);padding:12px 14px}
 .aud-pillar.pass{border-color:#A7F3D0;background:var(--ok-bg)}
 .aud-pillar.partial{border-color:#FCD34D;background:var(--warn-bg)}
+.aud-pillar.fail{border-color:#FECACA;background:var(--error-bg)}
 .aud-pillar-label{font-size:.8rem;color:var(--text2);font-weight:600;display:block;margin-bottom:4px}
 .aud-pillar-status{font-size:.875rem;font-weight:700}
 .aud-pillar.pass .aud-pillar-status{color:var(--ok)}
 .aud-pillar.partial .aud-pillar-status{color:var(--warn)}
+.aud-pillar.fail .aud-pillar-status{color:var(--error)}
 .aud-warnings{margin-bottom:20px}
 .aud-warn-title{font-size:.875rem;font-weight:700;color:var(--text);margin-bottom:10px}
 .aud-warn-item{padding:10px 14px;background:var(--warn-bg);border:1px solid #FCD34D;border-radius:var(--r);margin-bottom:8px;font-size:.875rem;color:#92400E;line-height:1.5}
@@ -704,16 +748,7 @@ input,select,textarea{font-family:inherit;font-size:inherit}
 .aud-warn-meta{font-size:.8rem;border-top:1px solid #FCD34D;margin-top:7px;padding-top:6px;color:var(--text2);display:flex;flex-direction:column;gap:3px}
 .aud-warn-impact{color:var(--text2)}
 .aud-warn-rec{color:var(--text)}
-.aud-badge-excellent{background:#ECFDF5;color:#059669;border:1px solid #6EE7B7}
-.aud-pillar.fail{border-color:#FECACA;background:var(--error-bg)}
-.aud-pillar.fail .aud-pillar-status{color:var(--error)}
-.aud-score-bar{background:#F9FAFB;border:1.5px solid var(--border);border-radius:var(--r);padding:16px;margin-bottom:20px;text-align:center}
-.aud-score-num{font-size:2.5rem;font-weight:800;line-height:1;margin-bottom:4px}
-.aud-score-num.excellent{color:#059669}.aud-score-num.good{color:#2563EB}.aud-score-num.warn{color:var(--warn)}.aud-score-num.low{color:var(--error)}
-.aud-score-label{font-size:.8125rem;color:var(--text2);margin-bottom:10px}
-.aud-score-breakdown{display:flex;flex-wrap:wrap;gap:5px;justify-content:center}
-.aud-score-item{font-size:.75rem;background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:2px 9px;color:var(--text2)}
-@media(max-width:600px){.aud-pillars{grid-template-columns:1fr}.aud-card{padding:32px 20px}}
+@media(max-width:600px){.aud-pillars{grid-template-columns:1fr}}
 
 /* =============================================
    SKILL 09 — FINALIZAÇÃO E ENTREGA
@@ -1802,86 +1837,128 @@ input,select,textarea{font-family:inherit;font-size:inherit}
      TELA 7: AUDITORIA FINAL ATS — Skill 08
      Ação: AUDIT_COMPLETE → finalization_export
      ============================================= -->
-<div id="screen-audit" class="screen" aria-label="Auditoria final do currículo">
-  <div class="aud-card">
+<div id="screen-audit" class="screen" aria-label="Auditoria final ATS">
+  <div class="aud-split">
 
-    <!-- Painel de loading -->
-    <div id="aud-loading" role="status" aria-live="polite" aria-atomic="false">
-      <div id="aud-img-wrap" class="aud-img-wrap">
-        <img id="aud-img" src="Auditoria.png" alt="" aria-hidden="true">
+    <!-- Coluna esquerda: editorial -->
+    <div class="aud-left">
+      <div id="aud-img-wrap" class="aud-img-wrap" aria-hidden="true">
+        <img id="aud-img" src="Auditoria.png" alt="" aria-hidden="true" style="display:none">
       </div>
-      <h2 class="aud-title">Auditoria final do currículo</h2>
-      <p class="aud-sub">Verificando qualidade, palavras-chave e conformidade ATS.</p>
-      <div class="aud-spinner" aria-hidden="true">
-        <span class="aud-dot"></span>
-        <span class="aud-dot"></span>
-        <span class="aud-dot"></span>
+      <div class="aud-editorial-inner">
+        <div class="aud-brand-row"><span class="aud-brand-chip">AYRA</span></div>
+        <div class="aud-visual-area" aria-hidden="true">
+          <div class="aud-resume-card">
+            <div class="aud-card-head">
+              <div class="aud-card-avatar"></div>
+              <div class="aud-card-namelines">
+                <div class="aud-card-nameline"></div>
+                <div class="aud-card-nameline"></div>
+              </div>
+            </div>
+            <div class="aud-card-section aud-sec-done">
+              <div class="aud-section-lbl">Objetivo</div>
+              <div class="aud-section-line"></div>
+              <div class="aud-section-line short"></div>
+            </div>
+            <div class="aud-card-section aud-sec-done">
+              <div class="aud-section-lbl">Experiência</div>
+              <div class="aud-section-line"></div>
+              <div class="aud-section-line short"></div>
+            </div>
+            <div class="aud-card-section aud-sec-done">
+              <div class="aud-section-lbl">Formação</div>
+              <div class="aud-section-line"></div>
+              <div class="aud-section-line short"></div>
+            </div>
+            <div class="aud-card-section aud-sec-done">
+              <div class="aud-section-lbl">Skills</div>
+              <div class="aud-skill-chips">
+                <div class="aud-skill-chip"></div>
+                <div class="aud-skill-chip"></div>
+                <div class="aud-skill-chip"></div>
+              </div>
+            </div>
+            <div class="aud-card-section aud-sec-done">
+              <div class="aud-section-lbl">Idiomas &amp; +</div>
+              <div class="aud-section-line"></div>
+              <div class="aud-section-line short"></div>
+            </div>
+          </div>
+        </div>
+        <div class="aud-editorial-content">
+          <span class="aud-step-tag">Etapa 5 · Auditoria ATS</span>
+          <h2 class="aud-headline">Auditando<br><span class="aud-headline-accent">seu currículo.</span></h2>
+          <p class="aud-subheadline">Seu currículo está sendo avaliado pelos critérios ATS.</p>
+        </div>
       </div>
-      <p id="aud-status-msg" class="aud-status-msg" aria-live="assertive"></p>
-      <div id="aud-steps-list" class="aud-steps" aria-label="Progresso da auditoria"></div>
     </div>
 
-    <!-- Painel de resultado -->
-    <div id="aud-result" class="aud-result" role="region" aria-label="Resultado da auditoria">
-      <div style="text-align:center;margin-bottom:20px">
-        <div id="aud-img-wrap2" class="aud-img-wrap" style="margin-bottom:20px">
-          <img src="Auditoria.png" alt="" aria-hidden="true"
-            onerror="this.parentElement.classList.add('missing')">
-        </div>
-        <h2 class="aud-title">Resultado da auditoria</h2>
+    <!-- Coluna direita: diagnóstico -->
+    <div class="aud-right">
+
+      <!-- Estado: carregando -->
+      <div id="aud-loading" role="status" aria-live="polite" aria-atomic="false">
+        <p id="aud-status-msg" class="aud-status-msg" aria-live="assertive"></p>
+        <div id="aud-steps-list" class="aud-steps" aria-label="Progresso da auditoria"></div>
+      </div>
+
+      <!-- Estado: resultado -->
+      <div id="aud-result" class="aud-result" role="region" aria-label="Resultado da auditoria">
+
         <span id="aud-status-badge" class="aud-badge"></span>
-      </div>
 
-      <div id="aud-score-bar" class="aud-score-bar" style="display:none" aria-label="Score ATS">
-        <div id="aud-score-num" class="aud-score-num">0</div>
-        <div class="aud-score-label">Score ATS / 100</div>
-        <div id="aud-score-breakdown" class="aud-score-breakdown"></div>
-      </div>
+        <div id="aud-score-bar" class="aud-score-bar" style="display:none" aria-label="Score ATS">
+          <div id="aud-score-num" class="aud-score-num">0</div>
+          <div class="aud-score-label">Score ATS / 100</div>
+          <div id="aud-score-breakdown" class="aud-score-breakdown"></div>
+        </div>
 
-      <div id="aud-pillars-grid" class="aud-pillars" aria-label="Pilares da auditoria"></div>
+        <div id="aud-pillars-grid" class="aud-pillars" aria-label="Pilares da auditoria"></div>
 
-      <div id="aud-warnings-section" class="aud-warnings hidden">
-        <p class="aud-warn-title">Ressalvas encontradas</p>
-        <div id="aud-warnings-list"></div>
-        <p style="font-size:.8125rem;color:var(--text2);margin-top:8px">
-          Estas ressalvas <strong>não bloqueiam</strong> a exportação. Você pode continuar ou voltar para ajustar o currículo.
-        </p>
-      </div>
+        <div id="aud-warnings-section" class="aud-warnings hidden">
+          <p class="aud-warn-title">Ressalvas encontradas</p>
+          <div id="aud-warnings-list"></div>
+          <p style="font-size:.8125rem;color:var(--text2);margin-top:8px">
+            Estas ressalvas <strong>não bloqueiam</strong> a exportação. Você pode continuar ou voltar para ajustar o currículo.
+          </p>
+        </div>
 
-      <!-- Painel: AUTOMATIC_CORRECTION_REQUIRED -->
-      <div id="aud-autocorr" class="aud-autocorr" role="region" aria-label="Correção automática disponível">
-        <p class="aud-autocorr-title">Correção automática disponível</p>
-        <p style="font-size:.8125rem;color:var(--text2);margin-bottom:6px">Os seguintes ajustes podem ser aplicados automaticamente:</p>
-        <ul id="aud-autocorr-list" class="aud-autocorr-list"></ul>
-        <p style="font-size:.8125rem;color:var(--text2);margin-top:6px">O currículo será reauditado após a correção.</p>
-        <div style="text-align:right;margin-top:12px">
-          <button class="btn btn-primary" type="button" id="btn-aud-autocorr" style="font-size:.875rem">Aplicar correção automática</button>
+        <!-- Painel: AUTOMATIC_CORRECTION_REQUIRED -->
+        <div id="aud-autocorr" class="aud-autocorr" role="region" aria-label="Correção automática disponível">
+          <p class="aud-autocorr-title">Correção automática disponível</p>
+          <p style="font-size:.8125rem;color:var(--text2);margin-bottom:6px">Os seguintes ajustes podem ser aplicados automaticamente:</p>
+          <ul id="aud-autocorr-list" class="aud-autocorr-list"></ul>
+          <p style="font-size:.8125rem;color:var(--text2);margin-top:6px">O currículo será reauditado após a correção.</p>
+          <div style="text-align:right;margin-top:12px">
+            <button class="btn btn-primary" type="button" id="btn-aud-autocorr" style="font-size:.875rem">Aplicar correção automática</button>
+          </div>
+        </div>
+
+        <!-- Painel: AWAITING_USER_INFORMATION -->
+        <div id="aud-questions" class="aud-questions" role="region" aria-label="Perguntas obrigatórias da auditoria">
+          <p class="aud-questions-hd">Informações necessárias</p>
+          <p class="aud-questions-sub">As perguntas abaixo são <strong>obrigatórias</strong> e precisam ser respondidas antes de prosseguir. O preview e a exportação ficam bloqueados até que sejam respondidas.</p>
+          <div id="aud-questions-list"></div>
+          <div style="text-align:right;margin-top:12px">
+            <button class="btn btn-primary" type="button" id="btn-aud-q-confirm" style="font-size:.875rem" disabled>Confirmar respostas</button>
+          </div>
+        </div>
+
+        <!-- Painel: BLOCKED_BY_INTEGRITY -->
+        <div id="aud-blocked" class="aud-blocked" role="region" aria-label="Bloqueio de integridade">
+          <p class="aud-blocked-hd">Bloqueio de integridade</p>
+          <p class="aud-blocked-sub">Foram detectados dados inconsistentes que impedem a geração do currículo. Corrija os itens abaixo na entrevista antes de continuar:</p>
+          <div id="aud-blocked-list"></div>
+        </div>
+
+        <div class="nav-row" style="margin-top:24px">
+          <button class="btn btn-sec" type="button" id="btn-aud-back">Voltar à entrevista</button>
+          <button class="btn btn-primary" type="button" id="btn-aud-continue">Continuar para visualização</button>
         </div>
       </div>
 
-      <!-- Painel: AWAITING_USER_INFORMATION -->
-      <div id="aud-questions" class="aud-questions" role="region" aria-label="Perguntas obrigatórias da auditoria">
-        <p class="aud-questions-hd">Informações necessárias</p>
-        <p class="aud-questions-sub">As perguntas abaixo são <strong>obrigatórias</strong> e precisam ser respondidas antes de prosseguir. O preview e a exportação ficam bloqueados até que sejam respondidas.</p>
-        <div id="aud-questions-list"></div>
-        <div style="text-align:right;margin-top:12px">
-          <button class="btn btn-primary" type="button" id="btn-aud-q-confirm" style="font-size:.875rem" disabled>Confirmar respostas</button>
-        </div>
-      </div>
-
-      <!-- Painel: BLOCKED_BY_INTEGRITY -->
-      <div id="aud-blocked" class="aud-blocked" role="region" aria-label="Bloqueio de integridade">
-        <p class="aud-blocked-hd">Bloqueio de integridade</p>
-        <p class="aud-blocked-sub">Foram detectados dados inconsistentes que impedem a geração do currículo. Corrija os itens abaixo na entrevista antes de continuar:</p>
-        <div id="aud-blocked-list"></div>
-      </div>
-
-      <div class="nav-row" style="margin-top:24px">
-        <button class="btn btn-sec" type="button" id="btn-aud-back">Voltar à entrevista</button>
-        <button class="btn btn-primary" type="button" id="btn-aud-continue">Continuar para visualização</button>
-      </div>
     </div>
-
   </div>
 </div>
 
@@ -4621,10 +4698,10 @@ function startAudit() {
 
 function renderAudSteps(activeIdx) {
   g('aud-steps-list').innerHTML = AUD_STEPS.map((s, i) => {
-    let cls = '', ico = '·';
-    if (i < activeIdx)       { cls = 'step-done';   ico = '✓'; }
-    else if (i === activeIdx){ cls = 'step-active'; ico = '→'; }
-    return `<div class="aud-step ${cls}"><span class="aud-step-ico">${ico}</span>${esc(s.label)}</div>`;
+    let cls = '', icoChar = '○', icoClass = 'aud-step-ico';
+    if (i < activeIdx)        { cls = 'step-done';   icoChar = '✓'; }
+    else if (i === activeIdx) { cls = 'step-active'; icoChar = '⟳'; icoClass = 'aud-step-ico aud-ico-spin'; }
+    return `<div class="aud-step ${cls}"><span class="${icoClass}">${icoChar}</span>${esc(s.label)}</div>`;
   }).join('');
 }
 
