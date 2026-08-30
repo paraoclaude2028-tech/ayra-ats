@@ -4948,7 +4948,7 @@ function init() {
   checkStorage();
   load();
   const screen = S.currentScreen;
-  if (S.processId && screen && screen !== 'initial-menu') {
+  if (S.processId && screen && screen !== 'initial-menu' && screen !== 'origin-selection') {
     goScreen(screen);
     if (screen === 'personal-data') {
       initPDScreen(); goSub(S.currentSub || 'contact');
