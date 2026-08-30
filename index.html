@@ -120,6 +120,30 @@ input,select,textarea{font-family:inherit;font-size:inherit}
 /* =============================================
    TELA 3 — DADOS PESSOAIS (Skill 03)
    ============================================= */
+
+/* Painel editorial — coluna esquerda */
+#pd-img-panel{overflow:hidden}
+#pd-img-panel.missing{background:#1a0a0a}
+.pd-editorial-inner{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding:36px 40px 40px;background:linear-gradient(150deg,#1a0a0a 0%,#280a08 55%,#1a0a0a 100%)}
+.pd-brand-row{display:flex;justify-content:flex-end}
+.pd-brand-chip{font-size:.625rem;font-weight:800;letter-spacing:.2em;color:#fff;background:var(--red);padding:4px 10px;border-radius:4px;text-transform:uppercase}
+.pd-visual-area{flex:1;display:flex;align-items:center;justify-content:center;padding:20px 0}
+.pd-resume-mock{width:100%;max-width:240px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:20px}
+.pd-mock-header{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.pd-mock-avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#8B0000,#CC0000);flex-shrink:0}
+.pd-mock-info{flex:1;display:flex;flex-direction:column;gap:7px}
+.pd-mock-line{height:7px;border-radius:4px;background:rgba(255,255,255,.22)}
+.pd-mock-line:last-child{width:55%}
+.pd-mock-body{display:flex;flex-direction:column;gap:7px}
+.pd-mock-row{height:6px;border-radius:3px;background:rgba(255,255,255,.12)}
+.pd-mock-row:nth-child(2){width:82%}
+.pd-mock-row:nth-child(3){width:60%}
+.pd-editorial-content{flex-shrink:0}
+.pd-step-tag{display:inline-block;font-size:.6875rem;font-weight:600;color:rgba(255,255,255,.45);letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px;border:1px solid rgba(255,255,255,.15);padding:3px 10px;border-radius:999px}
+.pd-headline{font-size:clamp(1.5rem,2.4vw,2.1rem);font-weight:800;color:#fff;line-height:1.15;margin-bottom:12px;letter-spacing:-.02em}
+.pd-headline-accent{color:var(--red)}
+.pd-subheadline{font-size:.875rem;color:rgba(255,255,255,.5);line-height:1.65;max-width:280px;margin:0}
+
 .sec-title{font-size:1.375rem;font-weight:700;color:var(--text);margin-bottom:6px}
 .sec-sub{font-size:.9rem;color:var(--text2);margin-bottom:28px}
 
@@ -381,6 +405,11 @@ input,select,textarea{font-family:inherit;font-size:inherit}
   .origin-actions{gap:16px;padding:0 20px 48px}
   .origin-action-btn{min-width:220px;text-align:center}
   .upload-content{width:90%;margin-bottom:36px;padding:28px 28px}
+  .pd-editorial-inner{padding:20px 28px 24px}
+  .pd-visual-area{display:none}
+  .pd-step-tag{display:none}
+  .pd-headline{font-size:1.25rem;margin-bottom:4px}
+  .pd-subheadline{font-size:.8125rem}
 }
 @media(max-width:480px){
   .split-body{padding:24px 16px}
@@ -389,6 +418,9 @@ input,select,textarea{font-family:inherit;font-size:inherit}
   .origin-action-btn{text-align:center}
   .upload-content{width:95%;margin-bottom:24px;padding:20px 16px}
   .upl-actions{flex-wrap:wrap;gap:12px}
+  .pd-editorial-inner{padding:16px 20px 20px}
+  .pd-headline{font-size:1.1rem;margin-bottom:0}
+  .pd-subheadline{display:none}
 }
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important}
@@ -726,7 +758,34 @@ input,select,textarea{font-family:inherit;font-size:inherit}
 <div id="screen-personal-data" class="screen" aria-label="Coleta de dados pessoais">
   <div class="split">
     <div id="pd-img-panel" class="split-img">
-      <img id="pd-img" src="Dados Pessoail .png" alt="Ayra Consultoria — dados pessoais">
+      <!-- img preservado para o imgErr listener em bind() -->
+      <img id="pd-img" src="Dados Pessoail .png" alt="" aria-hidden="true" style="display:none">
+      <div class="pd-editorial-inner">
+        <div class="pd-brand-row">
+          <span class="pd-brand-chip">AYRA</span>
+        </div>
+        <div class="pd-visual-area" aria-hidden="true">
+          <div class="pd-resume-mock">
+            <div class="pd-mock-header">
+              <div class="pd-mock-avatar"></div>
+              <div class="pd-mock-info">
+                <div class="pd-mock-line"></div>
+                <div class="pd-mock-line"></div>
+              </div>
+            </div>
+            <div class="pd-mock-body">
+              <div class="pd-mock-row"></div>
+              <div class="pd-mock-row"></div>
+              <div class="pd-mock-row"></div>
+            </div>
+          </div>
+        </div>
+        <div class="pd-editorial-content">
+          <span class="pd-step-tag">Etapa 1 · Dados pessoais</span>
+          <h2 class="pd-headline">Seu currículo<br><span class="pd-headline-accent">começa aqui.</span></h2>
+          <p class="pd-subheadline">Vamos registrar as informações que identificam você como profissional.</p>
+        </div>
+      </div>
     </div>
     <div class="split-body">
 
