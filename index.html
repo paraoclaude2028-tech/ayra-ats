@@ -170,19 +170,25 @@ input,select,textarea{font-family:inherit;font-size:inherit}
 .badge-ok{background:var(--ok-bg);color:var(--ok)}
 
 /* =============================================
-   UPLOAD PLACEHOLDER (Skill 04)
+   UPLOAD — Skill 04 (full-bg)
    ============================================= */
-.upl-title{font-size:1.375rem;font-weight:700;color:var(--text);margin-bottom:8px}
-.upl-sub{font-size:.9375rem;color:var(--text2);margin-bottom:28px;line-height:1.6}
-.dropzone{border:2px dashed var(--border);border-radius:var(--r-lg);padding:40px 24px;text-align:center;cursor:pointer;transition:border-color var(--t),background var(--t);margin-bottom:20px}
-.dropzone:hover,.dropzone.over{border-color:var(--red);background:#FFF5F5}
+.upload-fullbg{position:relative;min-height:100vh;display:flex;align-items:flex-end;justify-content:center;overflow-x:hidden;overflow-y:auto;background:#1a0a0a}
+.upload-bg-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;z-index:0;pointer-events:none;user-select:none}
+#upl-img-panel.missing{background:linear-gradient(160deg,#8B0000,#CC0000 60%,#FF6666)}
+#upl-img-panel.missing .upload-bg-img{display:none}
+.upload-content{position:relative;z-index:1;width:70%;max-width:660px;padding:32px 36px;margin:0 24px 48px;background:rgba(255,255,255,.95);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border-radius:var(--r-lg);box-shadow:0 8px 32px rgba(0,0,0,.22)}
+.dropzone{border:2px dashed var(--red);border-radius:var(--r-lg);padding:40px 24px;text-align:center;cursor:pointer;transition:border-color var(--t),background var(--t);margin-bottom:16px;background:rgba(255,255,255,.6)}
+.dropzone:hover,.dropzone.over{border-color:#8B0000;background:rgba(255,245,245,.9)}
 .dropzone-ico{font-size:2.5rem;margin-bottom:12px}
 .dropzone-txt{font-size:.9375rem;color:var(--text2);margin-bottom:8px}
 .dropzone-fmt{font-size:.8125rem;color:var(--text3)}
 #upl-file{display:none}
-.upl-chosen{display:none;align-items:center;gap:12px;background:var(--ok-bg);border:1px solid #A7F3D0;border-radius:var(--r);padding:14px 16px;margin-bottom:20px;font-size:.9rem}
+.upl-chosen{display:none;align-items:center;gap:12px;background:var(--ok-bg);border:1px solid #A7F3D0;border-radius:var(--r);padding:14px 16px;margin-bottom:16px;font-size:.9rem}
 .upl-chosen.on{display:flex}
-.upl-note{font-size:.8125rem;color:var(--text2);background:#F9FAFB;border-radius:4px;padding:10px 14px;margin-bottom:24px;line-height:1.5}
+.upl-note{font-size:.8125rem;color:var(--text2);background:rgba(249,250,251,.85);border-radius:4px;padding:10px 14px;margin-bottom:20px;line-height:1.5}
+.upl-actions{display:flex;justify-content:space-between;align-items:center;margin-top:4px}
+.btn-upl-link{background:none;border:none;color:var(--text2);font-size:.9375rem;cursor:pointer;padding:8px 0;text-decoration:underline;text-underline-offset:3px;transition:color var(--t)}
+.btn-upl-link:hover{color:var(--red)}
 
 /* === SKILL 04 — ESTADOS DE EXTRAÇÃO === */
 .upl-ext-status{display:none;border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:16px}
@@ -374,12 +380,15 @@ input,select,textarea{font-family:inherit;font-size:inherit}
   .rev-lbl{width:90px}
   .origin-actions{gap:16px;padding:0 20px 48px}
   .origin-action-btn{min-width:220px;text-align:center}
+  .upload-content{width:90%;margin:0 16px 36px;padding:28px 28px}
 }
 @media(max-width:480px){
   .split-body{padding:24px 16px}
   .done-card{padding:32px 20px}
   .origin-actions{flex-direction:column;align-items:stretch;padding:0 16px 40px}
   .origin-action-btn{text-align:center}
+  .upload-content{width:95%;margin:0 8px 28px;padding:24px 20px}
+  .upl-actions{flex-wrap:wrap;gap:12px}
 }
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important}
@@ -573,7 +582,7 @@ input,select,textarea{font-family:inherit;font-size:inherit}
   #screen-delivery{display:flex!important;flex-direction:column;background:#fff!important;min-height:auto!important}
   .dlv-topbar,.dlv-footer,.dev-btn,#dev-panel,
   .dlv-exec-summary,.dlv-certificate,.dlv-confirm-bar,.dlv-confirmed-bar,.dlv-blocked-banner,
-  .split-img,#storage-warn,.docx-compat-warn,.storage-warn{display:none!important}
+  .split-img,.upload-bg-img,#storage-warn,.docx-compat-warn,.storage-warn{display:none!important}
   .dlv-body{padding:0!important;display:block!important}
   .split{display:block!important}
   .split-body{padding:0!important;max-width:100%!important;width:100%!important}
@@ -637,13 +646,12 @@ input,select,textarea{font-family:inherit;font-size:inherit}
      Só exibida na rota EXISTING_RESUME
      ============================================= -->
 <div id="screen-resume-upload" class="screen" aria-label="Envio do currículo existente">
-  <div class="split">
-    <div id="upl-img-panel" class="split-img">
-      <img id="upl-img" src="Envie o seu curriculo.png" alt="Envie seu currículo para análise">
-    </div>
-    <div class="split-body">
-      <h2 class="upl-title">Envie seu currículo atual</h2>
-      <p class="upl-sub">Vamos analisar as informações existentes e pedir apenas o que precisar ser confirmado ou complementado.</p>
+  <div id="upl-img-panel" class="upload-fullbg">
+    <img id="upl-img" class="upload-bg-img"
+      src="Envie o seu curriculo.png"
+      alt="" aria-hidden="true">
+
+    <div class="upload-content">
 
       <label id="dropzone" class="dropzone" for="upl-file"
         role="button" tabindex="0" aria-label="Área de envio. Clique ou arraste o arquivo.">
@@ -661,25 +669,16 @@ input,select,textarea{font-family:inherit;font-size:inherit}
           style="margin-left:auto;padding:6px 12px;font-size:.8125rem;">Trocar</button>
       </div>
 
-      <p class="upl-note" role="note">
-        Use apenas um currículo que você tenha autorização para enviar. O documento será utilizado somente para extrair as informações necessárias ao processo.
-      </p>
-
-      <div class="nav-row">
-        <button class="btn btn-back" type="button" id="btn-upl-back">Voltar</button>
-        <button class="btn btn-primary" type="button" id="btn-upl-analyze" disabled>Analisar currículo</button>
-      </div>
-
-      <!-- Aviso de incompatibilidade de navegador (HOTFIX RC-01.03) -->
+      <!-- Aviso de incompatibilidade de navegador -->
       <div id="docx-compat-warn" class="docx-compat-warn" role="alert" aria-live="assertive"></div>
 
-      <!-- Painel de estado de extração (aparece durante/após análise) -->
+      <!-- Painel de estado de extração -->
       <div id="upl-ext-status" class="upl-ext-status" aria-live="polite" role="status">
         <div class="upl-ext-hd">Resultado da extração</div>
         <div id="upl-ext-items"></div>
       </div>
 
-      <!-- Fallback: extração parcial/falhou — usuário preenche o que falta -->
+      <!-- Fallback: extração parcial/falhou -->
       <div id="upl-fallback" class="upl-fallback" role="complementary" aria-label="Preenchimento dos dados não extraídos">
         <p class="upl-fallback-hd">⚠ Dados não encontrados automaticamente</p>
         <p class="upl-fallback-sub">Preencha abaixo os campos que não foram extraídos. Você poderá revisar e completar tudo na próxima etapa.</p>
@@ -706,6 +705,16 @@ input,select,textarea{font-family:inherit;font-size:inherit}
           <button type="button" class="btn btn-primary" id="btn-fb-confirm">Confirmar e continuar</button>
         </div>
       </div>
+
+      <p class="upl-note" role="note">
+        Use apenas um currículo que você tenha autorização para enviar. O documento será utilizado somente para extrair as informações necessárias ao processo.
+      </p>
+
+      <div class="upl-actions">
+        <button class="btn-upl-link" type="button" id="btn-upl-back">Voltar</button>
+        <button class="btn btn-primary" type="button" id="btn-upl-analyze" disabled>Analisar currículo</button>
+      </div>
+
     </div>
   </div>
 </div>
