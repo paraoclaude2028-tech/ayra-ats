@@ -468,6 +468,13 @@ input,select,textarea{font-family:inherit;font-size:inherit}
   .itv-step-tag{display:none}
   .itv-headline{font-size:1.2rem;margin-bottom:4px}
   .itv-subheadline{font-size:.8125rem}
+  .fmt-split{flex-direction:column}
+  .fmt-left{width:100%;height:220px;flex-shrink:0}
+  .fmt-editorial-inner{padding:20px 28px 24px}
+  .fmt-visual-area{display:none}
+  .fmt-step-tag{display:none}
+  .fmt-headline{font-size:1.2rem;margin-bottom:4px}
+  .fmt-right{padding:32px 24px}
 }
 @media(max-width:480px){
   .split-body{padding:24px 16px}
@@ -485,6 +492,9 @@ input,select,textarea{font-family:inherit;font-size:inherit}
   .itv-editorial-inner{padding:16px 20px 20px}
   .itv-headline{font-size:1.05rem;margin-bottom:0}
   .itv-subheadline{display:none}
+  .fmt-editorial-inner{padding:16px 20px 20px}
+  .fmt-headline{font-size:1.05rem;margin-bottom:0}
+  .fmt-right{padding:24px 16px}
 }
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important}
@@ -597,26 +607,48 @@ input,select,textarea{font-family:inherit;font-size:inherit}
 /* =============================================
    SKILL 07 — MOTOR DE FORMATAÇÃO
    ============================================= */
-#screen-formatting{align-items:center;justify-content:center;background:var(--bg);padding:40px 24px}
-.fmt-card{background:var(--surface);border-radius:var(--r-lg);padding:48px 44px;max-width:520px;width:100%;box-shadow:var(--sh-lg);text-align:center}
-.fmt-img-wrap{height:160px;border-radius:var(--r);overflow:hidden;margin-bottom:28px;background:linear-gradient(135deg,#8B0000,#CC0000 60%,#FF6666)}
-.fmt-img-wrap img{width:100%;height:100%;object-fit:cover}
-.fmt-img-wrap.missing img{display:none}
-.fmt-title{font-size:1.25rem;font-weight:700;color:var(--text);margin-bottom:6px}
-.fmt-sub{font-size:.9rem;color:var(--text2);margin-bottom:28px}
-.fmt-spinner{display:flex;justify-content:center;gap:8px;margin-bottom:20px}
-.fmt-dot{width:10px;height:10px;border-radius:50%;background:var(--red);animation:fmtbounce .9s ease-in-out infinite}
-.fmt-dot:nth-child(2){animation-delay:.15s}
-.fmt-dot:nth-child(3){animation-delay:.3s}
-@keyframes fmtbounce{0%,80%,100%{transform:scale(.6);opacity:.35}40%{transform:scale(1.2);opacity:1}}
-.fmt-status-msg{font-size:.9375rem;color:var(--text);font-weight:600;margin-bottom:20px;min-height:1.4em;transition:color var(--t)}
-.fmt-status-msg.done{color:var(--ok)}
-.fmt-steps{display:flex;flex-direction:column;gap:5px;text-align:left}
+#screen-formatting{padding:0;background:#0e0408}
+.fmt-split{display:flex;width:100%;min-height:100vh}
+.fmt-left{width:45%;position:relative;overflow:hidden;flex-shrink:0}
+.fmt-img-wrap{display:none}
+.fmt-editorial-inner{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding:36px 40px 40px;background:linear-gradient(150deg,#0e0408 0%,#1e0810 55%,#0e0408 100%)}
+.fmt-brand-row{display:flex;justify-content:flex-end}
+.fmt-brand-chip{font-size:.625rem;font-weight:800;letter-spacing:.2em;color:#fff;background:var(--red);padding:4px 10px;border-radius:4px;text-transform:uppercase}
+.fmt-visual-area{flex:1;display:flex;align-items:center;justify-content:center;padding:20px 0}
+.fmt-resume-card{width:100%;max-width:215px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:11px}
+.fmt-card-head{display:flex;align-items:center;gap:10px}
+.fmt-card-avatar{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#8B0000,#CC0000);flex-shrink:0}
+.fmt-card-namelines{flex:1;display:flex;flex-direction:column;gap:5px}
+.fmt-card-nameline{height:6px;border-radius:3px;background:rgba(255,255,255,.22)}
+.fmt-card-nameline:last-child{width:55%}
+.fmt-card-section{display:flex;flex-direction:column;gap:4px;border-left:2px solid transparent;padding-left:6px;transition:border-color var(--t)}
+.fmt-section-lbl{font-size:.5rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:1px;transition:color var(--t)}
+.fmt-section-line{height:4px;border-radius:3px;background:rgba(255,255,255,.1);transition:background var(--t)}
+.fmt-section-line.short{width:65%}
+.fmt-skill-chips{display:flex;gap:5px}
+.fmt-skill-chip{height:13px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);transition:background var(--t),border-color var(--t)}
+.fmt-skill-chip:nth-child(1){width:34px}
+.fmt-skill-chip:nth-child(2){width:46px}
+.fmt-skill-chip:nth-child(3){width:28px}
+.fmt-sec-active{border-left-color:var(--red)}
+.fmt-sec-active .fmt-section-lbl{color:rgba(255,255,255,.85)}
+.fmt-sec-active .fmt-section-line{background:rgba(255,255,255,.32)}
+.fmt-sec-active .fmt-skill-chip{background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.25)}
+.fmt-sec-done .fmt-section-lbl{color:rgba(255,255,255,.52)}
+.fmt-sec-done .fmt-section-line{background:rgba(255,255,255,.18)}
+.fmt-sec-done .fmt-skill-chip{background:rgba(255,255,255,.14)}
+.fmt-editorial-content{flex-shrink:0}
+.fmt-step-tag{display:inline-block;font-size:.6875rem;font-weight:600;color:rgba(255,255,255,.45);letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px;border:1px solid rgba(255,255,255,.15);padding:3px 10px;border-radius:999px}
+.fmt-headline{font-size:clamp(1.4rem,2.2vw,1.9rem);font-weight:800;color:#fff;line-height:1.15;margin-bottom:0;letter-spacing:-.02em}
+.fmt-headline-accent{color:var(--red)}
+.fmt-right{flex:1;display:flex;flex-direction:column;justify-content:center;padding:48px 56px;background:var(--bg)}
+.fmt-status-msg{font-size:.9375rem;color:var(--text2);font-weight:500;margin-bottom:24px;min-height:1.4em;transition:color var(--t)}
+.fmt-status-msg.done{color:var(--ok);font-weight:700}
+.fmt-steps{display:flex;flex-direction:column;gap:5px}
 .fmt-step{font-size:.8125rem;color:var(--text3);padding:7px 12px;border-radius:4px;display:flex;align-items:center;gap:10px;transition:background var(--t),color var(--t)}
 .fmt-step.step-done{color:var(--ok);background:var(--ok-bg)}
 .fmt-step.step-active{color:var(--text);background:#F3F4F6;font-weight:600}
 .fmt-step-ico{width:16px;text-align:center;flex-shrink:0}
-@media(max-width:480px){.fmt-card{padding:32px 20px}}
 
 /* =============================================
    SKILL 08 — AUDITORIA FINAL ATS
@@ -1690,19 +1722,62 @@ input,select,textarea{font-family:inherit;font-size:inherit}
      Ação: FORMATTING_COMPLETE → final_ats_audit
      ============================================= -->
 <div id="screen-formatting" class="screen" aria-label="Motor de formatação">
-  <div class="fmt-card" role="status" aria-live="polite" aria-atomic="false">
-    <div id="fmt-img-wrap" class="fmt-img-wrap">
-      <img id="fmt-img" src="Formatação .png" alt="" aria-hidden="true">
+  <div class="fmt-split" role="status" aria-live="polite" aria-atomic="false">
+    <div class="fmt-left">
+      <div id="fmt-img-wrap" class="fmt-img-wrap" aria-hidden="true">
+        <img id="fmt-img" src="Formatação .png" alt="" aria-hidden="true" style="display:none">
+      </div>
+      <div class="fmt-editorial-inner">
+        <div class="fmt-brand-row"><span class="fmt-brand-chip">AYRA</span></div>
+        <div class="fmt-visual-area" aria-hidden="true">
+          <div id="fmt-resume-card" class="fmt-resume-card">
+            <div class="fmt-card-head">
+              <div class="fmt-card-avatar"></div>
+              <div class="fmt-card-namelines">
+                <div class="fmt-card-nameline"></div>
+                <div class="fmt-card-nameline"></div>
+              </div>
+            </div>
+            <div class="fmt-card-section">
+              <div class="fmt-section-lbl">Objetivo</div>
+              <div class="fmt-section-line"></div>
+              <div class="fmt-section-line short"></div>
+            </div>
+            <div class="fmt-card-section">
+              <div class="fmt-section-lbl">Experiência</div>
+              <div class="fmt-section-line"></div>
+              <div class="fmt-section-line short"></div>
+            </div>
+            <div class="fmt-card-section">
+              <div class="fmt-section-lbl">Formação</div>
+              <div class="fmt-section-line"></div>
+              <div class="fmt-section-line short"></div>
+            </div>
+            <div class="fmt-card-section">
+              <div class="fmt-section-lbl">Skills</div>
+              <div class="fmt-skill-chips">
+                <div class="fmt-skill-chip"></div>
+                <div class="fmt-skill-chip"></div>
+                <div class="fmt-skill-chip"></div>
+              </div>
+            </div>
+            <div class="fmt-card-section">
+              <div class="fmt-section-lbl">Idiomas &amp; +</div>
+              <div class="fmt-section-line"></div>
+              <div class="fmt-section-line short"></div>
+            </div>
+          </div>
+        </div>
+        <div class="fmt-editorial-content">
+          <span class="fmt-step-tag">Etapa 4 · Formatação ATS</span>
+          <h2 class="fmt-headline">Organizando<br><span class="fmt-headline-accent">seu currículo.</span></h2>
+        </div>
+      </div>
     </div>
-    <h2 class="fmt-title">Formatando seu currículo</h2>
-    <p class="fmt-sub">Aguarde enquanto organizamos suas informações no padrão ATS.</p>
-    <div class="fmt-spinner" aria-hidden="true">
-      <span class="fmt-dot"></span>
-      <span class="fmt-dot"></span>
-      <span class="fmt-dot"></span>
+    <div class="fmt-right">
+      <p id="fmt-status-msg" class="fmt-status-msg" aria-live="assertive"></p>
+      <div id="fmt-steps-list" class="fmt-steps" aria-label="Progresso da formatação"></div>
     </div>
-    <p id="fmt-status-msg" class="fmt-status-msg" aria-live="assertive"></p>
-    <div id="fmt-steps-list" class="fmt-steps" aria-label="Progresso da formatação"></div>
   </div>
 </div>
 
@@ -4017,6 +4092,17 @@ function startFormatting() {
   runFormattingCycle(0);
 }
 
+function updateFmtCard(activeIdx) {
+  const secs = document.querySelectorAll('#fmt-resume-card .fmt-card-section');
+  secs.forEach((sec, i) => {
+    sec.classList.remove('fmt-sec-active', 'fmt-sec-done');
+    if (activeIdx < 0) return;
+    if (activeIdx >= FMT_STEPS.length) { sec.classList.add('fmt-sec-done'); return; }
+    if (i < activeIdx)      sec.classList.add('fmt-sec-done');
+    else if (i === activeIdx) sec.classList.add('fmt-sec-active');
+  });
+}
+
 function renderFmtSteps(activeIdx) {
   g('fmt-steps-list').innerHTML = FMT_STEPS.map((s, i) => {
     let cls = '', ico = '·';
@@ -4024,6 +4110,7 @@ function renderFmtSteps(activeIdx) {
     else if (i === activeIdx){ cls = 'step-active'; ico = '→'; }
     return `<div class="fmt-step ${cls}"><span class="fmt-step-ico">${ico}</span>${esc(s.label)}</div>`;
   }).join('');
+  updateFmtCard(activeIdx);
 }
 
 function runFormattingCycle(idx) {
