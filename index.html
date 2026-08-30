@@ -107,6 +107,9 @@ input,select,textarea{font-family:inherit;font-size:inherit}
 .origin-action-btn:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.35)}
 .origin-action-btn:active{transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,.25)}
 .origin-action-btn:focus-visible{outline:3px solid #fff;outline-offset:4px}
+#btn-origin-back{position:absolute;top:24px;left:24px;z-index:1;background:rgba(0,0,0,.32);border:1px solid rgba(255,255,255,.18);border-radius:var(--r);padding:8px 18px;color:rgba(255,255,255,.85);font-size:.875rem;font-weight:500;cursor:pointer;transition:background var(--t),color var(--t);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+#btn-origin-back:hover{background:rgba(0,0,0,.52);color:#fff}
+#btn-origin-back:focus-visible{outline:3px solid #fff;outline-offset:4px}
 .card-ico{width:44px;height:44px;border-radius:50%;background:#F3F4F6;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.25rem}
 .target-card-opt.sel .card-ico{background:#FFE5E5}
 .card-info{flex:1}
@@ -481,16 +484,21 @@ input,select,textarea{font-family:inherit;font-size:inherit}
 .itv-brand-row{display:flex;justify-content:flex-end}
 .itv-brand-chip{font-size:.625rem;font-weight:800;letter-spacing:.2em;color:#fff;background:var(--red);padding:4px 10px;border-radius:4px;text-transform:uppercase}
 .itv-visual-area{flex:1;display:flex;align-items:center;justify-content:center;padding:20px 0}
-.itv-build-wrap{display:flex;flex-direction:column;gap:10px;width:100%;max-width:200px}
-.itv-build-row{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:10px 14px}
-.itv-build-row.active{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.15)}
-.itv-build-lines{flex:1;display:flex;flex-direction:column;gap:5px}
-.itv-build-line{height:5px;border-radius:3px;background:rgba(255,255,255,.2)}
-.itv-build-line:last-child{width:60%}
-.itv-build-dot{width:16px;height:16px;border-radius:50%;flex-shrink:0}
-.itv-dot-done{background:rgba(52,211,153,.8)}
-.itv-dot-active{background:rgba(251,191,36,.7)}
-.itv-dot-todo{border:1.5px solid rgba(255,255,255,.2)}
+.itv-card-wrap{width:100%;max-width:215px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:11px}
+.itv-card-head{display:flex;align-items:center;gap:10px}
+.itv-card-avatar{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#8B0000,#CC0000);flex-shrink:0}
+.itv-card-namelines{flex:1;display:flex;flex-direction:column;gap:5px}
+.itv-card-nameline{height:6px;border-radius:3px;background:rgba(255,255,255,.22)}
+.itv-card-nameline:last-child{width:55%}
+.itv-card-section{display:flex;flex-direction:column;gap:4px}
+.itv-section-lbl{font-size:.5rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:1px}
+.itv-section-line{height:4px;border-radius:3px;background:rgba(255,255,255,.13)}
+.itv-section-line.short{width:65%}
+.itv-skill-chips{display:flex;gap:5px}
+.itv-skill-chip{height:13px;border-radius:999px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.12)}
+.itv-skill-chip:nth-child(1){width:34px}
+.itv-skill-chip:nth-child(2){width:46px}
+.itv-skill-chip:nth-child(3){width:28px}
 .itv-editorial-content{flex-shrink:0}
 .itv-step-tag{display:inline-block;font-size:.6875rem;font-weight:600;color:rgba(255,255,255,.45);letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px;border:1px solid rgba(255,255,255,.15);padding:3px 10px;border-radius:999px}
 .itv-headline{font-size:clamp(1.4rem,2.2vw,1.9rem);font-weight:800;color:#fff;line-height:1.15;margin-bottom:12px;letter-spacing:-.02em}
@@ -736,7 +744,7 @@ input,select,textarea{font-family:inherit;font-size:inherit}
         Enviar meu currículo
       </button>
     </div>
-    <button type="button" id="btn-origin-back" hidden aria-hidden="true" tabindex="-1"></button>
+    <button type="button" id="btn-origin-back">← Voltar</button>
     <button type="button" id="btn-origin-go"   hidden aria-hidden="true" tabindex="-1" disabled></button>
   </div>
 </div>
@@ -1209,27 +1217,31 @@ input,select,textarea{font-family:inherit;font-size:inherit}
       <div class="itv-editorial-inner">
         <div class="itv-brand-row"><span class="itv-brand-chip">AYRA</span></div>
         <div class="itv-visual-area" aria-hidden="true">
-          <div class="itv-build-wrap">
-            <div class="itv-build-row">
-              <div class="itv-build-lines">
-                <div class="itv-build-line"></div>
-                <div class="itv-build-line"></div>
+          <div class="itv-card-wrap">
+            <div class="itv-card-head">
+              <div class="itv-card-avatar"></div>
+              <div class="itv-card-namelines">
+                <div class="itv-card-nameline"></div>
+                <div class="itv-card-nameline"></div>
               </div>
-              <div class="itv-build-dot itv-dot-done"></div>
             </div>
-            <div class="itv-build-row active">
-              <div class="itv-build-lines">
-                <div class="itv-build-line"></div>
-                <div class="itv-build-line"></div>
-              </div>
-              <div class="itv-build-dot itv-dot-active"></div>
+            <div class="itv-card-section">
+              <div class="itv-section-lbl">Objetivo</div>
+              <div class="itv-section-line"></div>
+              <div class="itv-section-line short"></div>
             </div>
-            <div class="itv-build-row">
-              <div class="itv-build-lines">
-                <div class="itv-build-line"></div>
-                <div class="itv-build-line"></div>
+            <div class="itv-card-section">
+              <div class="itv-section-lbl">Formação</div>
+              <div class="itv-section-line"></div>
+              <div class="itv-section-line short"></div>
+            </div>
+            <div class="itv-card-section">
+              <div class="itv-section-lbl">Skills</div>
+              <div class="itv-skill-chips">
+                <div class="itv-skill-chip"></div>
+                <div class="itv-skill-chip"></div>
+                <div class="itv-skill-chip"></div>
               </div>
-              <div class="itv-build-dot itv-dot-todo"></div>
             </div>
           </div>
         </div>
@@ -1272,6 +1284,7 @@ input,select,textarea{font-family:inherit;font-size:inherit}
           </div>
         </div>
         <div class="nav-row">
+          <button class="btn btn-back" type="button" id="btn-obj-back">Voltar</button>
           <button class="btn btn-sec" type="button" id="btn-obj-skip">Pular</button>
           <button class="btn btn-primary" type="button" id="btn-obj-next">Próximo</button>
         </div>
@@ -5045,6 +5058,7 @@ function bind() {
     goScreen('delivery');
   });
   g('itv-objective').addEventListener('input', updateObjCount);
+  g('btn-obj-back').addEventListener('click', () => { addLog('BACK_FROM_INTERVIEW_OBJECTIVE'); goScreen('target-definition'); });
   g('btn-obj-skip').addEventListener('click', () => { S.interview.objective=''; save(); goBlock('experience'); });
   g('btn-obj-next').addEventListener('click', () => { S.interview.objective=(g('itv-objective').value||'').trim(); save(); addLog('OBJECTIVE_SAVED'); goBlock('experience'); });
 
