@@ -414,15 +414,31 @@ input,select,textarea{font-family:inherit;font-size:inherit}
 /* =============================================
    PAINEL DEV
    ============================================= */
-#dev-panel{position:fixed;bottom:0;right:0;width:440px;max-height:55vh;background:#0F172A;color:#94A3B8;font-family:'Courier New',monospace;font-size:.75rem;border-top-left-radius:8px;z-index:9999;overflow:hidden;display:none;flex-direction:column}
+#dev-panel{position:fixed;top:0;left:0;width:268px;height:100vh;background:#0F172A;color:#94A3B8;font-family:'Courier New',monospace;font-size:.75rem;z-index:9999;overflow:hidden;display:none;flex-direction:column;box-shadow:4px 0 32px rgba(0,0,0,.6)}
 #dev-panel.open{display:flex}
-.dev-hd{display:flex;align-items:center;justify-content:space-between;padding:8px 14px;background:#1E293B;border-bottom:1px solid #334155}
-.dev-hd-title{font-size:.75rem;font-weight:700;color:#60A5FA}
-.dev-hd-tag{font-size:.7rem;background:#DC2626;color:#fff;padding:1px 6px;border-radius:999px}
-.dev-close{background:none;border:none;color:#64748B;cursor:pointer;font-size:1rem}
-.dev-close:hover{color:#94A3B8}
-.dev-body{overflow-y:auto;padding:12px 14px;line-height:1.6}
-.dev-btn{position:fixed;bottom:16px;right:16px;background:#1E293B;color:#60A5FA;border:1px solid #334155;border-radius:999px;padding:6px 14px;font-size:.75rem;font-weight:600;cursor:pointer;z-index:9998;font-family:'Courier New',monospace}
+.dev-hd{display:flex;align-items:center;gap:8px;padding:10px 14px;background:#1E293B;flex-shrink:0;border-bottom:1px solid #334155}
+.dev-hd-title{font-weight:700;color:#60A5FA;flex:1;font-size:.75rem}
+.dev-hd-tag{background:#DC2626;color:#fff;font-size:.5625rem;font-weight:700;padding:2px 7px;border-radius:4px;letter-spacing:.06em;flex-shrink:0}
+.dev-close{background:none;border:none;color:#64748B;cursor:pointer;font-size:1rem;padding:2px;line-height:1;flex-shrink:0}
+.dev-close:hover{color:#F1F5F9}
+.dev-state{padding:8px 14px;background:#080d14;border-bottom:1px solid #1e293b;flex-shrink:0}
+.dev-state-row{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:1px 0}
+.dev-state-key{color:#475569;font-size:.625rem}
+.dev-state-val{color:#34D399;font-size:.625rem;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:148px}
+.dev-nav{flex:1;overflow-y:auto;padding:6px 0}
+.dev-nav-sect{padding:8px 14px 3px;font-size:.5625rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#334155}
+.dev-nav-item{display:block;width:100%;text-align:left;padding:5px 14px;background:none;border:none;color:#64748B;font-family:'Courier New',monospace;font-size:.6875rem;cursor:pointer;transition:background .1s,color .1s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dev-nav-item:hover{background:#1E293B;color:#CBD5E1}
+.dev-nav-item.active{background:#1e3a5f;color:#60A5FA;font-weight:700}
+.dev-nav-sub{display:block;width:100%;text-align:left;padding:3px 14px 3px 28px;background:none;border:none;color:#475569;font-family:'Courier New',monospace;font-size:.625rem;cursor:pointer;transition:background .1s,color .1s;white-space:nowrap}
+.dev-nav-sub:hover{background:#1E293B;color:#94A3B8}
+.dev-nav-sub.active{color:#60A5FA;font-weight:700}
+.dev-actions{padding:10px 14px;border-top:1px solid #1e293b;display:flex;flex-direction:column;gap:6px;flex-shrink:0}
+.dev-action-btn{padding:6px 10px;border:1px solid #334155;border-radius:4px;background:#1E293B;color:#94A3B8;font-family:'Courier New',monospace;font-size:.6875rem;cursor:pointer;text-align:left;transition:background .1s,color .1s;width:100%}
+.dev-action-btn:hover{background:#334155;color:#F1F5F9}
+.dev-action-btn.danger{border-color:#7F1D1D;color:#FCA5A5}
+.dev-action-btn.danger:hover{background:#7F1D1D;color:#FEE2E2}
+.dev-btn{position:fixed;bottom:16px;left:16px;background:#1E293B;color:#60A5FA;border:1px solid #334155;border-radius:999px;padding:6px 14px;font-size:.75rem;font-weight:600;cursor:pointer;z-index:9998;font-family:'Courier New',monospace}
 .dev-btn:hover{background:#334155}
 
 /* =============================================
@@ -432,7 +448,7 @@ input,select,textarea{font-family:inherit;font-size:inherit}
   .split{flex-direction:column}
   .split-img{width:100%;height:220px;flex-shrink:0}
   .split-body{padding:32px 24px;justify-content:flex-start}
-  #dev-panel{width:100%;border-radius:0}
+  #dev-panel{width:100%}
   .rev-lbl{width:90px}
   .origin-actions{gap:16px;padding:0 20px 48px}
   .origin-action-btn{min-width:220px;text-align:center}
@@ -479,8 +495,8 @@ input,select,textarea{font-family:inherit;font-size:inherit}
    ============================================= */
 /* Painel editorial — coluna esquerda */
 #itv-img-panel{overflow:hidden}
-#itv-img-panel.missing{background:#071a18}
-.itv-editorial-inner{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding:36px 40px 40px;background:linear-gradient(150deg,#071a18 0%,#0B2F2D 55%,#071a18 100%)}
+#itv-img-panel.missing{background:#12060e}
+.itv-editorial-inner{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding:36px 40px 40px;background:linear-gradient(150deg,#12060e 0%,#1e0810 55%,#12060e 100%)}
 .itv-brand-row{display:flex;justify-content:flex-end}
 .itv-brand-chip{font-size:.625rem;font-weight:800;letter-spacing:.2em;color:#fff;background:var(--red);padding:4px 10px;border-radius:4px;text-transform:uppercase}
 .itv-visual-area{flex:1;display:flex;align-items:center;justify-content:center;padding:20px 0}
@@ -490,7 +506,7 @@ input,select,textarea{font-family:inherit;font-size:inherit}
 .itv-card-namelines{flex:1;display:flex;flex-direction:column;gap:5px}
 .itv-card-nameline{height:6px;border-radius:3px;background:rgba(255,255,255,.22)}
 .itv-card-nameline:last-child{width:55%}
-.itv-card-section{display:flex;flex-direction:column;gap:4px}
+.itv-card-section{display:flex;flex-direction:column;gap:4px;border-left:2px solid transparent;padding-left:6px;transition:border-color var(--t)}
 .itv-section-lbl{font-size:.5rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:1px}
 .itv-section-line{height:4px;border-radius:3px;background:rgba(255,255,255,.13)}
 .itv-section-line.short{width:65%}
@@ -499,6 +515,13 @@ input,select,textarea{font-family:inherit;font-size:inherit}
 .itv-skill-chip:nth-child(1){width:34px}
 .itv-skill-chip:nth-child(2){width:46px}
 .itv-skill-chip:nth-child(3){width:28px}
+.itv-card-section.sec-active{border-left-color:var(--red)}
+.itv-card-section.sec-active .itv-section-lbl{color:rgba(255,255,255,.85)}
+.itv-card-section.sec-active .itv-section-line{background:rgba(255,255,255,.32)}
+.itv-card-section.sec-active .itv-skill-chip{background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.25)}
+.itv-card-section.sec-done .itv-section-lbl{color:rgba(255,255,255,.52)}
+.itv-card-section.sec-done .itv-section-line{background:rgba(255,255,255,.18)}
+.itv-card-section.sec-done .itv-skill-chip{background:rgba(255,255,255,.14)}
 .itv-editorial-content{flex-shrink:0}
 .itv-step-tag{display:inline-block;font-size:.6875rem;font-weight:600;color:rgba(255,255,255,.45);letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px;border:1px solid rgba(255,255,255,.15);padding:3px 10px;border-radius:999px}
 .itv-headline{font-size:clamp(1.4rem,2.2vw,1.9rem);font-weight:800;color:#fff;line-height:1.15;margin-bottom:12px;letter-spacing:-.02em}
@@ -1231,6 +1254,11 @@ input,select,textarea{font-family:inherit;font-size:inherit}
               <div class="itv-section-line short"></div>
             </div>
             <div class="itv-card-section">
+              <div class="itv-section-lbl">Experiência</div>
+              <div class="itv-section-line"></div>
+              <div class="itv-section-line short"></div>
+            </div>
+            <div class="itv-card-section">
               <div class="itv-section-lbl">Formação</div>
               <div class="itv-section-line"></div>
               <div class="itv-section-line short"></div>
@@ -1242,6 +1270,11 @@ input,select,textarea{font-family:inherit;font-size:inherit}
                 <div class="itv-skill-chip"></div>
                 <div class="itv-skill-chip"></div>
               </div>
+            </div>
+            <div class="itv-card-section">
+              <div class="itv-section-lbl">Idiomas &amp; +</div>
+              <div class="itv-section-line"></div>
+              <div class="itv-section-line short"></div>
             </div>
           </div>
         </div>
@@ -1839,17 +1872,47 @@ input,select,textarea{font-family:inherit;font-size:inherit}
 </div>
 
 <!-- PAINEL DEV -->
-<button class="dev-btn" id="dev-toggle" aria-expanded="false" aria-controls="dev-panel" aria-label="Abrir painel de desenvolvedor">
-  DEV [Ctrl+D]
-</button>
+<button class="dev-btn" id="dev-toggle" aria-expanded="false" aria-controls="dev-panel" aria-label="Abrir painel de desenvolvedor">DEV</button>
 <aside id="dev-panel" aria-label="Painel de desenvolvedor" aria-hidden="true">
   <div class="dev-hd">
-    <span class="dev-hd-title">AppState — Modo de Desenvolvimento</span>
-    <span class="dev-hd-tag">DEV ONLY</span>
+    <span class="dev-hd-title">AYRA DEV PANEL</span>
+    <span class="dev-hd-tag">DEV</span>
     <button class="dev-close" id="dev-close" aria-label="Fechar painel">✕</button>
   </div>
-  <div class="dev-body">
-    <pre id="dev-out" style="white-space:pre-wrap;word-break:break-word"></pre>
+  <div class="dev-state">
+    <div class="dev-state-row"><span class="dev-state-key">Screen</span><span class="dev-state-val" id="dst-screen">—</span></div>
+    <div class="dev-state-row"><span class="dev-state-key">Block</span><span class="dev-state-val" id="dst-block">—</span></div>
+    <div class="dev-state-row"><span class="dev-state-key">Flow</span><span class="dev-state-val" id="dst-flow">—</span></div>
+    <div class="dev-state-row"><span class="dev-state-key">Target</span><span class="dev-state-val" id="dst-target">—</span></div>
+    <div class="dev-state-row"><span class="dev-state-key">ProcessId</span><span class="dev-state-val" id="dst-pid">—</span></div>
+  </div>
+  <nav class="dev-nav" aria-label="Navegação de desenvolvimento">
+    <div class="dev-nav-sect">TELAS</div>
+    <button class="dev-nav-item" data-dev-screen="initial-menu">S01 — Menu inicial</button>
+    <button class="dev-nav-item" data-dev-screen="origin-selection">S02 — Origem</button>
+    <button class="dev-nav-sub"  data-dev-screen="origin-selection" data-dev-opt="NEW_RESUME">→ Novo currículo</button>
+    <button class="dev-nav-sub"  data-dev-screen="origin-selection" data-dev-opt="EXISTING_RESUME">→ Currículo existente</button>
+    <button class="dev-nav-item" data-dev-screen="personal-data">S03 — Dados Pessoais</button>
+    <button class="dev-nav-item" data-dev-screen="resume-upload">S04 — Upload</button>
+    <button class="dev-nav-item" data-dev-screen="target-definition">S05 — Objetivo</button>
+    <button class="dev-nav-item" data-dev-screen="interview">S06 — Entrevista</button>
+    <button class="dev-nav-sub"  data-dev-screen="interview" data-dev-block="objective">→ Objetivo</button>
+    <button class="dev-nav-sub"  data-dev-screen="interview" data-dev-block="experience">→ Experiência</button>
+    <button class="dev-nav-sub"  data-dev-screen="interview" data-dev-block="education">→ Formação</button>
+    <button class="dev-nav-sub"  data-dev-screen="interview" data-dev-block="hard-skills">→ Hard Skills</button>
+    <button class="dev-nav-sub"  data-dev-screen="interview" data-dev-block="soft-skills">→ Soft Skills</button>
+    <button class="dev-nav-sub"  data-dev-screen="interview" data-dev-block="languages">→ Idiomas</button>
+    <button class="dev-nav-sub"  data-dev-screen="interview" data-dev-block="certifications">→ Certificações</button>
+    <button class="dev-nav-sub"  data-dev-screen="interview" data-dev-block="projects">→ Projetos</button>
+    <button class="dev-nav-sub"  data-dev-screen="interview" data-dev-block="activities">→ Atividades</button>
+    <button class="dev-nav-sub"  data-dev-screen="interview" data-dev-block="review">→ Revisão</button>
+    <button class="dev-nav-item" data-dev-screen="formatting">S07 — Formatação</button>
+    <button class="dev-nav-item" data-dev-screen="audit">S08 — Auditoria</button>
+    <button class="dev-nav-item" data-dev-screen="delivery">S09 — Entrega</button>
+  </nav>
+  <div class="dev-actions">
+    <button class="dev-action-btn" id="dev-mock">⚡ Popular dados de teste</button>
+    <button class="dev-action-btn danger" id="dev-reset">⊘ Limpar estado</button>
   </div>
 </aside>
 
@@ -1859,6 +1922,7 @@ input,select,textarea{font-family:inherit;font-size:inherit}
    ============================================= */
 const STORAGE_KEY = 'ayra_ats_v1';
 const DEV_MODE = false;
+const _DEV_ACTIVE = DEV_MODE || (typeof location !== 'undefined' && new URLSearchParams(location.search).has('dev'));
 
 /* MOCK_EXT removido — extração real implementada na Skill 04 */
 
@@ -2143,6 +2207,22 @@ function goTargetSub(sub) {
 /* Sub-etapas da Entrevista (Skill 06) */
 const BLK_ORDER = ['objective','experience','education','hard-skills','soft-skills','languages','certifications','projects','activities','review'];
 
+function updateItvPanel(name) {
+  const idxMap = {
+    'objective':0,'experience':1,'education':2,
+    'hard-skills':3,'soft-skills':3,
+    'languages':4,'certifications':4,'projects':4,'activities':4,
+    'review':5
+  };
+  const ai = idxMap[name] ?? 0;
+  document.querySelectorAll('#itv-img-panel .itv-card-section').forEach((sec, i) => {
+    sec.classList.remove('sec-active','sec-done');
+    if (ai >= 5) sec.classList.add('sec-done');
+    else if (i === ai) sec.classList.add('sec-active');
+    else if (i < ai) sec.classList.add('sec-done');
+  });
+}
+
 function goBlock(name) {
   if (name === 'review') buildInterviewReview();
   document.querySelectorAll('.blk').forEach(b => b.classList.add('hidden'));
@@ -2150,6 +2230,7 @@ function goBlock(name) {
   if (t) t.classList.remove('hidden');
   S.interview.currentBlock = name;
   updateBlkNav(name);
+  updateItvPanel(name);
   save();
   const f = t && t.querySelector('button,[href],input,select,textarea');
   if (f) setTimeout(() => f.focus(), 60);
@@ -2788,15 +2869,19 @@ function esc(s) { return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').repl
 function g(id) { return document.getElementById(id); }
 
 function devRefresh() {
-  const out = g('dev-out');
-  if (!out) return;
-  out.textContent = JSON.stringify({
-    processId:S.processId, screen:S.currentScreen, sub:S.currentSub,
-    sourceFlow:S.sourceFlow, isExtracted:S.isExtracted, status:S.status,
-    pd:S.pd, target:S.target, targetSub:S.targetSub,
-    interview:{ block:S.interview.currentBlock, expCount:S.interview.experiences.length, eduCount:S.interview.education.length, hardSkillCount:(S.interview.hardSkills||[]).length, softSkillCount:(S.interview.softSkills||[]).length, langCount:S.interview.languages.length, certCount:S.interview.certifications.length, projCount:(S.interview.projects||[]).length, actCount:(S.interview.activities||[]).length, confirmed:S.interview.confirmedByUser },
-    log:S.log.slice(-8),
-  }, null, 2);
+  if (!_DEV_ACTIVE) return;
+  const set = (id, v) => { const el = g(id); if (el) el.textContent = v || '—'; };
+  set('dst-screen', S.currentScreen);
+  set('dst-block',  (S.interview && S.interview.currentBlock) || '—');
+  set('dst-flow',   S.sourceFlow || '—');
+  set('dst-target', (S.target && S.target.type) || '—');
+  set('dst-pid',    S.processId ? ('…' + S.processId.slice(-8)) : 'null');
+  document.querySelectorAll('#dev-panel .dev-nav-item, #dev-panel .dev-nav-sub').forEach(b => {
+    b.classList.remove('active');
+    const ss = b.dataset.devScreen === S.currentScreen;
+    if (ss && !b.dataset.devBlock && !b.dataset.devOpt) b.classList.add('active');
+    if (ss && b.dataset.devBlock && b.dataset.devBlock === (S.interview && S.interview.currentBlock)) b.classList.add('active');
+  });
 }
 function toggleDev() {
   const p = g('dev-panel'), b = g('dev-toggle');
@@ -2804,6 +2889,53 @@ function toggleDev() {
   p.setAttribute('aria-hidden', !open);
   b.setAttribute('aria-expanded', open);
   if (open) devRefresh();
+}
+function devTeleport(screen, opts) {
+  if (!S.processId && screen !== 'initial-menu') S.processId = 'DEV_' + Date.now();
+  if (opts && opts.opt) { S.selOrigin = opts.opt; S.sourceFlow = opts.opt === 'EXISTING_RESUME' ? 'EXISTING_RESUME' : 'NEW_RESUME'; }
+  if (screen === 'interview') {
+    initInterviewScreen(); goScreen('interview');
+    if (opts && opts.block) goBlock(opts.block);
+  } else if (screen === 'personal-data') {
+    initPDScreen(); goScreen('personal-data'); goSub('contact');
+  } else if (screen === 'target-definition') {
+    goScreen('target-definition'); goTargetSub('choice');
+  } else if (screen === 'audit') {
+    goScreen('audit');
+    const ld = g('aud-loading'), rs = g('aud-result');
+    if (ld) ld.style.display = 'none';
+    if (rs) { rs.classList.add('on'); showAuditResult(S.audit); }
+  } else {
+    goScreen(screen);
+  }
+}
+function devMockData() {
+  S.processId = S.processId || ('DEV_' + Date.now());
+  S.sourceFlow = 'NEW_RESUME'; S.selOrigin = 'NEW_RESUME';
+  S.pd = { fullName:'Ana Lima', email:'ana.lima@email.com', phone:'(11) 91234-5678', city:'São Paulo', state:'SP', country:'Brasil', linkedin:'linkedin.com/in/ana-lima', portfolio:'' };
+  S.fs = { fullName:'VALID', email:'VALID', phone:'VALID', city:'VALID', state:'VALID', country:'VALID', linkedin:'VALID', portfolio:'NOT_PROVIDED' };
+  S.status = 'COMPLETE';
+  S.target = { type:'SPECIFIC_JOB', targetRole:'Analista de Dados', company:'TechCorp', jobDescription:'Python SQL Power BI análise de dados visualização relatórios dashboards', seniority:'MID_LEVEL', secondaryInterests:[] };
+  S.interview.objective = 'Busco uma posição como Analista de Dados para aplicar habilidades em Python e SQL em projetos de alto impacto.';
+  S.interview.experiences = [
+    { role:'Analista de Dados Jr.', company:'DataCorp', start:'Mar/2022', end:null, isCurrent:true, activities:'Desenvolvimento de dashboards\nAnálise de dados de vendas', tools:'Python, SQL, Power BI', results:'Redução de 30% no tempo de relatórios\nAumento de 15% na precisão das métricas' },
+    { role:'Estagiária de BI', company:'StartupX', start:'Jan/2021', end:'Fev/2022', isCurrent:false, activities:'Apoio em análise de dados', tools:'Excel, SQL', results:'Automação de 5 relatórios manuais' }
+  ];
+  S.interview.education = [{ course:'Ciência da Computação', institution:'USP', status:'COMPLETED', startYear:'2017', endYear:'2021' }];
+  S.interview.hardSkills = ['Python','SQL','Power BI','Excel','Pandas'];
+  S.interview.softSkills = ['Comunicação','Pensamento analítico','Proatividade'];
+  S.interview.languages = [{ name:'Inglês', level:'ADVANCED' }, { name:'Espanhol', level:'INTERMEDIATE' }];
+  S.interview.certifications = [{ name:'Google Data Analytics', institution:'Google', year:'2023' }];
+  S.interview.projects = [{ id:'p1', name:'Dashboard de Vendas', description:'Painel interativo de KPIs', technologies:'Python, Plotly, SQL', result:'Adotado por 3 times comerciais' }];
+  S.interview.activities = []; S.interview.confirmedByUser = false;
+  save(); devRefresh();
+  const btn = g('dev-mock');
+  if (btn) { const o = btn.textContent; btn.textContent = '✓ Dados populados!'; setTimeout(() => btn.textContent = o, 2000); }
+}
+function devReset() {
+  if (!confirm('Limpar todo o estado e recarregar?')) return;
+  try { localStorage.removeItem(STORAGE_KEY); } catch(e) {}
+  location.reload();
 }
 
 /* =============================================
@@ -5124,15 +5256,23 @@ function bind() {
   g('btn-restart').addEventListener('click', () => { reset(); location.reload(); });
 
   /* Dev panel */
-  if (DEV_MODE) {
-    g('dev-toggle').addEventListener('click', toggleDev);
+  if (_DEV_ACTIVE) {
+    const tog = g('dev-toggle'), pan = g('dev-panel');
+    if (tog) tog.style.removeProperty('display');
+    if (pan) pan.style.removeProperty('display');
+    tog.addEventListener('click', toggleDev);
     g('dev-close').addEventListener('click', toggleDev);
     document.addEventListener('keydown', e => { if(e.ctrlKey&&e.key==='d'){e.preventDefault();toggleDev();} });
+    document.querySelectorAll('#dev-panel [data-dev-screen]').forEach(btn => {
+      btn.addEventListener('click', () => devTeleport(btn.dataset.devScreen, { block: btn.dataset.devBlock || null, opt: btn.dataset.devOpt || null }));
+    });
+    g('dev-mock').addEventListener('click', devMockData);
+    g('dev-reset').addEventListener('click', devReset);
+    devRefresh();
   } else {
-    const devBtn = g('dev-toggle');
-    const devPanel = g('dev-panel');
-    if (devBtn)   { devBtn.style.display = 'none'; }
-    if (devPanel) { devPanel.style.display = 'none'; devPanel.setAttribute('aria-hidden', 'true'); }
+    const devBtn = g('dev-toggle'), devPanel = g('dev-panel');
+    if (devBtn)   devBtn.style.display = 'none';
+    if (devPanel) devPanel.style.display = 'none';
     addLog('DEV_MODE_DISABLED', { devMode: false });
   }
 }
