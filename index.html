@@ -642,13 +642,21 @@ input,select,textarea{font-family:inherit;font-size:inherit}
 .fmt-headline{font-size:clamp(1.4rem,2.2vw,1.9rem);font-weight:800;color:#fff;line-height:1.15;margin-bottom:0;letter-spacing:-.02em}
 .fmt-headline-accent{color:var(--red)}
 .fmt-right{flex:1;display:flex;flex-direction:column;justify-content:center;padding:48px 56px;background:var(--bg)}
-.fmt-status-msg{font-size:.9375rem;color:var(--text2);font-weight:500;margin-bottom:24px;min-height:1.4em;transition:color var(--t)}
-.fmt-status-msg.done{color:var(--ok);font-weight:700}
-.fmt-steps{display:flex;flex-direction:column;gap:5px}
-.fmt-step{font-size:.8125rem;color:var(--text3);padding:7px 12px;border-radius:4px;display:flex;align-items:center;gap:10px;transition:background var(--t),color var(--t)}
-.fmt-step.step-done{color:var(--ok);background:var(--ok-bg)}
+.fmt-progress-header{margin-bottom:28px}
+.fmt-progress-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.fmt-progress-label{font-size:.6875rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text3)}
+.fmt-step-counter{font-size:.6875rem;font-weight:700;color:var(--red)}
+.fmt-progress-bar-wrap{width:100%;height:4px;border-radius:2px;background:rgba(0,0,0,.08);overflow:hidden}
+.fmt-progress-bar{height:4px;border-radius:2px;background:var(--red);transition:width .65s ease;width:0%}
+.fmt-status-msg{font-size:1rem;color:var(--text);font-weight:700;margin-bottom:20px;min-height:1.4em;transition:color var(--t)}
+.fmt-status-msg.done{color:var(--ok)}
+.fmt-steps{display:flex;flex-direction:column;gap:4px}
+.fmt-step{font-size:.875rem;color:var(--text3);padding:8px 12px;border-radius:6px;display:flex;align-items:center;gap:12px;transition:background var(--t),color var(--t)}
+.fmt-step.step-done{color:var(--ok)}
 .fmt-step.step-active{color:var(--text);background:#F3F4F6;font-weight:600}
-.fmt-step-ico{width:16px;text-align:center;flex-shrink:0}
+.fmt-step-ico{width:18px;text-align:center;flex-shrink:0;font-size:.875rem}
+@keyframes fmt-spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+.fmt-ico-spin{display:inline-block;animation:fmt-spin 1.2s linear infinite;color:var(--red)}
 
 /* =============================================
    SKILL 08 — AUDITORIA FINAL ATS
@@ -1775,6 +1783,15 @@ input,select,textarea{font-family:inherit;font-size:inherit}
       </div>
     </div>
     <div class="fmt-right">
+      <div class="fmt-progress-header">
+        <div class="fmt-progress-meta">
+          <span class="fmt-progress-label">Progresso</span>
+          <span id="fmt-step-counter" class="fmt-step-counter">Iniciando…</span>
+        </div>
+        <div class="fmt-progress-bar-wrap">
+          <div id="fmt-progress-bar" class="fmt-progress-bar"></div>
+        </div>
+      </div>
       <p id="fmt-status-msg" class="fmt-status-msg" aria-live="assertive"></p>
       <div id="fmt-steps-list" class="fmt-steps" aria-label="Progresso da formatação"></div>
     </div>
@@ -4092,23 +4109,30 @@ function startFormatting() {
   runFormattingCycle(0);
 }
 
+const FMT_SECTIONS = ['Objetivo','Experiência','Formação','Skills','Idiomas','Certificações'];
+
 function updateFmtCard(activeIdx) {
-  const secs = document.querySelectorAll('#fmt-resume-card .fmt-card-section');
-  secs.forEach((sec, i) => {
+  document.querySelectorAll('#fmt-resume-card .fmt-card-section').forEach((sec, i) => {
     sec.classList.remove('fmt-sec-active', 'fmt-sec-done');
     if (activeIdx < 0) return;
     if (activeIdx >= FMT_STEPS.length) { sec.classList.add('fmt-sec-done'); return; }
-    if (i < activeIdx)      sec.classList.add('fmt-sec-done');
+    if (i < activeIdx)        sec.classList.add('fmt-sec-done');
     else if (i === activeIdx) sec.classList.add('fmt-sec-active');
   });
 }
 
 function renderFmtSteps(activeIdx) {
-  g('fmt-steps-list').innerHTML = FMT_STEPS.map((s, i) => {
-    let cls = '', ico = '·';
-    if (i < activeIdx)       { cls = 'step-done';   ico = '✓'; }
-    else if (i === activeIdx){ cls = 'step-active'; ico = '→'; }
-    return `<div class="fmt-step ${cls}"><span class="fmt-step-ico">${ico}</span>${esc(s.label)}</div>`;
+  const total = FMT_STEPS.length;
+  const pct = activeIdx < 0 ? 0 : activeIdx >= total ? 100 : Math.round((activeIdx / total) * 100);
+  const bar = g('fmt-progress-bar');
+  if (bar) bar.style.width = pct + '%';
+  const ctr = g('fmt-step-counter');
+  if (ctr) ctr.textContent = activeIdx < 0 ? 'Iniciando…' : activeIdx >= total ? 'Concluído' : (activeIdx + 1) + ' de ' + total;
+  g('fmt-steps-list').innerHTML = FMT_SECTIONS.map((label, i) => {
+    let cls = '', icoChar = '○', icoClass = 'fmt-step-ico';
+    if (i < activeIdx)        { cls = 'step-done';   icoChar = '✓'; }
+    else if (i === activeIdx) { cls = 'step-active'; icoChar = '⟳'; icoClass = 'fmt-step-ico fmt-ico-spin'; }
+    return `<div class="fmt-step ${cls}"><span class="${icoClass}">${icoChar}</span>${esc(label)}</div>`;
   }).join('');
   updateFmtCard(activeIdx);
 }
