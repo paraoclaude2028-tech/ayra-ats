@@ -96,32 +96,26 @@ input,select,textarea{font-family:inherit;font-size:inherit}
 /* =============================================
    TELA 2 — ESCOLHA DE ORIGEM (Skill 02)
    ============================================= */
-.origin-fullbg{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#1a0a0a}
+.origin-fullbg{position:relative;min-height:100vh;display:flex;align-items:flex-end;justify-content:center;overflow:hidden;background:#1a0a0a}
 .origin-bg-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;pointer-events:none;user-select:none}
-.origin-overlay{position:relative;z-index:1;width:100%;max-width:480px;margin:32px 20px;padding:40px 36px;background:rgba(255,255,255,.95);border-radius:var(--r-lg);box-shadow:0 8px 32px rgba(0,0,0,.18)}
 #origin-img-panel.missing{background:linear-gradient(160deg,#8B0000,#CC0000 60%,#FF6666)}
 #origin-img-panel.missing .origin-bg-img{display:none}
-.origin-h{font-size:1.5rem;font-weight:700;color:var(--text);margin-bottom:8px;line-height:1.3}
-.origin-sub{font-size:.9375rem;color:var(--text2);margin-bottom:32px}
-.origin-cards{display:flex;flex-direction:column;gap:16px;margin-bottom:8px}
-
-.card-opt{
-  border:2px solid var(--border);border-radius:var(--r-lg);
-  padding:24px;cursor:pointer;text-align:left;width:100%;
-  display:flex;align-items:flex-start;gap:16px;background:var(--surface);
-  transition:border-color var(--t),box-shadow var(--t),background var(--t);
-}
-.card-opt:hover{border-color:var(--red);box-shadow:var(--sh)}
-.card-opt.sel{border-color:var(--red);background:#FFF5F5;box-shadow:0 0 0 1px var(--red),var(--sh)}
+.origin-actions{position:relative;z-index:1;display:flex;gap:24px;justify-content:center;align-items:center;padding:0 24px 64px;width:100%}
+.origin-action-btn{border:none;border-radius:var(--r-lg);padding:16px 36px;font-size:1rem;font-weight:700;cursor:pointer;letter-spacing:.01em;transition:transform var(--t),box-shadow var(--t);line-height:1.2}
+.origin-action-new{background:var(--red);color:#fff}
+.origin-action-existing{background:#c0392b;color:#fff}
+.origin-action-btn:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.35)}
+.origin-action-btn:active{transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,.25)}
+.origin-action-btn:focus-visible{outline:3px solid #fff;outline-offset:4px}
 .card-ico{width:44px;height:44px;border-radius:50%;background:#F3F4F6;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.25rem}
-.card-opt.sel .card-ico,.target-card-opt.sel .card-ico{background:#FFE5E5}
+.target-card-opt.sel .card-ico{background:#FFE5E5}
 .card-info{flex:1}
 .card-title{font-size:1rem;font-weight:600;color:var(--text);display:block;margin-bottom:4px}
 .card-desc{font-size:.875rem;color:var(--text2);line-height:1.5;display:block}
 .card-radio{width:20px;height:20px;border-radius:50%;border:2px solid var(--border);flex-shrink:0;display:flex;align-items:center;justify-content:center;margin-top:2px;transition:border-color var(--t),background var(--t)}
-.card-opt.sel .card-radio,.target-card-opt.sel .card-radio{border-color:var(--red);background:var(--red)}
+.target-card-opt.sel .card-radio{border-color:var(--red);background:var(--red)}
 .card-radio-mark{display:none;color:#fff;font-size:11px;font-weight:700}
-.card-opt.sel .card-radio-mark,.target-card-opt.sel .card-radio-mark{display:block}
+.target-card-opt.sel .card-radio-mark{display:block}
 
 /* =============================================
    TELA 3 — DADOS PESSOAIS (Skill 03)
@@ -378,12 +372,14 @@ input,select,textarea{font-family:inherit;font-size:inherit}
   .split-body{padding:32px 24px;justify-content:flex-start}
   #dev-panel{width:100%;border-radius:0}
   .rev-lbl{width:90px}
-  .origin-overlay{margin:20px 16px;padding:32px 24px}
+  .origin-actions{gap:16px;padding:0 20px 48px}
+  .origin-action-btn{min-width:220px;text-align:center}
 }
 @media(max-width:480px){
   .split-body{padding:24px 16px}
   .done-card{padding:32px 20px}
-  .origin-overlay{margin:16px 12px;padding:24px 16px}
+  .origin-actions{flex-direction:column;align-items:stretch;padding:0 16px 40px}
+  .origin-action-btn{text-align:center}
 }
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important}
@@ -621,42 +617,18 @@ input,select,textarea{font-family:inherit;font-size:inherit}
     <img id="origin-img" class="origin-bg-img"
       src="Plano de Fundo - Curriculo novo ou adaptar um antigo.png"
       alt="" aria-hidden="true">
-    <div class="origin-overlay">
-      <h2 class="origin-h">Como podemos ajudar você?</h2>
-      <p class="origin-sub">Escolha uma das opções para começar.</p>
-
-      <div class="origin-cards" role="radiogroup" aria-label="Tipo de currículo">
-        <button class="card-opt" id="card-new" type="button"
-          role="radio" aria-checked="false" data-opt="NEW_RESUME">
-          <span class="card-ico" aria-hidden="true">📄</span>
-          <span class="card-info">
-            <span class="card-title">Criar um currículo novo</span>
-            <span class="card-desc">Comece do zero por meio de uma entrevista guiada.</span>
-          </span>
-          <span class="card-radio" aria-hidden="true">
-            <span class="card-radio-mark">✓</span>
-          </span>
-        </button>
-
-        <button class="card-opt" id="card-existing" type="button"
-          role="radio" aria-checked="false" data-opt="EXISTING_RESUME">
-          <span class="card-ico" aria-hidden="true">📋</span>
-          <span class="card-info">
-            <span class="card-title">Adaptar um currículo existente</span>
-            <span class="card-desc">Envie seu currículo atual para revisar, complementar e direcionar.</span>
-          </span>
-          <span class="card-radio" aria-hidden="true">
-            <span class="card-radio-mark">✓</span>
-          </span>
-        </button>
-      </div>
-
-      <div class="nav-row">
-        <button class="btn btn-back" type="button" id="btn-origin-back">Voltar</button>
-        <button class="btn btn-primary" type="button" id="btn-origin-go"
-          disabled aria-disabled="true">Continuar</button>
-      </div>
+    <div class="origin-actions" role="group" aria-label="Tipo de currículo">
+      <button class="origin-action-btn origin-action-new" id="card-new"
+        type="button" role="radio" aria-checked="false" data-opt="NEW_RESUME">
+        Criar meu currículo
+      </button>
+      <button class="origin-action-btn origin-action-existing" id="card-existing"
+        type="button" role="radio" aria-checked="false" data-opt="EXISTING_RESUME">
+        Enviar meu currículo
+      </button>
     </div>
+    <button type="button" id="btn-origin-back" hidden aria-hidden="true" tabindex="-1"></button>
+    <button type="button" id="btn-origin-go"   hidden aria-hidden="true" tabindex="-1" disabled></button>
   </div>
 </div>
 
@@ -2636,12 +2608,9 @@ function onStart() {
    ============================================= */
 function onCardSelect(opt) {
   S.selOrigin = opt;
-  document.querySelectorAll('.card-opt').forEach(c => {
-    const sel = c.dataset.opt === opt;
-    c.classList.toggle('sel', sel);
-    c.setAttribute('aria-checked', sel ? 'true' : 'false');
+  document.querySelectorAll('.origin-action-btn').forEach(c => {
+    c.setAttribute('aria-checked', c.dataset.opt === opt ? 'true' : 'false');
   });
-  const btn = g('btn-origin-go'); btn.disabled=false; btn.removeAttribute('aria-disabled');
   addLog('CARD_SELECTED', { opt });
 }
 
@@ -2662,8 +2631,7 @@ function onOriginConfirm() {
 
 function onOriginBack() {
   S.selOrigin = null;
-  document.querySelectorAll('.card-opt').forEach(c => { c.classList.remove('sel'); c.setAttribute('aria-checked','false'); });
-  const btn = g('btn-origin-go'); btn.disabled=true; btn.setAttribute('aria-disabled','true');
+  document.querySelectorAll('.origin-action-btn').forEach(c => c.setAttribute('aria-checked','false'));
   addLog('RETURN_TO_INITIAL_MENU');
   goScreen('initial-menu');
 }
@@ -4804,9 +4772,9 @@ function bind() {
   g('hero-img').addEventListener('error', () => imgErr('hero-wrap','initial_menu','Plano de fundo - menu inicial.png'));
 
   /* Tela 2 */
-  document.querySelectorAll('.card-opt').forEach(c => {
-    c.addEventListener('click', () => onCardSelect(c.dataset.opt));
-    c.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' '){e.preventDefault();onCardSelect(c.dataset.opt);} });
+  document.querySelectorAll('.origin-action-btn').forEach(c => {
+    c.addEventListener('click', () => { onCardSelect(c.dataset.opt); onOriginConfirm(); });
+    c.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' '){e.preventDefault();onCardSelect(c.dataset.opt);onOriginConfirm();} });
   });
   g('btn-origin-go').addEventListener('click', onOriginConfirm);
   g('btn-origin-back').addEventListener('click', onOriginBack);
