@@ -326,16 +326,25 @@ input,select,textarea{font-family:inherit;font-size:inherit}
 /* Painel editorial — coluna esquerda */
 #td-img-panel{overflow:hidden}
 #td-img-panel.missing{background:#1a0a0a}
-.td-editorial-inner{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding:36px 40px 40px;background:linear-gradient(150deg,#0a0a1a 0%,#08102a 55%,#0a0a1a 100%)}
+.td-editorial-inner{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding:36px 40px 40px;background:linear-gradient(150deg,#180e04 0%,#241404 55%,#180e04 100%)}
 .td-brand-row{display:flex;justify-content:flex-end}
 .td-brand-chip{font-size:.625rem;font-weight:800;letter-spacing:.2em;color:#fff;background:var(--red);padding:4px 10px;border-radius:4px;text-transform:uppercase}
 .td-visual-area{flex:1;display:flex;align-items:center;justify-content:center;padding:20px 0}
-.td-target-wrap{position:relative;width:160px;height:160px}
-.td-ring{position:absolute;border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%)}
-.td-ring:nth-child(1){width:160px;height:160px;border:1px solid rgba(255,255,255,.07)}
-.td-ring:nth-child(2){width:118px;height:118px;border:1px solid rgba(255,255,255,.11)}
-.td-ring:nth-child(3){width:80px;height:80px;border:1px solid rgba(255,255,255,.17)}
-.td-ring:nth-child(4){width:48px;height:48px;background:var(--red);opacity:.9}
+.td-path-wrap{display:flex;flex-direction:column;align-items:center;width:100%;max-width:200px}
+.td-path-resume{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:16px}
+.td-path-header{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.td-path-avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#8B0000,#CC0000);flex-shrink:0}
+.td-path-info{flex:1;display:flex;flex-direction:column;gap:6px}
+.td-path-line{height:6px;border-radius:3px;background:rgba(255,255,255,.2)}
+.td-path-line:last-child{width:55%}
+.td-path-body{display:flex;flex-direction:column;gap:5px}
+.td-path-row{height:5px;border-radius:3px;background:rgba(255,255,255,.1)}
+.td-path-row:nth-child(2){width:80%}
+.td-path-row:nth-child(3){width:58%}
+.td-path-connector{width:1px;height:18px;background:rgba(255,255,255,.2);margin:0 auto}
+.td-path-dests{display:flex;gap:8px;width:100%}
+.td-dest-pill{flex:1;text-align:center;padding:6px 4px;border-radius:8px;font-size:.5625rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.5);background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1)}
+.td-dest-pill.primary{background:rgba(204,0,0,.2);border-color:rgba(204,0,0,.4);color:rgba(255,190,170,.9)}
 .td-editorial-content{flex-shrink:0}
 .td-step-tag{display:inline-block;font-size:.6875rem;font-weight:600;color:rgba(255,255,255,.45);letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px;border:1px solid rgba(255,255,255,.15);padding:3px 10px;border-radius:999px}
 .td-headline{font-size:clamp(1.4rem,2.2vw,1.9rem);font-weight:800;color:#fff;line-height:1.15;margin-bottom:12px;letter-spacing:-.02em}
@@ -1011,11 +1020,26 @@ input,select,textarea{font-family:inherit;font-size:inherit}
           <span class="td-brand-chip">AYRA</span>
         </div>
         <div class="td-visual-area" aria-hidden="true">
-          <div class="td-target-wrap">
-            <div class="td-ring"></div>
-            <div class="td-ring"></div>
-            <div class="td-ring"></div>
-            <div class="td-ring"></div>
+          <div class="td-path-wrap">
+            <div class="td-path-resume">
+              <div class="td-path-header">
+                <div class="td-path-avatar"></div>
+                <div class="td-path-info">
+                  <div class="td-path-line"></div>
+                  <div class="td-path-line"></div>
+                </div>
+              </div>
+              <div class="td-path-body">
+                <div class="td-path-row"></div>
+                <div class="td-path-row"></div>
+                <div class="td-path-row"></div>
+              </div>
+            </div>
+            <div class="td-path-connector"></div>
+            <div class="td-path-dests">
+              <div class="td-dest-pill primary">Vaga específica</div>
+              <div class="td-dest-pill">Área profissional</div>
+            </div>
           </div>
         </div>
         <div class="td-editorial-content">
