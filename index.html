@@ -172,12 +172,12 @@ input,select,textarea{font-family:inherit;font-size:inherit}
 /* =============================================
    UPLOAD — Skill 04 (full-bg)
    ============================================= */
-.upload-fullbg{position:relative;min-height:100vh;display:flex;align-items:flex-end;justify-content:center;overflow-x:hidden;overflow-y:auto;background:#1a0a0a}
+.upload-fullbg{position:relative;min-height:100vh;display:flex;align-items:flex-end;justify-content:center;overflow-y:auto;background:#1a0a0a}
 .upload-bg-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;z-index:0;pointer-events:none;user-select:none}
 #upl-img-panel.missing{background:linear-gradient(160deg,#8B0000,#CC0000 60%,#FF6666)}
 #upl-img-panel.missing .upload-bg-img{display:none}
-.upload-content{position:relative;z-index:1;width:70%;max-width:660px;padding:32px 36px;margin:0 24px 48px;background:rgba(255,255,255,.95);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border-radius:var(--r-lg);box-shadow:0 8px 32px rgba(0,0,0,.22)}
-.dropzone{border:2px dashed var(--red);border-radius:var(--r-lg);padding:40px 24px;text-align:center;cursor:pointer;transition:border-color var(--t),background var(--t);margin-bottom:16px;background:rgba(255,255,255,.6)}
+.upload-content{position:relative;z-index:1;width:70%;max-width:660px;padding:32px 36px;margin-bottom:48px;background:rgba(255,255,255,.95);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border-radius:var(--r-lg);box-shadow:0 8px 32px rgba(0,0,0,.22)}
+.dropzone{display:block;width:100%;box-sizing:border-box;border:2px dashed var(--red);border-radius:var(--r-lg);padding:40px 24px;text-align:center;cursor:pointer;transition:border-color var(--t),background var(--t);margin-bottom:16px;background:rgba(255,255,255,.6)}
 .dropzone:hover,.dropzone.over{border-color:#8B0000;background:rgba(255,245,245,.9)}
 .dropzone-ico{font-size:2.5rem;margin-bottom:12px}
 .dropzone-txt{font-size:.9375rem;color:var(--text2);margin-bottom:8px}
@@ -380,14 +380,14 @@ input,select,textarea{font-family:inherit;font-size:inherit}
   .rev-lbl{width:90px}
   .origin-actions{gap:16px;padding:0 20px 48px}
   .origin-action-btn{min-width:220px;text-align:center}
-  .upload-content{width:90%;margin:0 16px 36px;padding:28px 28px}
+  .upload-content{width:90%;margin-bottom:36px;padding:28px 28px}
 }
 @media(max-width:480px){
   .split-body{padding:24px 16px}
   .done-card{padding:32px 20px}
   .origin-actions{flex-direction:column;align-items:stretch;padding:0 16px 40px}
   .origin-action-btn{text-align:center}
-  .upload-content{width:95%;margin:0 8px 28px;padding:24px 20px}
+  .upload-content{width:95%;margin-bottom:24px;padding:20px 16px}
   .upl-actions{flex-wrap:wrap;gap:12px}
 }
 @media(prefers-reduced-motion:reduce){
