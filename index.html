@@ -96,6 +96,11 @@ input,select,textarea{font-family:inherit;font-size:inherit}
 /* =============================================
    TELA 2 — ESCOLHA DE ORIGEM (Skill 02)
    ============================================= */
+.origin-fullbg{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#1a0a0a}
+.origin-bg-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;pointer-events:none;user-select:none}
+.origin-overlay{position:relative;z-index:1;width:100%;max-width:480px;margin:32px 20px;padding:40px 36px;background:rgba(255,255,255,.95);border-radius:var(--r-lg);box-shadow:0 8px 32px rgba(0,0,0,.18)}
+#origin-img-panel.missing{background:linear-gradient(160deg,#8B0000,#CC0000 60%,#FF6666)}
+#origin-img-panel.missing .origin-bg-img{display:none}
 .origin-h{font-size:1.5rem;font-weight:700;color:var(--text);margin-bottom:8px;line-height:1.3}
 .origin-sub{font-size:.9375rem;color:var(--text2);margin-bottom:32px}
 .origin-cards{display:flex;flex-direction:column;gap:16px;margin-bottom:8px}
@@ -373,10 +378,12 @@ input,select,textarea{font-family:inherit;font-size:inherit}
   .split-body{padding:32px 24px;justify-content:flex-start}
   #dev-panel{width:100%;border-radius:0}
   .rev-lbl{width:90px}
+  .origin-overlay{margin:20px 16px;padding:32px 24px}
 }
 @media(max-width:480px){
   .split-body{padding:24px 16px}
   .done-card{padding:32px 20px}
+  .origin-overlay{margin:16px 12px;padding:24px 16px}
 }
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important}
@@ -610,12 +617,11 @@ input,select,textarea{font-family:inherit;font-size:inherit}
      Ação: SELECT_NEW_RESUME | SELECT_EXISTING_RESUME
      ============================================= -->
 <div id="screen-origin-selection" class="screen" aria-label="Escolha de origem do currículo">
-  <div class="split">
-    <div id="origin-img-panel" class="split-img">
-      <img id="origin-img" src="Plano de Fundo - Curriculo novo ou adaptar um antigo.png"
-        alt="Ayra Consultoria — escolha como começar">
-    </div>
-    <div class="split-body">
+  <div id="origin-img-panel" class="origin-fullbg">
+    <img id="origin-img" class="origin-bg-img"
+      src="Plano de Fundo - Curriculo novo ou adaptar um antigo.png"
+      alt="" aria-hidden="true">
+    <div class="origin-overlay">
       <h2 class="origin-h">Como podemos ajudar você?</h2>
       <p class="origin-sub">Escolha uma das opções para começar.</p>
 
