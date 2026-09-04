@@ -96,36 +96,57 @@ input,select,textarea{font-family:inherit;font-size:inherit}
 /* =============================================
    TELA 2 — ESCOLHA DE ORIGEM (Skill 02)
    ============================================= */
-.origin-fullbg{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#1a0a0a}
+.origin-fullbg{position:relative;min-height:100vh;display:flex;align-items:flex-end;justify-content:center;overflow:hidden;background:#1a0a0a}
 .origin-bg-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;pointer-events:none;user-select:none}
-.origin-overlay{position:relative;z-index:1;width:100%;max-width:480px;margin:32px 20px;padding:40px 36px;background:rgba(255,255,255,.95);border-radius:var(--r-lg);box-shadow:0 8px 32px rgba(0,0,0,.18)}
 #origin-img-panel.missing{background:linear-gradient(160deg,#8B0000,#CC0000 60%,#FF6666)}
 #origin-img-panel.missing .origin-bg-img{display:none}
-.origin-h{font-size:1.5rem;font-weight:700;color:var(--text);margin-bottom:8px;line-height:1.3}
-.origin-sub{font-size:.9375rem;color:var(--text2);margin-bottom:32px}
-.origin-cards{display:flex;flex-direction:column;gap:16px;margin-bottom:8px}
-
-.card-opt{
-  border:2px solid var(--border);border-radius:var(--r-lg);
-  padding:24px;cursor:pointer;text-align:left;width:100%;
-  display:flex;align-items:flex-start;gap:16px;background:var(--surface);
-  transition:border-color var(--t),box-shadow var(--t),background var(--t);
-}
-.card-opt:hover{border-color:var(--red);box-shadow:var(--sh)}
-.card-opt.sel{border-color:var(--red);background:#FFF5F5;box-shadow:0 0 0 1px var(--red),var(--sh)}
+.origin-actions{position:relative;z-index:1;display:flex;gap:24px;justify-content:center;align-items:center;padding:0 24px 64px;width:100%}
+.origin-action-btn{border:none;border-radius:var(--r-lg);padding:16px 36px;font-size:1rem;font-weight:700;cursor:pointer;letter-spacing:.01em;transition:transform var(--t),box-shadow var(--t);line-height:1.2}
+.origin-action-new{background:var(--red);color:#fff}
+.origin-action-existing{background:#c0392b;color:#fff}
+.origin-action-btn:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.35)}
+.origin-action-btn:active{transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,.25)}
+.origin-action-btn:focus-visible{outline:3px solid #fff;outline-offset:4px}
+#btn-origin-back{position:absolute;top:24px;left:24px;z-index:1;background:rgba(0,0,0,.32);border:1px solid rgba(255,255,255,.18);border-radius:var(--r);padding:8px 18px;color:rgba(255,255,255,.85);font-size:.875rem;font-weight:500;cursor:pointer;transition:background var(--t),color var(--t);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+#btn-origin-back:hover{background:rgba(0,0,0,.52);color:#fff}
+#btn-origin-back:focus-visible{outline:3px solid #fff;outline-offset:4px}
 .card-ico{width:44px;height:44px;border-radius:50%;background:#F3F4F6;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.25rem}
-.card-opt.sel .card-ico,.target-card-opt.sel .card-ico{background:#FFE5E5}
+.target-card-opt.sel .card-ico{background:#FFE5E5}
 .card-info{flex:1}
 .card-title{font-size:1rem;font-weight:600;color:var(--text);display:block;margin-bottom:4px}
 .card-desc{font-size:.875rem;color:var(--text2);line-height:1.5;display:block}
 .card-radio{width:20px;height:20px;border-radius:50%;border:2px solid var(--border);flex-shrink:0;display:flex;align-items:center;justify-content:center;margin-top:2px;transition:border-color var(--t),background var(--t)}
-.card-opt.sel .card-radio,.target-card-opt.sel .card-radio{border-color:var(--red);background:var(--red)}
+.target-card-opt.sel .card-radio{border-color:var(--red);background:var(--red)}
 .card-radio-mark{display:none;color:#fff;font-size:11px;font-weight:700}
-.card-opt.sel .card-radio-mark,.target-card-opt.sel .card-radio-mark{display:block}
+.target-card-opt.sel .card-radio-mark{display:block}
 
 /* =============================================
    TELA 3 — DADOS PESSOAIS (Skill 03)
    ============================================= */
+
+/* Painel editorial — coluna esquerda */
+#pd-img-panel{overflow:hidden}
+#pd-img-panel.missing{background:#1a0a0a}
+.pd-editorial-inner{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding:36px 40px 40px;background:linear-gradient(150deg,#1a0a0a 0%,#280a08 55%,#1a0a0a 100%)}
+.pd-brand-row{display:flex;justify-content:flex-end}
+.pd-brand-chip{font-size:.625rem;font-weight:800;letter-spacing:.2em;color:#fff;background:var(--red);padding:4px 10px;border-radius:4px;text-transform:uppercase}
+.pd-visual-area{flex:1;display:flex;align-items:center;justify-content:center;padding:20px 0}
+.pd-resume-mock{width:100%;max-width:240px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:20px}
+.pd-mock-header{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.pd-mock-avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#8B0000,#CC0000);flex-shrink:0}
+.pd-mock-info{flex:1;display:flex;flex-direction:column;gap:7px}
+.pd-mock-line{height:7px;border-radius:4px;background:rgba(255,255,255,.22)}
+.pd-mock-line:last-child{width:55%}
+.pd-mock-body{display:flex;flex-direction:column;gap:7px}
+.pd-mock-row{height:6px;border-radius:3px;background:rgba(255,255,255,.12)}
+.pd-mock-row:nth-child(2){width:82%}
+.pd-mock-row:nth-child(3){width:60%}
+.pd-editorial-content{flex-shrink:0}
+.pd-step-tag{display:inline-block;font-size:.6875rem;font-weight:600;color:rgba(255,255,255,.45);letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px;border:1px solid rgba(255,255,255,.15);padding:3px 10px;border-radius:999px}
+.pd-headline{font-size:clamp(1.5rem,2.4vw,2.1rem);font-weight:800;color:#fff;line-height:1.15;margin-bottom:12px;letter-spacing:-.02em}
+.pd-headline-accent{color:var(--red)}
+.pd-subheadline{font-size:.875rem;color:rgba(255,255,255,.5);line-height:1.65;max-width:280px;margin:0}
+
 .sec-title{font-size:1.375rem;font-weight:700;color:var(--text);margin-bottom:6px}
 .sec-sub{font-size:.9rem;color:var(--text2);margin-bottom:28px}
 
@@ -176,19 +197,25 @@ input,select,textarea{font-family:inherit;font-size:inherit}
 .badge-ok{background:var(--ok-bg);color:var(--ok)}
 
 /* =============================================
-   UPLOAD PLACEHOLDER (Skill 04)
+   UPLOAD — Skill 04 (full-bg)
    ============================================= */
-.upl-title{font-size:1.375rem;font-weight:700;color:var(--text);margin-bottom:8px}
-.upl-sub{font-size:.9375rem;color:var(--text2);margin-bottom:28px;line-height:1.6}
-.dropzone{border:2px dashed var(--border);border-radius:var(--r-lg);padding:40px 24px;text-align:center;cursor:pointer;transition:border-color var(--t),background var(--t);margin-bottom:20px}
-.dropzone:hover,.dropzone.over{border-color:var(--red);background:#FFF5F5}
+.upload-fullbg{position:relative;min-height:100vh;display:flex;align-items:flex-end;justify-content:center;overflow-y:auto;background:#1a0a0a}
+.upload-bg-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;z-index:0;pointer-events:none;user-select:none}
+#upl-img-panel.missing{background:linear-gradient(160deg,#8B0000,#CC0000 60%,#FF6666)}
+#upl-img-panel.missing .upload-bg-img{display:none}
+.upload-content{position:relative;z-index:1;width:70%;max-width:660px;padding:32px 36px;margin-bottom:48px;background:rgba(255,255,255,.95);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border-radius:var(--r-lg);box-shadow:0 8px 32px rgba(0,0,0,.22)}
+.dropzone{display:block;width:100%;box-sizing:border-box;border:2px dashed var(--red);border-radius:var(--r-lg);padding:40px 24px;text-align:center;cursor:pointer;transition:border-color var(--t),background var(--t);margin-bottom:16px;background:rgba(255,255,255,.6)}
+.dropzone:hover,.dropzone.over{border-color:#8B0000;background:rgba(255,245,245,.9)}
 .dropzone-ico{font-size:2.5rem;margin-bottom:12px}
 .dropzone-txt{font-size:.9375rem;color:var(--text2);margin-bottom:8px}
 .dropzone-fmt{font-size:.8125rem;color:var(--text3)}
 #upl-file{display:none}
-.upl-chosen{display:none;align-items:center;gap:12px;background:var(--ok-bg);border:1px solid #A7F3D0;border-radius:var(--r);padding:14px 16px;margin-bottom:20px;font-size:.9rem}
+.upl-chosen{display:none;align-items:center;gap:12px;background:var(--ok-bg);border:1px solid #A7F3D0;border-radius:var(--r);padding:14px 16px;margin-bottom:16px;font-size:.9rem}
 .upl-chosen.on{display:flex}
-.upl-note{font-size:.8125rem;color:var(--text2);background:#F9FAFB;border-radius:4px;padding:10px 14px;margin-bottom:24px;line-height:1.5}
+.upl-note{font-size:.8125rem;color:var(--text2);background:rgba(249,250,251,.85);border-radius:4px;padding:10px 14px;margin-bottom:20px;line-height:1.5}
+.upl-actions{display:flex;justify-content:space-between;align-items:center;margin-top:4px}
+.btn-upl-link{background:none;border:none;color:var(--text2);font-size:.9375rem;cursor:pointer;padding:8px 0;text-decoration:underline;text-underline-offset:3px;transition:color var(--t)}
+.btn-upl-link:hover{color:var(--red)}
 
 /* === SKILL 04 — ESTADOS DE EXTRAÇÃO === */
 .upl-ext-status{display:none;border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:16px}
@@ -298,6 +325,35 @@ input,select,textarea{font-family:inherit;font-size:inherit}
 /* =============================================
    SKILL 05 — DEFINIÇÃO DE ALVO
    ============================================= */
+
+/* Painel editorial — coluna esquerda */
+#td-img-panel{overflow:hidden}
+#td-img-panel.missing{background:#1a0a0a}
+.td-editorial-inner{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding:36px 40px 40px;background:linear-gradient(150deg,#180e04 0%,#241404 55%,#180e04 100%)}
+.td-brand-row{display:flex;justify-content:flex-end}
+.td-brand-chip{font-size:.625rem;font-weight:800;letter-spacing:.2em;color:#fff;background:var(--red);padding:4px 10px;border-radius:4px;text-transform:uppercase}
+.td-visual-area{flex:1;display:flex;align-items:center;justify-content:center;padding:20px 0}
+.td-path-wrap{display:flex;flex-direction:column;align-items:center;width:100%;max-width:200px}
+.td-path-resume{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:16px}
+.td-path-header{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.td-path-avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#8B0000,#CC0000);flex-shrink:0}
+.td-path-info{flex:1;display:flex;flex-direction:column;gap:6px}
+.td-path-line{height:6px;border-radius:3px;background:rgba(255,255,255,.2)}
+.td-path-line:last-child{width:55%}
+.td-path-body{display:flex;flex-direction:column;gap:5px}
+.td-path-row{height:5px;border-radius:3px;background:rgba(255,255,255,.1)}
+.td-path-row:nth-child(2){width:80%}
+.td-path-row:nth-child(3){width:58%}
+.td-path-connector{width:1px;height:18px;background:rgba(255,255,255,.2);margin:0 auto}
+.td-path-dests{display:flex;gap:8px;width:100%}
+.td-dest-pill{flex:1;text-align:center;padding:6px 4px;border-radius:8px;font-size:.5625rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.5);background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1)}
+.td-dest-pill.primary{background:rgba(204,0,0,.2);border-color:rgba(204,0,0,.4);color:rgba(255,190,170,.9)}
+.td-editorial-content{flex-shrink:0}
+.td-step-tag{display:inline-block;font-size:.6875rem;font-weight:600;color:rgba(255,255,255,.45);letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px;border:1px solid rgba(255,255,255,.15);padding:3px 10px;border-radius:999px}
+.td-headline{font-size:clamp(1.4rem,2.2vw,1.9rem);font-weight:800;color:#fff;line-height:1.15;margin-bottom:12px;letter-spacing:-.02em}
+.td-headline-accent{color:var(--red)}
+.td-subheadline{font-size:.875rem;color:rgba(255,255,255,.5);line-height:1.65;max-width:280px;margin:0}
+
 .target-card-opt{
   border:2px solid var(--border);border-radius:var(--r-lg);
   padding:22px 24px;cursor:pointer;text-align:left;width:100%;
@@ -358,15 +414,31 @@ input,select,textarea{font-family:inherit;font-size:inherit}
 /* =============================================
    PAINEL DEV
    ============================================= */
-#dev-panel{position:fixed;bottom:0;right:0;width:440px;max-height:55vh;background:#0F172A;color:#94A3B8;font-family:'Courier New',monospace;font-size:.75rem;border-top-left-radius:8px;z-index:9999;overflow:hidden;display:none;flex-direction:column}
+#dev-panel{position:fixed;top:0;left:0;width:268px;height:100vh;background:#0F172A;color:#94A3B8;font-family:'Courier New',monospace;font-size:.75rem;z-index:9999;overflow:hidden;display:none;flex-direction:column;box-shadow:4px 0 32px rgba(0,0,0,.6)}
 #dev-panel.open{display:flex}
-.dev-hd{display:flex;align-items:center;justify-content:space-between;padding:8px 14px;background:#1E293B;border-bottom:1px solid #334155}
-.dev-hd-title{font-size:.75rem;font-weight:700;color:#60A5FA}
-.dev-hd-tag{font-size:.7rem;background:#DC2626;color:#fff;padding:1px 6px;border-radius:999px}
-.dev-close{background:none;border:none;color:#64748B;cursor:pointer;font-size:1rem}
-.dev-close:hover{color:#94A3B8}
-.dev-body{overflow-y:auto;padding:12px 14px;line-height:1.6}
-.dev-btn{position:fixed;bottom:16px;right:16px;background:#1E293B;color:#60A5FA;border:1px solid #334155;border-radius:999px;padding:6px 14px;font-size:.75rem;font-weight:600;cursor:pointer;z-index:9998;font-family:'Courier New',monospace}
+.dev-hd{display:flex;align-items:center;gap:8px;padding:10px 14px;background:#1E293B;flex-shrink:0;border-bottom:1px solid #334155}
+.dev-hd-title{font-weight:700;color:#60A5FA;flex:1;font-size:.75rem}
+.dev-hd-tag{background:#DC2626;color:#fff;font-size:.5625rem;font-weight:700;padding:2px 7px;border-radius:4px;letter-spacing:.06em;flex-shrink:0}
+.dev-close{background:none;border:none;color:#64748B;cursor:pointer;font-size:1rem;padding:2px;line-height:1;flex-shrink:0}
+.dev-close:hover{color:#F1F5F9}
+.dev-state{padding:8px 14px;background:#080d14;border-bottom:1px solid #1e293b;flex-shrink:0}
+.dev-state-row{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:1px 0}
+.dev-state-key{color:#475569;font-size:.625rem}
+.dev-state-val{color:#34D399;font-size:.625rem;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:148px}
+.dev-nav{flex:1;overflow-y:auto;padding:6px 0}
+.dev-nav-sect{padding:8px 14px 3px;font-size:.5625rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#334155}
+.dev-nav-item{display:block;width:100%;text-align:left;padding:5px 14px;background:none;border:none;color:#64748B;font-family:'Courier New',monospace;font-size:.6875rem;cursor:pointer;transition:background .1s,color .1s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dev-nav-item:hover{background:#1E293B;color:#CBD5E1}
+.dev-nav-item.active{background:#1e3a5f;color:#60A5FA;font-weight:700}
+.dev-nav-sub{display:block;width:100%;text-align:left;padding:3px 14px 3px 28px;background:none;border:none;color:#475569;font-family:'Courier New',monospace;font-size:.625rem;cursor:pointer;transition:background .1s,color .1s;white-space:nowrap}
+.dev-nav-sub:hover{background:#1E293B;color:#94A3B8}
+.dev-nav-sub.active{color:#60A5FA;font-weight:700}
+.dev-actions{padding:10px 14px;border-top:1px solid #1e293b;display:flex;flex-direction:column;gap:6px;flex-shrink:0}
+.dev-action-btn{padding:6px 10px;border:1px solid #334155;border-radius:4px;background:#1E293B;color:#94A3B8;font-family:'Courier New',monospace;font-size:.6875rem;cursor:pointer;text-align:left;transition:background .1s,color .1s;width:100%}
+.dev-action-btn:hover{background:#334155;color:#F1F5F9}
+.dev-action-btn.danger{border-color:#7F1D1D;color:#FCA5A5}
+.dev-action-btn.danger:hover{background:#7F1D1D;color:#FEE2E2}
+.dev-btn{position:fixed;bottom:16px;left:16px;background:#1E293B;color:#60A5FA;border:1px solid #334155;border-radius:999px;padding:6px 14px;font-size:.75rem;font-weight:600;cursor:pointer;z-index:9998;font-family:'Courier New',monospace}
 .dev-btn:hover{background:#334155}
 
 /* =============================================
@@ -376,14 +448,64 @@ input,select,textarea{font-family:inherit;font-size:inherit}
   .split{flex-direction:column}
   .split-img{width:100%;height:220px;flex-shrink:0}
   .split-body{padding:32px 24px;justify-content:flex-start}
-  #dev-panel{width:100%;border-radius:0}
+  #dev-panel{width:100%}
   .rev-lbl{width:90px}
-  .origin-overlay{margin:20px 16px;padding:32px 24px}
+  .origin-actions{gap:16px;padding:0 20px 48px}
+  .origin-action-btn{min-width:220px;text-align:center}
+  .upload-content{width:90%;margin-bottom:36px;padding:28px 28px}
+  .pd-editorial-inner{padding:20px 28px 24px}
+  .pd-visual-area{display:none}
+  .pd-step-tag{display:none}
+  .pd-headline{font-size:1.25rem;margin-bottom:4px}
+  .pd-subheadline{font-size:.8125rem}
+  .td-editorial-inner{padding:20px 28px 24px}
+  .td-visual-area{display:none}
+  .td-step-tag{display:none}
+  .td-headline{font-size:1.2rem;margin-bottom:4px}
+  .td-subheadline{font-size:.8125rem}
+  .itv-editorial-inner{padding:20px 28px 24px}
+  .itv-visual-area{display:none}
+  .itv-step-tag{display:none}
+  .itv-headline{font-size:1.2rem;margin-bottom:4px}
+  .itv-subheadline{font-size:.8125rem}
+  .fmt-split{flex-direction:column}
+  .fmt-left{width:100%;height:220px;flex-shrink:0}
+  .fmt-editorial-inner{padding:20px 28px 24px}
+  .fmt-visual-area{display:none}
+  .fmt-step-tag{display:none}
+  .fmt-headline{font-size:1.2rem;margin-bottom:4px}
+  .fmt-right{padding:32px 24px}
+  .aud-split{flex-direction:column}
+  .aud-left{width:100%;height:220px;flex-shrink:0}
+  .aud-editorial-inner{padding:20px 28px 24px}
+  .aud-visual-area{display:none}
+  .aud-step-tag{display:none}
+  .aud-headline{font-size:1.2rem;margin-bottom:12px}
+  .aud-subheadline{display:none}
+  .aud-right{padding:32px 24px}
 }
 @media(max-width:480px){
   .split-body{padding:24px 16px}
   .done-card{padding:32px 20px}
-  .origin-overlay{margin:16px 12px;padding:24px 16px}
+  .origin-actions{flex-direction:column;align-items:stretch;padding:0 16px 40px}
+  .origin-action-btn{text-align:center}
+  .upload-content{width:95%;margin-bottom:24px;padding:20px 16px}
+  .upl-actions{flex-wrap:wrap;gap:12px}
+  .pd-editorial-inner{padding:16px 20px 20px}
+  .pd-headline{font-size:1.1rem;margin-bottom:0}
+  .pd-subheadline{display:none}
+  .td-editorial-inner{padding:16px 20px 20px}
+  .td-headline{font-size:1.05rem;margin-bottom:0}
+  .td-subheadline{display:none}
+  .itv-editorial-inner{padding:16px 20px 20px}
+  .itv-headline{font-size:1.05rem;margin-bottom:0}
+  .itv-subheadline{display:none}
+  .fmt-editorial-inner{padding:16px 20px 20px}
+  .fmt-headline{font-size:1.05rem;margin-bottom:0}
+  .fmt-right{padding:24px 16px}
+  .aud-editorial-inner{padding:16px 20px 20px}
+  .aud-headline{font-size:1.05rem;margin-bottom:0}
+  .aud-right{padding:24px 16px}
 }
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important}
@@ -392,6 +514,41 @@ input,select,textarea{font-family:inherit;font-size:inherit}
 /* =============================================
    SKILL 06 — ENTREVISTA DIRECIONADA
    ============================================= */
+/* Painel editorial — coluna esquerda */
+#itv-img-panel{overflow:hidden}
+#itv-img-panel.missing{background:#12060e}
+.itv-editorial-inner{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding:36px 40px 40px;background:linear-gradient(150deg,#12060e 0%,#1e0810 55%,#12060e 100%)}
+.itv-brand-row{display:flex;justify-content:flex-end}
+.itv-brand-chip{font-size:.625rem;font-weight:800;letter-spacing:.2em;color:#fff;background:var(--red);padding:4px 10px;border-radius:4px;text-transform:uppercase}
+.itv-visual-area{flex:1;display:flex;align-items:center;justify-content:center;padding:20px 0}
+.itv-card-wrap{width:100%;max-width:215px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:11px}
+.itv-card-head{display:flex;align-items:center;gap:10px}
+.itv-card-avatar{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#8B0000,#CC0000);flex-shrink:0}
+.itv-card-namelines{flex:1;display:flex;flex-direction:column;gap:5px}
+.itv-card-nameline{height:6px;border-radius:3px;background:rgba(255,255,255,.22)}
+.itv-card-nameline:last-child{width:55%}
+.itv-card-section{display:flex;flex-direction:column;gap:4px;border-left:2px solid transparent;padding-left:6px;transition:border-color var(--t)}
+.itv-section-lbl{font-size:.5rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:1px}
+.itv-section-line{height:4px;border-radius:3px;background:rgba(255,255,255,.13)}
+.itv-section-line.short{width:65%}
+.itv-skill-chips{display:flex;gap:5px}
+.itv-skill-chip{height:13px;border-radius:999px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.12)}
+.itv-skill-chip:nth-child(1){width:34px}
+.itv-skill-chip:nth-child(2){width:46px}
+.itv-skill-chip:nth-child(3){width:28px}
+.itv-card-section.sec-active{border-left-color:var(--red)}
+.itv-card-section.sec-active .itv-section-lbl{color:rgba(255,255,255,.85)}
+.itv-card-section.sec-active .itv-section-line{background:rgba(255,255,255,.32)}
+.itv-card-section.sec-active .itv-skill-chip{background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.25)}
+.itv-card-section.sec-done .itv-section-lbl{color:rgba(255,255,255,.52)}
+.itv-card-section.sec-done .itv-section-line{background:rgba(255,255,255,.18)}
+.itv-card-section.sec-done .itv-skill-chip{background:rgba(255,255,255,.14)}
+.itv-editorial-content{flex-shrink:0}
+.itv-step-tag{display:inline-block;font-size:.6875rem;font-weight:600;color:rgba(255,255,255,.45);letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px;border:1px solid rgba(255,255,255,.15);padding:3px 10px;border-radius:999px}
+.itv-headline{font-size:clamp(1.4rem,2.2vw,1.9rem);font-weight:800;color:#fff;line-height:1.15;margin-bottom:12px;letter-spacing:-.02em}
+.itv-headline-accent{color:var(--red)}
+.itv-subheadline{font-size:.875rem;color:rgba(255,255,255,.5);line-height:1.65;max-width:280px;margin:0}
+
 .blk-nav{display:flex;gap:0;flex-wrap:nowrap;overflow-x:auto;margin-bottom:24px;border-bottom:2px solid var(--border);padding-bottom:0;-webkit-overflow-scrolling:touch}
 .blk-tab{padding:9px 14px;font-size:.8rem;font-weight:600;color:var(--text2);cursor:pointer;border:none;background:none;border-bottom:3px solid transparent;margin-bottom:-2px;white-space:nowrap;transition:color var(--t),border-color var(--t);flex-shrink:0}
 .blk-tab:hover{color:var(--text)}
@@ -461,64 +618,127 @@ input,select,textarea{font-family:inherit;font-size:inherit}
 /* =============================================
    SKILL 07 — MOTOR DE FORMATAÇÃO
    ============================================= */
-#screen-formatting{align-items:center;justify-content:center;background:var(--bg);padding:40px 24px}
-.fmt-card{background:var(--surface);border-radius:var(--r-lg);padding:48px 44px;max-width:520px;width:100%;box-shadow:var(--sh-lg);text-align:center}
-.fmt-img-wrap{height:160px;border-radius:var(--r);overflow:hidden;margin-bottom:28px;background:linear-gradient(135deg,#8B0000,#CC0000 60%,#FF6666)}
-.fmt-img-wrap img{width:100%;height:100%;object-fit:cover}
-.fmt-img-wrap.missing img{display:none}
-.fmt-title{font-size:1.25rem;font-weight:700;color:var(--text);margin-bottom:6px}
-.fmt-sub{font-size:.9rem;color:var(--text2);margin-bottom:28px}
-.fmt-spinner{display:flex;justify-content:center;gap:8px;margin-bottom:20px}
-.fmt-dot{width:10px;height:10px;border-radius:50%;background:var(--red);animation:fmtbounce .9s ease-in-out infinite}
-.fmt-dot:nth-child(2){animation-delay:.15s}
-.fmt-dot:nth-child(3){animation-delay:.3s}
-@keyframes fmtbounce{0%,80%,100%{transform:scale(.6);opacity:.35}40%{transform:scale(1.2);opacity:1}}
-.fmt-status-msg{font-size:.9375rem;color:var(--text);font-weight:600;margin-bottom:20px;min-height:1.4em;transition:color var(--t)}
+#screen-formatting{padding:0;background:#0e0408}
+.fmt-split{display:flex;width:100%;min-height:100vh}
+.fmt-left{width:45%;position:relative;overflow:hidden;flex-shrink:0}
+.fmt-img-wrap{display:none}
+.fmt-editorial-inner{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding:36px 40px 40px;background:linear-gradient(150deg,#0e0408 0%,#1e0810 55%,#0e0408 100%)}
+.fmt-brand-row{display:flex;justify-content:flex-end}
+.fmt-brand-chip{font-size:.625rem;font-weight:800;letter-spacing:.2em;color:#fff;background:var(--red);padding:4px 10px;border-radius:4px;text-transform:uppercase}
+.fmt-visual-area{flex:1;display:flex;align-items:center;justify-content:center;padding:20px 0}
+.fmt-resume-card{width:100%;max-width:215px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:11px}
+.fmt-card-head{display:flex;align-items:center;gap:10px}
+.fmt-card-avatar{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#8B0000,#CC0000);flex-shrink:0}
+.fmt-card-namelines{flex:1;display:flex;flex-direction:column;gap:5px}
+.fmt-card-nameline{height:6px;border-radius:3px;background:rgba(255,255,255,.22)}
+.fmt-card-nameline:last-child{width:55%}
+.fmt-card-section{display:flex;flex-direction:column;gap:4px;border-left:2px solid transparent;padding-left:6px;transition:border-color var(--t)}
+.fmt-section-lbl{font-size:.5rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:1px;transition:color var(--t)}
+.fmt-section-line{height:4px;border-radius:3px;background:rgba(255,255,255,.1);transition:background var(--t)}
+.fmt-section-line.short{width:65%}
+.fmt-skill-chips{display:flex;gap:5px}
+.fmt-skill-chip{height:13px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);transition:background var(--t),border-color var(--t)}
+.fmt-skill-chip:nth-child(1){width:34px}
+.fmt-skill-chip:nth-child(2){width:46px}
+.fmt-skill-chip:nth-child(3){width:28px}
+.fmt-sec-active{border-left-color:var(--red)}
+.fmt-sec-active .fmt-section-lbl{color:rgba(255,255,255,.85)}
+.fmt-sec-active .fmt-section-line{background:rgba(255,255,255,.32)}
+.fmt-sec-active .fmt-skill-chip{background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.25)}
+.fmt-sec-done .fmt-section-lbl{color:rgba(255,255,255,.52)}
+.fmt-sec-done .fmt-section-line{background:rgba(255,255,255,.18)}
+.fmt-sec-done .fmt-skill-chip{background:rgba(255,255,255,.14)}
+.fmt-editorial-content{flex-shrink:0}
+.fmt-step-tag{display:inline-block;font-size:.6875rem;font-weight:600;color:rgba(255,255,255,.45);letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px;border:1px solid rgba(255,255,255,.15);padding:3px 10px;border-radius:999px}
+.fmt-headline{font-size:clamp(1.4rem,2.2vw,1.9rem);font-weight:800;color:#fff;line-height:1.15;margin-bottom:0;letter-spacing:-.02em}
+.fmt-headline-accent{color:var(--red)}
+.fmt-right{flex:1;display:flex;flex-direction:column;justify-content:center;padding:48px 56px;background:var(--bg)}
+.fmt-progress-header{margin-bottom:28px}
+.fmt-progress-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.fmt-progress-label{font-size:.6875rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text3)}
+.fmt-step-counter{font-size:.6875rem;font-weight:700;color:var(--red)}
+.fmt-progress-bar-wrap{width:100%;height:4px;border-radius:2px;background:rgba(0,0,0,.08);overflow:hidden}
+.fmt-progress-bar{height:4px;border-radius:2px;background:var(--red);transition:width .65s ease;width:0%}
+.fmt-status-msg{font-size:1rem;color:var(--text);font-weight:700;margin-bottom:20px;min-height:1.4em;transition:color var(--t)}
 .fmt-status-msg.done{color:var(--ok)}
-.fmt-steps{display:flex;flex-direction:column;gap:5px;text-align:left}
-.fmt-step{font-size:.8125rem;color:var(--text3);padding:7px 12px;border-radius:4px;display:flex;align-items:center;gap:10px;transition:background var(--t),color var(--t)}
-.fmt-step.step-done{color:var(--ok);background:var(--ok-bg)}
+.fmt-steps{display:flex;flex-direction:column;gap:4px}
+.fmt-step{font-size:.875rem;color:var(--text3);padding:8px 12px;border-radius:6px;display:flex;align-items:center;gap:12px;transition:background var(--t),color var(--t)}
+.fmt-step.step-done{color:var(--ok)}
 .fmt-step.step-active{color:var(--text);background:#F3F4F6;font-weight:600}
-.fmt-step-ico{width:16px;text-align:center;flex-shrink:0}
-@media(max-width:480px){.fmt-card{padding:32px 20px}}
+.fmt-step-ico{width:18px;text-align:center;flex-shrink:0;font-size:.875rem}
+@keyframes fmt-spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+.fmt-ico-spin{display:inline-block;animation:fmt-spin 1.2s linear infinite;color:var(--red)}
 
 /* =============================================
    SKILL 08 — AUDITORIA FINAL ATS
    ============================================= */
-#screen-audit{align-items:center;justify-content:center;background:var(--bg);padding:40px 24px}
-.aud-card{background:var(--surface);border-radius:var(--r-lg);padding:48px 44px;max-width:580px;width:100%;box-shadow:var(--sh-lg);text-align:center}
-.aud-img-wrap{height:160px;border-radius:var(--r);overflow:hidden;margin-bottom:28px;background:linear-gradient(135deg,#1a0a0a,#8B0000 60%,#CC0000)}
-.aud-img-wrap img{width:100%;height:100%;object-fit:cover}
-.aud-img-wrap.missing img{display:none}
-.aud-title{font-size:1.25rem;font-weight:700;color:var(--text);margin-bottom:6px}
-.aud-sub{font-size:.9rem;color:var(--text2);margin-bottom:28px}
+#screen-audit{padding:0;background:#0b040d}
+.aud-split{display:flex;width:100%;min-height:100vh}
+.aud-left{width:45%;position:relative;overflow:hidden;flex-shrink:0}
+.aud-img-wrap{display:none}
+.aud-editorial-inner{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding:36px 40px 40px;background:linear-gradient(150deg,#0b040d 0%,#1e0810 55%,#0b040d 100%)}
+.aud-brand-row{display:flex;justify-content:flex-end}
+.aud-brand-chip{font-size:.625rem;font-weight:800;letter-spacing:.2em;color:#fff;background:var(--red);padding:4px 10px;border-radius:4px;text-transform:uppercase}
+.aud-visual-area{flex:1;display:flex;align-items:center;justify-content:center;padding:20px 0}
+.aud-resume-card{width:100%;max-width:215px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:11px}
+.aud-card-head{display:flex;align-items:center;gap:10px}
+.aud-card-avatar{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#8B0000,#CC0000);flex-shrink:0}
+.aud-card-namelines{flex:1;display:flex;flex-direction:column;gap:5px}
+.aud-card-nameline{height:6px;border-radius:3px;background:rgba(255,255,255,.22)}
+.aud-card-nameline:last-child{width:55%}
+.aud-card-section{display:flex;flex-direction:column;gap:4px;border-left:2px solid transparent;padding-left:6px}
+.aud-section-lbl{font-size:.5rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:1px}
+.aud-section-line{height:4px;border-radius:3px;background:rgba(255,255,255,.1)}
+.aud-section-line.short{width:65%}
+.aud-skill-chips{display:flex;gap:5px}
+.aud-skill-chip{height:13px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1)}
+.aud-skill-chip:nth-child(1){width:34px}
+.aud-skill-chip:nth-child(2){width:46px}
+.aud-skill-chip:nth-child(3){width:28px}
+.aud-sec-done{border-left-color:rgba(255,255,255,.35)}
+.aud-sec-done .aud-section-lbl{color:rgba(255,255,255,.6)}
+.aud-sec-done .aud-section-line{background:rgba(255,255,255,.2)}
+.aud-sec-done .aud-skill-chip{background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.18)}
+.aud-editorial-content{flex-shrink:0}
+.aud-step-tag{display:inline-block;font-size:.6875rem;font-weight:600;color:rgba(255,255,255,.45);letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px;border:1px solid rgba(255,255,255,.15);padding:3px 10px;border-radius:999px}
+.aud-headline{font-size:clamp(1.4rem,2.2vw,1.9rem);font-weight:800;color:#fff;line-height:1.15;margin-bottom:12px;letter-spacing:-.02em}
+.aud-headline-accent{color:var(--red)}
+.aud-subheadline{font-size:.875rem;color:rgba(255,255,255,.5);line-height:1.65;max-width:280px;margin:0}
+/* Right panel */
+.aud-right{flex:1;display:flex;flex-direction:column;padding:48px 56px;background:var(--bg)}
 /* Loading */
-.aud-spinner{display:flex;justify-content:center;gap:8px;margin-bottom:20px}
-.aud-dot{width:10px;height:10px;border-radius:50%;background:var(--red);animation:audbounce .9s ease-in-out infinite}
-.aud-dot:nth-child(2){animation-delay:.15s}
-.aud-dot:nth-child(3){animation-delay:.3s}
-@keyframes audbounce{0%,80%,100%{transform:scale(.6);opacity:.35}40%{transform:scale(1.2);opacity:1}}
-.aud-status-msg{font-size:.9375rem;color:var(--text);font-weight:600;margin-bottom:20px;min-height:1.4em}
-.aud-steps{display:flex;flex-direction:column;gap:5px;text-align:left}
-.aud-step{font-size:.8125rem;color:var(--text3);padding:7px 12px;border-radius:4px;display:flex;align-items:center;gap:10px}
-.aud-step.step-done{color:var(--ok);background:var(--ok-bg)}
+.aud-status-msg{font-size:1rem;color:var(--text);font-weight:700;margin-bottom:20px;min-height:1.4em}
+.aud-steps{display:flex;flex-direction:column;gap:4px}
+.aud-step{font-size:.875rem;color:var(--text3);padding:8px 12px;border-radius:6px;display:flex;align-items:center;gap:12px;transition:background var(--t),color var(--t)}
+.aud-step.step-done{color:var(--ok)}
 .aud-step.step-active{color:var(--text);background:#F3F4F6;font-weight:600}
-.aud-step-ico{width:16px;text-align:center;flex-shrink:0}
+.aud-step-ico{width:18px;text-align:center;flex-shrink:0;font-size:.875rem}
+@keyframes aud-spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+.aud-ico-spin{display:inline-block;animation:aud-spin 1.2s linear infinite;color:var(--red)}
 /* Result */
-.aud-result{display:none;text-align:left}
+.aud-result{display:none}
 .aud-result.on{display:block}
 .aud-badge{display:inline-block;padding:6px 16px;border-radius:999px;font-size:.875rem;font-weight:700;margin-bottom:20px}
 .aud-badge-approved{background:var(--ok-bg);color:var(--ok);border:1px solid #A7F3D0}
 .aud-badge-warn{background:var(--warn-bg);color:var(--warn);border:1px solid #FCD34D}
 .aud-badge-block{background:var(--error-bg);color:var(--error);border:1px solid #FCA5A5}
+.aud-badge-excellent{background:#ECFDF5;color:#059669;border:1px solid #6EE7B7}
+.aud-score-bar{background:#F9FAFB;border:1.5px solid var(--border);border-radius:var(--r);padding:16px;margin-bottom:20px}
+.aud-score-num{font-size:2.5rem;font-weight:800;line-height:1;margin-bottom:4px}
+.aud-score-num.excellent{color:#059669}.aud-score-num.good{color:#2563EB}.aud-score-num.warn{color:var(--warn)}.aud-score-num.low{color:var(--error)}
+.aud-score-label{font-size:.8125rem;color:var(--text2);margin-bottom:10px}
+.aud-score-breakdown{display:flex;flex-wrap:wrap;gap:5px}
+.aud-score-item{font-size:.75rem;background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:2px 9px;color:var(--text2)}
 .aud-pillars{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
 .aud-pillar{background:#F9FAFB;border:1.5px solid var(--border);border-radius:var(--r);padding:12px 14px}
 .aud-pillar.pass{border-color:#A7F3D0;background:var(--ok-bg)}
 .aud-pillar.partial{border-color:#FCD34D;background:var(--warn-bg)}
+.aud-pillar.fail{border-color:#FECACA;background:var(--error-bg)}
 .aud-pillar-label{font-size:.8rem;color:var(--text2);font-weight:600;display:block;margin-bottom:4px}
 .aud-pillar-status{font-size:.875rem;font-weight:700}
 .aud-pillar.pass .aud-pillar-status{color:var(--ok)}
 .aud-pillar.partial .aud-pillar-status{color:var(--warn)}
+.aud-pillar.fail .aud-pillar-status{color:var(--error)}
 .aud-warnings{margin-bottom:20px}
 .aud-warn-title{font-size:.875rem;font-weight:700;color:var(--text);margin-bottom:10px}
 .aud-warn-item{padding:10px 14px;background:var(--warn-bg);border:1px solid #FCD34D;border-radius:var(--r);margin-bottom:8px;font-size:.875rem;color:#92400E;line-height:1.5}
@@ -528,16 +748,73 @@ input,select,textarea{font-family:inherit;font-size:inherit}
 .aud-warn-meta{font-size:.8rem;border-top:1px solid #FCD34D;margin-top:7px;padding-top:6px;color:var(--text2);display:flex;flex-direction:column;gap:3px}
 .aud-warn-impact{color:var(--text2)}
 .aud-warn-rec{color:var(--text)}
-.aud-badge-excellent{background:#ECFDF5;color:#059669;border:1px solid #6EE7B7}
-.aud-pillar.fail{border-color:#FECACA;background:var(--error-bg)}
-.aud-pillar.fail .aud-pillar-status{color:var(--error)}
-.aud-score-bar{background:#F9FAFB;border:1.5px solid var(--border);border-radius:var(--r);padding:16px;margin-bottom:20px;text-align:center}
-.aud-score-num{font-size:2.5rem;font-weight:800;line-height:1;margin-bottom:4px}
-.aud-score-num.excellent{color:#059669}.aud-score-num.good{color:#2563EB}.aud-score-num.warn{color:var(--warn)}.aud-score-num.low{color:var(--error)}
-.aud-score-label{font-size:.8125rem;color:var(--text2);margin-bottom:10px}
-.aud-score-breakdown{display:flex;flex-wrap:wrap;gap:5px;justify-content:center}
-.aud-score-item{font-size:.75rem;background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:2px 9px;color:var(--text2)}
-@media(max-width:600px){.aud-pillars{grid-template-columns:1fr}.aud-card{padding:32px 20px}}
+@media(max-width:600px){.aud-pillars{grid-template-columns:1fr}}
+
+/* =============================================
+   SPRINT 04.3 — AUDITORIA GRANULAR & ENTREVISTA ADAPTATIVA
+   ============================================= */
+#screen-audit-review{flex-direction:column;background:var(--bg)}
+.ar-topbar{background:var(--surface);border-bottom:1px solid var(--border);padding:12px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px;position:sticky;top:0;z-index:100;box-shadow:var(--sh)}
+.ar-topbar-title{font-weight:700;font-size:1rem;color:var(--text)}
+.ar-topbar-sub{font-size:.8125rem;color:var(--text2)}
+.ar-body{max-width:800px;width:100%;margin:0 auto;padding:32px 24px;display:flex;flex-direction:column;gap:20px}
+.ar-intro{background:var(--surface);border-radius:var(--r-lg);padding:24px 28px;border:1px solid var(--border)}
+.ar-intro-title{font-size:1.25rem;font-weight:700;margin-bottom:6px}
+.ar-intro-sub{font-size:.875rem;color:var(--text2);line-height:1.5}
+.ar-stat-bar{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.ar-stat{display:flex;flex-direction:column;align-items:center;padding:10px 16px;border-radius:var(--r);min-width:75px;gap:2px}
+.ar-stat-n{font-size:1.375rem;font-weight:700}
+.ar-stat-l{font-size:.7rem;text-transform:uppercase;letter-spacing:.05em}
+.ar-stat.ok{background:#F0FDF4;color:var(--ok)}.ar-stat.warn{background:#FFFBEB;color:var(--warn)}.ar-stat.err{background:#FEF2F2;color:var(--error)}.ar-stat.info{background:#EFF6FF;color:#1D4ED8}
+.ar-group{background:var(--surface);border-radius:var(--r-lg);border:1px solid var(--border);overflow:hidden}
+.ar-group-hd{padding:14px 20px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;user-select:none;gap:8px}
+.ar-group-hd:hover{background:var(--bg)}
+.ar-group-title{font-weight:700;font-size:.9375rem;display:flex;align-items:center;gap:8px}
+.ar-group-count{font-size:.75rem;font-weight:700;padding:2px 8px;border-radius:999px}
+.ar-g-ok .ar-group-count{background:#D1FAE5;color:#065F46}
+.ar-g-warn .ar-group-count{background:#FEF3C7;color:#92400E}
+.ar-g-comp .ar-group-count{background:#DBEAFE;color:#1E40AF}
+.ar-g-miss .ar-group-count{background:#FEE2E2;color:#991B1B}
+.ar-group-toggle{font-size:.8rem;color:var(--text3);flex-shrink:0}
+.ar-group-body{padding:0 20px 16px;display:none;border-top:1px solid var(--border)}
+.ar-group.open .ar-group-body{display:block}
+.ar-item{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--border)}
+.ar-item:last-child{border-bottom:none}
+.ar-item-ico{font-size:.875rem;width:16px;flex-shrink:0;margin-top:2px}
+.ar-item-body{flex:1;min-width:0}
+.ar-item-label{font-size:.875rem;font-weight:600}
+.ar-item-detail{font-size:.8rem;color:var(--text2);margin-top:2px}
+.ar-item-tag{font-size:.6875rem;font-weight:700;padding:1px 7px;border-radius:999px;display:inline-block;margin-top:4px}
+.ar-tag-ok{background:#D1FAE5;color:#065F46}.ar-tag-warn{background:#FEF3C7;color:#92400E}.ar-tag-info{background:#DBEAFE;color:#1E40AF}.ar-tag-err{background:#FEE2E2;color:#991B1B}
+.ar-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.ar-note{font-size:.8125rem;color:var(--text3);font-style:italic}
+.split-body.adaptive-active #blk-nav-bar{display:none}
+.split-body.adaptive-active .blk{display:none!important}
+.split-body.adaptive-active #adp-banner{display:none}
+.split-body.adaptive-active #itv-import-banner{display:none}
+#adaptive-panel{display:none;flex-direction:column;padding:20px 0;max-width:600px;width:100%}
+.split-body.adaptive-active #adaptive-panel{display:flex}
+.adp-q-progress-row{display:flex;align-items:center;gap:10px;margin-bottom:16px;font-size:.8125rem;color:var(--text2)}
+.adp-q-bar{flex:1;height:5px;background:var(--border);border-radius:3px;overflow:hidden}
+.adp-q-bar-fill{height:100%;background:var(--red);border-radius:3px;transition:width .4s}
+.adp-q-block-tag{font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;font-weight:700;color:var(--text2);margin-bottom:5px}
+.adp-q-prompt{font-size:1.0625rem;font-weight:600;color:var(--text);line-height:1.45;margin-bottom:8px}
+.adp-q-hint{background:var(--warn-bg);border:1px solid #FCD34D;border-radius:var(--r);padding:10px 14px;font-size:.8125rem;color:#92400E;margin-bottom:16px;line-height:1.5}
+.adp-q-extracted{background:#EFF6FF;border:1px solid #BFDBFE;border-radius:var(--r);padding:10px 14px;margin-bottom:16px}
+.adp-q-ext-label{font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;font-weight:700;color:#1D4ED8;margin-bottom:3px}
+.adp-q-ext-value{font-size:.9375rem;color:var(--text)}
+.adp-q-opts{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
+.adp-q-opt{display:flex;align-items:center;gap:10px;padding:10px 14px;border:1.5px solid var(--border);border-radius:var(--r);cursor:pointer;transition:background var(--t),border-color var(--t);font-size:.9375rem}
+.adp-q-opt:hover{background:var(--bg);border-color:var(--red)}
+.adp-q-opt input[type=radio]{accent-color:var(--red);flex-shrink:0}
+.adp-q-nav{display:flex;align-items:center;justify-content:space-between;margin-top:20px;gap:12px;flex-wrap:wrap}
+.adp-q-skip-btn{font-size:.8125rem;color:var(--text2);cursor:pointer;padding:6px 0;border:none;background:none;text-decoration:underline}
+.adp-q-skip-btn:hover{color:var(--text)}
+.adp-q-full-btn{font-size:.8125rem;color:var(--text2);cursor:pointer;padding:6px 10px;border:1px solid var(--border);border-radius:var(--r);background:none}
+.adp-q-full-btn:hover{background:var(--bg)}
+.adp-q-done{background:var(--ok-bg);border:1px solid #A7F3D0;border-radius:var(--r-lg);padding:28px;text-align:center}
+.adp-q-done-title{font-size:1.125rem;font-weight:700;color:var(--ok);margin-bottom:8px}
+.adp-q-done-sub{font-size:.875rem;color:var(--text2);margin-bottom:16px;line-height:1.5}
 
 /* =============================================
    SKILL 09 — FINALIZAÇÃO E ENTREGA
@@ -558,26 +835,27 @@ input,select,textarea{font-family:inherit;font-size:inherit}
   box-shadow:0 4px 32px rgba(0,0,0,.18);
   border-radius:2px;
   font-family:Arial,'Liberation Sans',Helvetica,sans-serif;
-  font-size:11pt;line-height:1.55;color:#111;
+  font-size:11pt;line-height:1.5;color:#1a1a1a;
 }
-.resume-preview h1{font-size:21pt;font-weight:700;margin:0 0 2px;padding-bottom:8px;border-bottom:3px solid #CC0000;letter-spacing:.01em}
-.resume-preview .rv-contacts{font-size:9.5pt;color:#555;margin:5px 0 0;letter-spacing:.01em}
-.resume-preview h2{font-size:10pt;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin:20px 0 6px;padding-bottom:3px;border-bottom:1.5px solid #D1D5DB;color:#374151}
+.resume-preview h1{font-size:24pt;font-weight:700;margin:0;padding-bottom:0;border-bottom:none;letter-spacing:.02em;color:#1a1a1a}
+.resume-preview .rv-name-rule{width:100%;height:2px;background:#CC0000;margin:6px 0 8px;display:block}
+.resume-preview .rv-contacts{font-size:9pt;color:#555;margin:4px 0 0;letter-spacing:.01em}
+.resume-preview h2{font-size:9.5pt;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin:22px 0 6px;padding-bottom:4px;border-bottom:1.5px solid #1a1a1a;color:#1a1a1a}
 .resume-preview p{margin:0 0 4px;font-size:11pt}
-.resume-preview ul{margin:3px 0 6px 20px;padding:0;list-style:disc}
-.resume-preview li{margin-bottom:3px;font-size:11pt;line-height:1.5}
-.resume-preview em{font-style:normal;color:#374151;font-weight:600}
+.resume-preview ul{margin:3px 0 6px 18px;padding:0;list-style:disc}
+.resume-preview li{margin-bottom:2px;font-size:11pt;line-height:1.45}
+.resume-preview em{font-style:normal;color:#1a1a1a;font-weight:600}
 .resume-preview strong{font-weight:700}
-.resume-preview hr.rv-sep{border:none;border-top:1px solid #E5E7EB;margin:12px 0 0}
-.resume-preview .rv-period{font-size:9.5pt;color:#6B7280;margin:1px 0 5px}
-.resume-preview .rv-subsection{font-size:9.5pt;font-weight:700;color:#6B7280;text-transform:uppercase;letter-spacing:.05em;margin:8px 0 2px}
+.resume-preview hr.rv-sep{border:none;border-top:1px solid #E5E7EB;margin:10px 0 0}
+.resume-preview .rv-period{font-size:9pt;color:#555;margin:1px 0 4px;font-style:italic}
+.resume-preview .rv-subsection{font-size:9pt;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:.06em;margin:8px 0 2px}
 
 @media print{
   .screen{display:none!important}
   #screen-delivery{display:flex!important;flex-direction:column;background:#fff!important;min-height:auto!important}
   .dlv-topbar,.dlv-footer,.dev-btn,#dev-panel,
   .dlv-exec-summary,.dlv-certificate,.dlv-confirm-bar,.dlv-confirmed-bar,.dlv-blocked-banner,
-  .split-img,#storage-warn,.docx-compat-warn,.storage-warn{display:none!important}
+  .split-img,.upload-bg-img,#storage-warn,.docx-compat-warn,.storage-warn{display:none!important}
   .dlv-body{padding:0!important;display:block!important}
   .split{display:block!important}
   .split-body{padding:0!important;max-width:100%!important;width:100%!important}
@@ -621,42 +899,18 @@ input,select,textarea{font-family:inherit;font-size:inherit}
     <img id="origin-img" class="origin-bg-img"
       src="Plano de Fundo - Curriculo novo ou adaptar um antigo.png"
       alt="" aria-hidden="true">
-    <div class="origin-overlay">
-      <h2 class="origin-h">Como podemos ajudar você?</h2>
-      <p class="origin-sub">Escolha uma das opções para começar.</p>
-
-      <div class="origin-cards" role="radiogroup" aria-label="Tipo de currículo">
-        <button class="card-opt" id="card-new" type="button"
-          role="radio" aria-checked="false" data-opt="NEW_RESUME">
-          <span class="card-ico" aria-hidden="true">📄</span>
-          <span class="card-info">
-            <span class="card-title">Criar um currículo novo</span>
-            <span class="card-desc">Comece do zero por meio de uma entrevista guiada.</span>
-          </span>
-          <span class="card-radio" aria-hidden="true">
-            <span class="card-radio-mark">✓</span>
-          </span>
-        </button>
-
-        <button class="card-opt" id="card-existing" type="button"
-          role="radio" aria-checked="false" data-opt="EXISTING_RESUME">
-          <span class="card-ico" aria-hidden="true">📋</span>
-          <span class="card-info">
-            <span class="card-title">Adaptar um currículo existente</span>
-            <span class="card-desc">Envie seu currículo atual para revisar, complementar e direcionar.</span>
-          </span>
-          <span class="card-radio" aria-hidden="true">
-            <span class="card-radio-mark">✓</span>
-          </span>
-        </button>
-      </div>
-
-      <div class="nav-row">
-        <button class="btn btn-back" type="button" id="btn-origin-back">Voltar</button>
-        <button class="btn btn-primary" type="button" id="btn-origin-go"
-          disabled aria-disabled="true">Continuar</button>
-      </div>
+    <div class="origin-actions" role="group" aria-label="Tipo de currículo">
+      <button class="origin-action-btn origin-action-new" id="card-new"
+        type="button" role="radio" aria-checked="false" data-opt="NEW_RESUME">
+        Criar meu currículo
+      </button>
+      <button class="origin-action-btn origin-action-existing" id="card-existing"
+        type="button" role="radio" aria-checked="false" data-opt="EXISTING_RESUME">
+        Enviar meu currículo
+      </button>
     </div>
+    <button type="button" id="btn-origin-back">← Voltar</button>
+    <button type="button" id="btn-origin-go"   hidden aria-hidden="true" tabindex="-1" disabled></button>
   </div>
 </div>
 
@@ -665,13 +919,12 @@ input,select,textarea{font-family:inherit;font-size:inherit}
      Só exibida na rota EXISTING_RESUME
      ============================================= -->
 <div id="screen-resume-upload" class="screen" aria-label="Envio do currículo existente">
-  <div class="split">
-    <div id="upl-img-panel" class="split-img">
-      <img id="upl-img" src="Envie o seu curriculo.png" alt="Envie seu currículo para análise">
-    </div>
-    <div class="split-body">
-      <h2 class="upl-title">Envie seu currículo atual</h2>
-      <p class="upl-sub">Vamos analisar as informações existentes e pedir apenas o que precisar ser confirmado ou complementado.</p>
+  <div id="upl-img-panel" class="upload-fullbg">
+    <img id="upl-img" class="upload-bg-img"
+      src="Envie o seu curriculo.png"
+      alt="" aria-hidden="true">
+
+    <div class="upload-content">
 
       <label id="dropzone" class="dropzone" for="upl-file"
         role="button" tabindex="0" aria-label="Área de envio. Clique ou arraste o arquivo.">
@@ -689,25 +942,16 @@ input,select,textarea{font-family:inherit;font-size:inherit}
           style="margin-left:auto;padding:6px 12px;font-size:.8125rem;">Trocar</button>
       </div>
 
-      <p class="upl-note" role="note">
-        Use apenas um currículo que você tenha autorização para enviar. O documento será utilizado somente para extrair as informações necessárias ao processo.
-      </p>
-
-      <div class="nav-row">
-        <button class="btn btn-back" type="button" id="btn-upl-back">Voltar</button>
-        <button class="btn btn-primary" type="button" id="btn-upl-analyze" disabled>Analisar currículo</button>
-      </div>
-
-      <!-- Aviso de incompatibilidade de navegador (HOTFIX RC-01.03) -->
+      <!-- Aviso de incompatibilidade de navegador -->
       <div id="docx-compat-warn" class="docx-compat-warn" role="alert" aria-live="assertive"></div>
 
-      <!-- Painel de estado de extração (aparece durante/após análise) -->
+      <!-- Painel de estado de extração -->
       <div id="upl-ext-status" class="upl-ext-status" aria-live="polite" role="status">
         <div class="upl-ext-hd">Resultado da extração</div>
         <div id="upl-ext-items"></div>
       </div>
 
-      <!-- Fallback: extração parcial/falhou — usuário preenche o que falta -->
+      <!-- Fallback: extração parcial/falhou -->
       <div id="upl-fallback" class="upl-fallback" role="complementary" aria-label="Preenchimento dos dados não extraídos">
         <p class="upl-fallback-hd">⚠ Dados não encontrados automaticamente</p>
         <p class="upl-fallback-sub">Preencha abaixo os campos que não foram extraídos. Você poderá revisar e completar tudo na próxima etapa.</p>
@@ -734,6 +978,16 @@ input,select,textarea{font-family:inherit;font-size:inherit}
           <button type="button" class="btn btn-primary" id="btn-fb-confirm">Confirmar e continuar</button>
         </div>
       </div>
+
+      <p class="upl-note" role="note">
+        Use apenas um currículo que você tenha autorização para enviar. O documento será utilizado somente para extrair as informações necessárias ao processo.
+      </p>
+
+      <div class="upl-actions">
+        <button class="btn-upl-link" type="button" id="btn-upl-back">Voltar</button>
+        <button class="btn btn-primary" type="button" id="btn-upl-analyze" disabled>Analisar currículo</button>
+      </div>
+
     </div>
   </div>
 </div>
@@ -745,7 +999,34 @@ input,select,textarea{font-family:inherit;font-size:inherit}
 <div id="screen-personal-data" class="screen" aria-label="Coleta de dados pessoais">
   <div class="split">
     <div id="pd-img-panel" class="split-img">
-      <img id="pd-img" src="Dados Pessoail .png" alt="Ayra Consultoria — dados pessoais">
+      <!-- img preservado para o imgErr listener em bind() -->
+      <img id="pd-img" src="Dados Pessoail .png" alt="" aria-hidden="true" style="display:none">
+      <div class="pd-editorial-inner">
+        <div class="pd-brand-row">
+          <span class="pd-brand-chip">AYRA</span>
+        </div>
+        <div class="pd-visual-area" aria-hidden="true">
+          <div class="pd-resume-mock">
+            <div class="pd-mock-header">
+              <div class="pd-mock-avatar"></div>
+              <div class="pd-mock-info">
+                <div class="pd-mock-line"></div>
+                <div class="pd-mock-line"></div>
+              </div>
+            </div>
+            <div class="pd-mock-body">
+              <div class="pd-mock-row"></div>
+              <div class="pd-mock-row"></div>
+              <div class="pd-mock-row"></div>
+            </div>
+          </div>
+        </div>
+        <div class="pd-editorial-content">
+          <span class="pd-step-tag">Etapa 1 · Dados pessoais</span>
+          <h2 class="pd-headline">Seu currículo<br><span class="pd-headline-accent">começa aqui.</span></h2>
+          <p class="pd-subheadline">Vamos registrar as informações que identificam você como profissional.</p>
+        </div>
+      </div>
     </div>
     <div class="split-body">
 
@@ -905,7 +1186,41 @@ input,select,textarea{font-family:inherit;font-size:inherit}
 <div id="screen-target-definition" class="screen" aria-label="Definição do alvo profissional">
   <div class="split">
     <div id="td-img-panel" class="split-img">
-      <img id="td-img" src="Definição de publico alvo.png" alt="Ayra Consultoria — definição de alvo profissional">
+      <!-- img preservado para o imgErr listener em bind() -->
+      <img id="td-img" src="Definição de publico alvo.png" alt="" aria-hidden="true" style="display:none">
+      <div class="td-editorial-inner">
+        <div class="td-brand-row">
+          <span class="td-brand-chip">AYRA</span>
+        </div>
+        <div class="td-visual-area" aria-hidden="true">
+          <div class="td-path-wrap">
+            <div class="td-path-resume">
+              <div class="td-path-header">
+                <div class="td-path-avatar"></div>
+                <div class="td-path-info">
+                  <div class="td-path-line"></div>
+                  <div class="td-path-line"></div>
+                </div>
+              </div>
+              <div class="td-path-body">
+                <div class="td-path-row"></div>
+                <div class="td-path-row"></div>
+                <div class="td-path-row"></div>
+              </div>
+            </div>
+            <div class="td-path-connector"></div>
+            <div class="td-path-dests">
+              <div class="td-dest-pill primary">Vaga específica</div>
+              <div class="td-dest-pill">Área profissional</div>
+            </div>
+          </div>
+        </div>
+        <div class="td-editorial-content">
+          <span class="td-step-tag">Etapa 2 · Objetivo profissional</span>
+          <h2 class="td-headline">Defina o rumo do<br><span class="td-headline-accent">seu currículo.</span></h2>
+          <p class="td-subheadline">Direcione para uma vaga específica ou para uma área de atuação — seu currículo será adaptado para esse foco.</p>
+        </div>
+      </div>
     </div>
     <div class="split-body">
 
@@ -1057,13 +1372,117 @@ input,select,textarea{font-family:inherit;font-size:inherit}
 </div>
 
 <!-- =============================================
+     SPRINT 04.3 — REVISÃO DE AUDITORIA GRANULAR
+     Exibida após Skill 05 quando há currículo extraído e auditoria concluída
+     ============================================= -->
+<div id="screen-audit-review" class="screen" aria-label="Revisão do currículo importado">
+  <div class="ar-topbar">
+    <div>
+      <div class="ar-topbar-title">Revisamos seu currículo</div>
+      <div class="ar-topbar-sub">Aproveitamos o que já estava claro. Vamos confirmar e complementar o restante.</div>
+    </div>
+    <button class="btn btn-sec" type="button" id="btn-ar-back"
+      style="font-size:.8125rem;padding:8px 14px;flex-shrink:0">← Voltar</button>
+  </div>
+  <div class="ar-body">
+    <div class="ar-intro">
+      <div class="ar-intro-title">Análise concluída</div>
+      <div class="ar-intro-sub">Separamos o que está pronto do que precisa de atenção antes de gerar seu currículo.</div>
+      <div class="ar-stat-bar" id="ar-stat-bar"></div>
+    </div>
+    <div class="ar-group ar-g-ok open" id="ar-g-ready">
+      <div class="ar-group-hd" onclick="toggleArGroup('ar-g-ready')">
+        <span class="ar-group-title">✓ Pronto para usar <span class="ar-group-count" id="ar-cnt-ready">0</span></span>
+        <span class="ar-group-toggle">▲</span>
+      </div>
+      <div class="ar-group-body" id="ar-body-ready"></div>
+    </div>
+    <div class="ar-group ar-g-warn" id="ar-g-confirm">
+      <div class="ar-group-hd" onclick="toggleArGroup('ar-g-confirm')">
+        <span class="ar-group-title">⚠ Precisa de confirmação <span class="ar-group-count" id="ar-cnt-confirm">0</span></span>
+        <span class="ar-group-toggle">▼</span>
+      </div>
+      <div class="ar-group-body" id="ar-body-confirm"></div>
+    </div>
+    <div class="ar-group ar-g-comp" id="ar-g-complement">
+      <div class="ar-group-hd" onclick="toggleArGroup('ar-g-complement')">
+        <span class="ar-group-title">✎ Pode ser complementado <span class="ar-group-count" id="ar-cnt-complement">0</span></span>
+        <span class="ar-group-toggle">▼</span>
+      </div>
+      <div class="ar-group-body" id="ar-body-complement"></div>
+    </div>
+    <div class="ar-group ar-g-miss" id="ar-g-missing">
+      <div class="ar-group-hd" onclick="toggleArGroup('ar-g-missing')">
+        <span class="ar-group-title">✗ Não encontrado <span class="ar-group-count" id="ar-cnt-missing">0</span></span>
+        <span class="ar-group-toggle">▼</span>
+      </div>
+      <div class="ar-group-body" id="ar-body-missing"></div>
+    </div>
+    <div class="ar-actions">
+      <button class="btn btn-primary" type="button" id="btn-ar-confirm"
+        style="padding:12px 28px">Confirmar dados e continuar</button>
+      <button class="btn btn-sec" type="button" id="btn-ar-full"
+        style="padding:12px 20px">Entrevista completa</button>
+    </div>
+    <p class="ar-note">Dados "Prontos para usar" são confirmados automaticamente. Você pode editar qualquer campo na entrevista.</p>
+  </div>
+</div>
+
+<!-- =============================================
      TELA 5: ENTREVISTA DIRECIONADA — Skill 06
      Ação: CONFIRM_INTERVIEW_DATA → resume_formatting
      ============================================= -->
 <div id="screen-interview" class="screen" aria-label="Entrevista direcionada">
   <div class="split">
     <div id="itv-img-panel" class="split-img">
-      <img id="itv-img" src="Entrevista.png" alt="Ayra Consultoria — entrevista direcionada">
+      <img id="itv-img" src="Entrevista.png" alt="" aria-hidden="true" style="display:none">
+      <div class="itv-editorial-inner">
+        <div class="itv-brand-row"><span class="itv-brand-chip">AYRA</span></div>
+        <div class="itv-visual-area" aria-hidden="true">
+          <div class="itv-card-wrap">
+            <div class="itv-card-head">
+              <div class="itv-card-avatar"></div>
+              <div class="itv-card-namelines">
+                <div class="itv-card-nameline"></div>
+                <div class="itv-card-nameline"></div>
+              </div>
+            </div>
+            <div class="itv-card-section">
+              <div class="itv-section-lbl">Objetivo</div>
+              <div class="itv-section-line"></div>
+              <div class="itv-section-line short"></div>
+            </div>
+            <div class="itv-card-section">
+              <div class="itv-section-lbl">Experiência</div>
+              <div class="itv-section-line"></div>
+              <div class="itv-section-line short"></div>
+            </div>
+            <div class="itv-card-section">
+              <div class="itv-section-lbl">Formação</div>
+              <div class="itv-section-line"></div>
+              <div class="itv-section-line short"></div>
+            </div>
+            <div class="itv-card-section">
+              <div class="itv-section-lbl">Skills</div>
+              <div class="itv-skill-chips">
+                <div class="itv-skill-chip"></div>
+                <div class="itv-skill-chip"></div>
+                <div class="itv-skill-chip"></div>
+              </div>
+            </div>
+            <div class="itv-card-section">
+              <div class="itv-section-lbl">Idiomas &amp; +</div>
+              <div class="itv-section-line"></div>
+              <div class="itv-section-line short"></div>
+            </div>
+          </div>
+        </div>
+        <div class="itv-editorial-content">
+          <span class="itv-step-tag">Etapa 3 · Construção do currículo</span>
+          <h2 class="itv-headline">Vamos estruturar<br><span class="itv-headline-accent">seu currículo.</span></h2>
+          <p class="itv-subheadline">Cada resposta transforma uma informação em estratégia — construindo um currículo que representa você de verdade.</p>
+        </div>
+      </div>
     </div>
     <div class="split-body" style="justify-content:flex-start;padding-top:32px">
 
@@ -1097,6 +1516,7 @@ input,select,textarea{font-family:inherit;font-size:inherit}
           </div>
         </div>
         <div class="nav-row">
+          <button class="btn btn-back" type="button" id="btn-obj-back">Voltar</button>
           <button class="btn btn-sec" type="button" id="btn-obj-skip">Pular</button>
           <button class="btn btn-primary" type="button" id="btn-obj-next">Próximo</button>
         </div>
@@ -1460,6 +1880,9 @@ input,select,textarea{font-family:inherit;font-size:inherit}
         </div>
       </div>
 
+      <!-- Sprint 04.3: Painel de entrevista adaptativa (GAP_ONLY / CONFIRMATION_ONLY) -->
+      <div id="adaptive-panel" aria-label="Entrevista adaptativa" aria-live="polite"></div>
+
     </div><!-- /split-body -->
   </div><!-- /split -->
 </div>
@@ -1469,19 +1892,71 @@ input,select,textarea{font-family:inherit;font-size:inherit}
      Ação: FORMATTING_COMPLETE → final_ats_audit
      ============================================= -->
 <div id="screen-formatting" class="screen" aria-label="Motor de formatação">
-  <div class="fmt-card" role="status" aria-live="polite" aria-atomic="false">
-    <div id="fmt-img-wrap" class="fmt-img-wrap">
-      <img id="fmt-img" src="Formatação .png" alt="" aria-hidden="true">
+  <div class="fmt-split" role="status" aria-live="polite" aria-atomic="false">
+    <div class="fmt-left">
+      <div id="fmt-img-wrap" class="fmt-img-wrap" aria-hidden="true">
+        <img id="fmt-img" src="Formatação .png" alt="" aria-hidden="true" style="display:none">
+      </div>
+      <div class="fmt-editorial-inner">
+        <div class="fmt-brand-row"><span class="fmt-brand-chip">AYRA</span></div>
+        <div class="fmt-visual-area" aria-hidden="true">
+          <div id="fmt-resume-card" class="fmt-resume-card">
+            <div class="fmt-card-head">
+              <div class="fmt-card-avatar"></div>
+              <div class="fmt-card-namelines">
+                <div class="fmt-card-nameline"></div>
+                <div class="fmt-card-nameline"></div>
+              </div>
+            </div>
+            <div class="fmt-card-section">
+              <div class="fmt-section-lbl">Objetivo</div>
+              <div class="fmt-section-line"></div>
+              <div class="fmt-section-line short"></div>
+            </div>
+            <div class="fmt-card-section">
+              <div class="fmt-section-lbl">Experiência</div>
+              <div class="fmt-section-line"></div>
+              <div class="fmt-section-line short"></div>
+            </div>
+            <div class="fmt-card-section">
+              <div class="fmt-section-lbl">Formação</div>
+              <div class="fmt-section-line"></div>
+              <div class="fmt-section-line short"></div>
+            </div>
+            <div class="fmt-card-section">
+              <div class="fmt-section-lbl">Skills</div>
+              <div class="fmt-skill-chips">
+                <div class="fmt-skill-chip"></div>
+                <div class="fmt-skill-chip"></div>
+                <div class="fmt-skill-chip"></div>
+              </div>
+            </div>
+            <div class="fmt-card-section">
+              <div class="fmt-section-lbl">Idiomas &amp; +</div>
+              <div class="fmt-section-line"></div>
+              <div class="fmt-section-line short"></div>
+            </div>
+          </div>
+        </div>
+        <div class="fmt-editorial-content">
+          <span class="fmt-step-tag">Etapa 4 · Formatação ATS</span>
+          <h2 class="fmt-headline">Organizando<br><span class="fmt-headline-accent">seu currículo.</span></h2>
+        </div>
+      </div>
     </div>
-    <h2 class="fmt-title">Formatando seu currículo</h2>
-    <p class="fmt-sub">Aguarde enquanto organizamos suas informações no padrão ATS.</p>
-    <div class="fmt-spinner" aria-hidden="true">
-      <span class="fmt-dot"></span>
-      <span class="fmt-dot"></span>
-      <span class="fmt-dot"></span>
+    <div class="fmt-right">
+      <div class="fmt-progress-header">
+        <div class="fmt-progress-meta">
+          <span class="fmt-progress-label">Progresso</span>
+          <span id="fmt-step-counter" class="fmt-step-counter">Iniciando…</span>
+        </div>
+        <div class="fmt-progress-bar-wrap">
+          <div id="fmt-progress-bar" class="fmt-progress-bar"></div>
+        </div>
+      </div>
+      <p id="fmt-status-msg" class="fmt-status-msg" aria-live="assertive"></p>
+      <div id="fmt-steps-list" class="fmt-steps" aria-label="Progresso da formatação"></div>
     </div>
-    <p id="fmt-status-msg" class="fmt-status-msg" aria-live="assertive"></p>
-    <div id="fmt-steps-list" class="fmt-steps" aria-label="Progresso da formatação"></div>
   </div>
 </div>
 
@@ -1489,86 +1964,128 @@ input,select,textarea{font-family:inherit;font-size:inherit}
      TELA 7: AUDITORIA FINAL ATS — Skill 08
      Ação: AUDIT_COMPLETE → finalization_export
      ============================================= -->
-<div id="screen-audit" class="screen" aria-label="Auditoria final do currículo">
-  <div class="aud-card">
+<div id="screen-audit" class="screen" aria-label="Auditoria final ATS">
+  <div class="aud-split">
 
-    <!-- Painel de loading -->
-    <div id="aud-loading" role="status" aria-live="polite" aria-atomic="false">
-      <div id="aud-img-wrap" class="aud-img-wrap">
-        <img id="aud-img" src="Auditoria.png" alt="" aria-hidden="true">
+    <!-- Coluna esquerda: editorial -->
+    <div class="aud-left">
+      <div id="aud-img-wrap" class="aud-img-wrap" aria-hidden="true">
+        <img id="aud-img" src="Auditoria.png" alt="" aria-hidden="true" style="display:none">
       </div>
-      <h2 class="aud-title">Auditoria final do currículo</h2>
-      <p class="aud-sub">Verificando qualidade, palavras-chave e conformidade ATS.</p>
-      <div class="aud-spinner" aria-hidden="true">
-        <span class="aud-dot"></span>
-        <span class="aud-dot"></span>
-        <span class="aud-dot"></span>
+      <div class="aud-editorial-inner">
+        <div class="aud-brand-row"><span class="aud-brand-chip">AYRA</span></div>
+        <div class="aud-visual-area" aria-hidden="true">
+          <div class="aud-resume-card">
+            <div class="aud-card-head">
+              <div class="aud-card-avatar"></div>
+              <div class="aud-card-namelines">
+                <div class="aud-card-nameline"></div>
+                <div class="aud-card-nameline"></div>
+              </div>
+            </div>
+            <div class="aud-card-section aud-sec-done">
+              <div class="aud-section-lbl">Objetivo</div>
+              <div class="aud-section-line"></div>
+              <div class="aud-section-line short"></div>
+            </div>
+            <div class="aud-card-section aud-sec-done">
+              <div class="aud-section-lbl">Experiência</div>
+              <div class="aud-section-line"></div>
+              <div class="aud-section-line short"></div>
+            </div>
+            <div class="aud-card-section aud-sec-done">
+              <div class="aud-section-lbl">Formação</div>
+              <div class="aud-section-line"></div>
+              <div class="aud-section-line short"></div>
+            </div>
+            <div class="aud-card-section aud-sec-done">
+              <div class="aud-section-lbl">Skills</div>
+              <div class="aud-skill-chips">
+                <div class="aud-skill-chip"></div>
+                <div class="aud-skill-chip"></div>
+                <div class="aud-skill-chip"></div>
+              </div>
+            </div>
+            <div class="aud-card-section aud-sec-done">
+              <div class="aud-section-lbl">Idiomas &amp; +</div>
+              <div class="aud-section-line"></div>
+              <div class="aud-section-line short"></div>
+            </div>
+          </div>
+        </div>
+        <div class="aud-editorial-content">
+          <span class="aud-step-tag">Etapa 5 · Auditoria ATS</span>
+          <h2 class="aud-headline">Auditando<br><span class="aud-headline-accent">seu currículo.</span></h2>
+          <p class="aud-subheadline">Seu currículo está sendo avaliado pelos critérios ATS.</p>
+        </div>
       </div>
-      <p id="aud-status-msg" class="aud-status-msg" aria-live="assertive"></p>
-      <div id="aud-steps-list" class="aud-steps" aria-label="Progresso da auditoria"></div>
     </div>
 
-    <!-- Painel de resultado -->
-    <div id="aud-result" class="aud-result" role="region" aria-label="Resultado da auditoria">
-      <div style="text-align:center;margin-bottom:20px">
-        <div id="aud-img-wrap2" class="aud-img-wrap" style="margin-bottom:20px">
-          <img src="Auditoria.png" alt="" aria-hidden="true"
-            onerror="this.parentElement.classList.add('missing')">
-        </div>
-        <h2 class="aud-title">Resultado da auditoria</h2>
+    <!-- Coluna direita: diagnóstico -->
+    <div class="aud-right">
+
+      <!-- Estado: carregando -->
+      <div id="aud-loading" role="status" aria-live="polite" aria-atomic="false">
+        <p id="aud-status-msg" class="aud-status-msg" aria-live="assertive"></p>
+        <div id="aud-steps-list" class="aud-steps" aria-label="Progresso da auditoria"></div>
+      </div>
+
+      <!-- Estado: resultado -->
+      <div id="aud-result" class="aud-result" role="region" aria-label="Resultado da auditoria">
+
         <span id="aud-status-badge" class="aud-badge"></span>
-      </div>
 
-      <div id="aud-score-bar" class="aud-score-bar" style="display:none" aria-label="Score ATS">
-        <div id="aud-score-num" class="aud-score-num">0</div>
-        <div class="aud-score-label">Score ATS / 100</div>
-        <div id="aud-score-breakdown" class="aud-score-breakdown"></div>
-      </div>
+        <div id="aud-score-bar" class="aud-score-bar" style="display:none" aria-label="Score ATS">
+          <div id="aud-score-num" class="aud-score-num">0</div>
+          <div class="aud-score-label">Score ATS / 100</div>
+          <div id="aud-score-breakdown" class="aud-score-breakdown"></div>
+        </div>
 
-      <div id="aud-pillars-grid" class="aud-pillars" aria-label="Pilares da auditoria"></div>
+        <div id="aud-pillars-grid" class="aud-pillars" aria-label="Pilares da auditoria"></div>
 
-      <div id="aud-warnings-section" class="aud-warnings hidden">
-        <p class="aud-warn-title">Ressalvas encontradas</p>
-        <div id="aud-warnings-list"></div>
-        <p style="font-size:.8125rem;color:var(--text2);margin-top:8px">
-          Estas ressalvas <strong>não bloqueiam</strong> a exportação. Você pode continuar ou voltar para ajustar o currículo.
-        </p>
-      </div>
+        <div id="aud-warnings-section" class="aud-warnings hidden">
+          <p class="aud-warn-title">Ressalvas encontradas</p>
+          <div id="aud-warnings-list"></div>
+          <p style="font-size:.8125rem;color:var(--text2);margin-top:8px">
+            Estas ressalvas <strong>não bloqueiam</strong> a exportação. Você pode continuar ou voltar para ajustar o currículo.
+          </p>
+        </div>
 
-      <!-- Painel: AUTOMATIC_CORRECTION_REQUIRED -->
-      <div id="aud-autocorr" class="aud-autocorr" role="region" aria-label="Correção automática disponível">
-        <p class="aud-autocorr-title">Correção automática disponível</p>
-        <p style="font-size:.8125rem;color:var(--text2);margin-bottom:6px">Os seguintes ajustes podem ser aplicados automaticamente:</p>
-        <ul id="aud-autocorr-list" class="aud-autocorr-list"></ul>
-        <p style="font-size:.8125rem;color:var(--text2);margin-top:6px">O currículo será reauditado após a correção.</p>
-        <div style="text-align:right;margin-top:12px">
-          <button class="btn btn-primary" type="button" id="btn-aud-autocorr" style="font-size:.875rem">Aplicar correção automática</button>
+        <!-- Painel: AUTOMATIC_CORRECTION_REQUIRED -->
+        <div id="aud-autocorr" class="aud-autocorr" role="region" aria-label="Correção automática disponível">
+          <p class="aud-autocorr-title">Correção automática disponível</p>
+          <p style="font-size:.8125rem;color:var(--text2);margin-bottom:6px">Os seguintes ajustes podem ser aplicados automaticamente:</p>
+          <ul id="aud-autocorr-list" class="aud-autocorr-list"></ul>
+          <p style="font-size:.8125rem;color:var(--text2);margin-top:6px">O currículo será reauditado após a correção.</p>
+          <div style="text-align:right;margin-top:12px">
+            <button class="btn btn-primary" type="button" id="btn-aud-autocorr" style="font-size:.875rem">Aplicar correção automática</button>
+          </div>
+        </div>
+
+        <!-- Painel: AWAITING_USER_INFORMATION -->
+        <div id="aud-questions" class="aud-questions" role="region" aria-label="Perguntas obrigatórias da auditoria">
+          <p class="aud-questions-hd">Informações necessárias</p>
+          <p class="aud-questions-sub">As perguntas abaixo são <strong>obrigatórias</strong> e precisam ser respondidas antes de prosseguir. O preview e a exportação ficam bloqueados até que sejam respondidas.</p>
+          <div id="aud-questions-list"></div>
+          <div style="text-align:right;margin-top:12px">
+            <button class="btn btn-primary" type="button" id="btn-aud-q-confirm" style="font-size:.875rem" disabled>Confirmar respostas</button>
+          </div>
+        </div>
+
+        <!-- Painel: BLOCKED_BY_INTEGRITY -->
+        <div id="aud-blocked" class="aud-blocked" role="region" aria-label="Bloqueio de integridade">
+          <p class="aud-blocked-hd">Bloqueio de integridade</p>
+          <p class="aud-blocked-sub">Foram detectados dados inconsistentes que impedem a geração do currículo. Corrija os itens abaixo na entrevista antes de continuar:</p>
+          <div id="aud-blocked-list"></div>
+        </div>
+
+        <div class="nav-row" style="margin-top:24px">
+          <button class="btn btn-sec" type="button" id="btn-aud-back">Voltar à entrevista</button>
+          <button class="btn btn-primary" type="button" id="btn-aud-continue">Continuar para visualização</button>
         </div>
       </div>
 
-      <!-- Painel: AWAITING_USER_INFORMATION -->
-      <div id="aud-questions" class="aud-questions" role="region" aria-label="Perguntas obrigatórias da auditoria">
-        <p class="aud-questions-hd">Informações necessárias</p>
-        <p class="aud-questions-sub">As perguntas abaixo são <strong>obrigatórias</strong> e precisam ser respondidas antes de prosseguir. O preview e a exportação ficam bloqueados até que sejam respondidas.</p>
-        <div id="aud-questions-list"></div>
-        <div style="text-align:right;margin-top:12px">
-          <button class="btn btn-primary" type="button" id="btn-aud-q-confirm" style="font-size:.875rem" disabled>Confirmar respostas</button>
-        </div>
-      </div>
-
-      <!-- Painel: BLOCKED_BY_INTEGRITY -->
-      <div id="aud-blocked" class="aud-blocked" role="region" aria-label="Bloqueio de integridade">
-        <p class="aud-blocked-hd">Bloqueio de integridade</p>
-        <p class="aud-blocked-sub">Foram detectados dados inconsistentes que impedem a geração do currículo. Corrija os itens abaixo na entrevista antes de continuar:</p>
-        <div id="aud-blocked-list"></div>
-      </div>
-
-      <div class="nav-row" style="margin-top:24px">
-        <button class="btn btn-sec" type="button" id="btn-aud-back">Voltar à entrevista</button>
-        <button class="btn btn-primary" type="button" id="btn-aud-continue">Continuar para visualização</button>
-      </div>
     </div>
-
   </div>
 </div>
 
@@ -1651,17 +2168,57 @@ input,select,textarea{font-family:inherit;font-size:inherit}
 </div>
 
 <!-- PAINEL DEV -->
-<button class="dev-btn" id="dev-toggle" aria-expanded="false" aria-controls="dev-panel" aria-label="Abrir painel de desenvolvedor">
-  DEV [Ctrl+D]
-</button>
+<button class="dev-btn" id="dev-toggle" aria-expanded="false" aria-controls="dev-panel" aria-label="Abrir painel de desenvolvedor">DEV</button>
 <aside id="dev-panel" aria-label="Painel de desenvolvedor" aria-hidden="true">
   <div class="dev-hd">
-    <span class="dev-hd-title">AppState — Modo de Desenvolvimento</span>
-    <span class="dev-hd-tag">DEV ONLY</span>
+    <span class="dev-hd-title">AYRA DEV PANEL</span>
+    <span class="dev-hd-tag">DEV</span>
     <button class="dev-close" id="dev-close" aria-label="Fechar painel">✕</button>
   </div>
-  <div class="dev-body">
-    <pre id="dev-out" style="white-space:pre-wrap;word-break:break-word"></pre>
+  <div class="dev-state">
+    <div class="dev-state-row"><span class="dev-state-key">Screen</span><span class="dev-state-val" id="dst-screen">—</span></div>
+    <div class="dev-state-row"><span class="dev-state-key">Block</span><span class="dev-state-val" id="dst-block">—</span></div>
+    <div class="dev-state-row"><span class="dev-state-key">Flow</span><span class="dev-state-val" id="dst-flow">—</span></div>
+    <div class="dev-state-row"><span class="dev-state-key">Target</span><span class="dev-state-val" id="dst-target">—</span></div>
+    <div class="dev-state-row"><span class="dev-state-key">ProcessId</span><span class="dev-state-val" id="dst-pid">—</span></div>
+  </div>
+  <nav class="dev-nav" aria-label="Navegação de desenvolvimento">
+    <div class="dev-nav-sect">TELAS</div>
+    <button class="dev-nav-item" data-dev-screen="initial-menu">S01 — Menu inicial</button>
+    <button class="dev-nav-item" data-dev-screen="origin-selection">S02 — Origem</button>
+    <button class="dev-nav-sub"  data-dev-screen="origin-selection" data-dev-opt="NEW_RESUME">→ Novo currículo</button>
+    <button class="dev-nav-sub"  data-dev-screen="origin-selection" data-dev-opt="EXISTING_RESUME">→ Currículo existente</button>
+    <button class="dev-nav-item" data-dev-screen="personal-data">S03 — Dados Pessoais</button>
+    <button class="dev-nav-item" data-dev-screen="resume-upload">S04 — Upload</button>
+    <button class="dev-nav-item" data-dev-screen="target-definition">S05 — Objetivo</button>
+    <button class="dev-nav-item" data-dev-screen="interview">S06 — Entrevista</button>
+    <button class="dev-nav-sub"  data-dev-screen="interview" data-dev-block="objective">→ Objetivo</button>
+    <button class="dev-nav-sub"  data-dev-screen="interview" data-dev-block="experience">→ Experiência</button>
+    <button class="dev-nav-sub"  data-dev-screen="interview" data-dev-block="education">→ Formação</button>
+    <button class="dev-nav-sub"  data-dev-screen="interview" data-dev-block="hard-skills">→ Hard Skills</button>
+    <button class="dev-nav-sub"  data-dev-screen="interview" data-dev-block="soft-skills">→ Soft Skills</button>
+    <button class="dev-nav-sub"  data-dev-screen="interview" data-dev-block="languages">→ Idiomas</button>
+    <button class="dev-nav-sub"  data-dev-screen="interview" data-dev-block="certifications">→ Certificações</button>
+    <button class="dev-nav-sub"  data-dev-screen="interview" data-dev-block="projects">→ Projetos</button>
+    <button class="dev-nav-sub"  data-dev-screen="interview" data-dev-block="activities">→ Atividades</button>
+    <button class="dev-nav-sub"  data-dev-screen="interview" data-dev-block="review">→ Revisão</button>
+    <button class="dev-nav-item" data-dev-screen="audit-review">S04.3 — Revisão Auditoria</button>
+    <button class="dev-nav-item" data-dev-screen="formatting">S07 — Formatação</button>
+    <button class="dev-nav-item" data-dev-screen="audit">S08 — Auditoria</button>
+    <button class="dev-nav-item" data-dev-screen="delivery">S09 — Entrega</button>
+  </nav>
+  <div class="dev-nav-sect" style="margin-top:12px">CENÁRIOS 04.3</div>
+  <nav class="dev-nav" aria-label="Cenários Sprint 04.3">
+    <button class="dev-nav-sub" id="dev-scenario-complete"    onclick="devScenario('COMPLETE')">→ CV Completo (CONFIRMATION_ONLY)</button>
+    <button class="dev-nav-sub" id="dev-scenario-partial"     onclick="devScenario('PARTIAL')">→ CV Parcial (GAP_ONLY)</button>
+    <button class="dev-nav-sub" id="dev-scenario-conflict"    onclick="devScenario('CONFLICT')">→ Conflito de Datas</button>
+    <button class="dev-nav-sub" id="dev-scenario-mode-full"   onclick="devSetMode('FULL')">→ Forçar modo FULL</button>
+    <button class="dev-nav-sub" id="dev-scenario-mode-gap"    onclick="devSetMode('GAP_ONLY')">→ Forçar GAP_ONLY</button>
+    <button class="dev-nav-sub" id="dev-scenario-mode-conf"   onclick="devSetMode('CONFIRMATION_ONLY')">→ Forçar CONFIRMATION_ONLY</button>
+  </nav>
+  <div class="dev-actions">
+    <button class="dev-action-btn" id="dev-mock">⚡ Popular dados de teste</button>
+    <button class="dev-action-btn danger" id="dev-reset">⊘ Limpar estado</button>
   </div>
 </aside>
 
@@ -1671,6 +2228,7 @@ input,select,textarea{font-family:inherit;font-size:inherit}
    ============================================= */
 const STORAGE_KEY = 'ayra_ats_v1';
 const DEV_MODE = false;
+const _DEV_ACTIVE = DEV_MODE || (typeof location !== 'undefined' && new URLSearchParams(location.search).has('dev'));
 
 /* MOCK_EXT removido — extração real implementada na Skill 04 */
 
@@ -1764,7 +2322,11 @@ const S = {
     importCoverage: 0,
     importQuality: '',
     importedSkillsSet: [],
+    mode: 'FULL',
+    auditSession: null,
   },
+
+  resumeAudit: null,
 
   /* Skill 09 */
   delivery: {
@@ -1850,7 +2412,10 @@ function load() {
         if (S.interview.importCoverage  === undefined) S.interview.importCoverage  = 0;
         if (S.interview.importQuality   === undefined) S.interview.importQuality   = '';
         if (!S.interview.importedSkillsSet) S.interview.importedSkillsSet = [];
+        if (!S.interview.mode) S.interview.mode = 'FULL';
+        if (!S.interview.auditSession) S.interview.auditSession = null;
       }
+      if (S.resumeAudit === undefined) S.resumeAudit = null;
       if (!S.delivery) {
         S.delivery = { confirmed:false, confirmedAt:null, confirmedAuditVersion:null, hash:null, report:{ exportedAt:null, resumeVersion:null, auditVersion:null, atsScore:0, status:null, fileName:null }, exports:[] };
       } else {
@@ -1876,7 +2441,8 @@ function reset() {
     targetSub:'choice',
     resume:{ markdown:null, version:null, generatedAt:null, generatorVersion:null, formattingStatus:'IDLE', metrics:{ experiencesCount:0, educationCount:0, hardSkillsCount:0, softSkillsCount:0, certificationsCount:0, projectsCount:0, activitiesCount:0, keywordMatches:0 } },
     audit:{ status:null, score:0, warnings:[], blockers:[], pillars:{}, pillarScores:{content:0,atsMatch:0,completeness:0,integrity:100}, scoreBreakdown:{experiences:0,education:0,hardSkills:0,certifications:0,projects:0,keywordMatches:0}, auditVersion:null, timeline:[], previewAllowed:false, exportAllowed:false },
-    interview:{ currentBlock:'objective', objective:'', experiences:[], education:[], hardSkills:[], softSkills:[], languages:[], certifications:[], projects:[], activities:[], adaptiveQuestions:[], confirmedByUser:false, importedFromResume:{ hydrated:false, importedExperiences:0, importedEducation:0, importedSkills:0, importedLanguages:0, importedCertifications:0, importedAt:'' }, importCoverage:0, importQuality:'', importedSkillsSet:[] },
+    interview:{ currentBlock:'objective', objective:'', experiences:[], education:[], hardSkills:[], softSkills:[], languages:[], certifications:[], projects:[], activities:[], adaptiveQuestions:[], confirmedByUser:false, importedFromResume:{ hydrated:false, importedExperiences:0, importedEducation:0, importedSkills:0, importedLanguages:0, importedCertifications:0, importedAt:'' }, importCoverage:0, importQuality:'', importedSkillsSet:[], mode:'FULL', auditSession:null },
+    resumeAudit:null,
     delivery:{ confirmed:false, confirmedAt:null, confirmedAuditVersion:null, hash:null, report:{ exportedAt:null, resumeVersion:null, auditVersion:null, atsScore:0, status:null, fileName:null }, exports:[] },
     createdAt:null, updatedAt:null, log:[], releaseCheck:null,
   });
@@ -1955,6 +2521,22 @@ function goTargetSub(sub) {
 /* Sub-etapas da Entrevista (Skill 06) */
 const BLK_ORDER = ['objective','experience','education','hard-skills','soft-skills','languages','certifications','projects','activities','review'];
 
+function updateItvPanel(name) {
+  const idxMap = {
+    'objective':0,'experience':1,'education':2,
+    'hard-skills':3,'soft-skills':3,
+    'languages':4,'certifications':4,'projects':4,'activities':4,
+    'review':5
+  };
+  const ai = idxMap[name] ?? 0;
+  document.querySelectorAll('#itv-img-panel .itv-card-section').forEach((sec, i) => {
+    sec.classList.remove('sec-active','sec-done');
+    if (ai >= 5) sec.classList.add('sec-done');
+    else if (i === ai) sec.classList.add('sec-active');
+    else if (i < ai) sec.classList.add('sec-done');
+  });
+}
+
 function goBlock(name) {
   if (name === 'review') buildInterviewReview();
   document.querySelectorAll('.blk').forEach(b => b.classList.add('hidden'));
@@ -1962,6 +2544,7 @@ function goBlock(name) {
   if (t) t.classList.remove('hidden');
   S.interview.currentBlock = name;
   updateBlkNav(name);
+  updateItvPanel(name);
   save();
   const f = t && t.querySelector('button,[href],input,select,textarea');
   if (f) setTimeout(() => f.focus(), 60);
@@ -2424,6 +3007,7 @@ function applyExtraction(extracted, sourceLabel, sourceResume) {
   save();
   addLog('EXTRACTION_APPLIED',              { source: sourceLabel, fields: applied });
   addLog('EXTRACTION_CONFIDENCE_CALCULATED',{ confidence: conf, level });
+  runGranularResumeAudit();
 }
 
 function renderExtractStatus(extracted, ext) {
@@ -2457,6 +3041,633 @@ function buildPDReview() {
   g('rev-container').innerHTML = rows.map(r =>
     `<div class="rev-row"><span class="rev-lbl">${r.lbl}</span><span class="rev-val">${esc(r.val)}</span>${badge}</div>`
   ).join('');
+}
+
+/* =============================================
+   SPRINT 04.3 — AUDITORIA GRANULAR & ENTREVISTA ADAPTATIVA
+   Alterações 01–32
+   ============================================= */
+
+/* ── Constantes ── */
+const AUD = {
+  CONFIRMED:'CONFIRMED', EXTRACTED_RELIABLE:'EXTRACTED_RELIABLE',
+  NEEDS_CONFIRMATION:'NEEDS_CONFIRMATION', NEEDS_COMPLEMENT:'NEEDS_COMPLEMENT',
+  MISSING_REQUIRED:'MISSING_REQUIRED', MISSING_RECOMMENDED:'MISSING_RECOMMENDED',
+  CONFLICT:'CONFLICT', INVALID:'INVALID', OPTIONAL_ABSENT:'OPTIONAL_ABSENT', NOT_APPLICABLE:'NOT_APPLICABLE',
+};
+const BLKS = {
+  COMPLETE:'COMPLETE', CONFIRMATION_REQUIRED:'CONFIRMATION_REQUIRED',
+  COMPLEMENT_REQUIRED:'COMPLEMENT_REQUIRED', MISSING_REQUIRED:'MISSING_REQUIRED',
+  CONFLICT:'CONFLICT', OPTIONAL_ABSENT:'OPTIONAL_ABSENT',
+};
+const ITV_MODE = { FULL:'FULL', GAP_ONLY:'GAP_ONLY', CONFIRMATION_ONLY:'CONFIRMATION_ONLY' };
+const AUD_STATUS_PREC = [
+  AUD.CONFLICT, AUD.INVALID, AUD.MISSING_REQUIRED, AUD.NEEDS_CONFIRMATION,
+  AUD.NEEDS_COMPLEMENT, AUD.EXTRACTED_RELIABLE, AUD.CONFIRMED,
+];
+
+/* ── Alteração 14: default state helpers ── */
+function defaultResumeAudit() {
+  return {
+    version:'RESUME_AUDIT_V1', status:'NOT_STARTED', sourceResumeHash:'',
+    targetAuditApplied:false, startedAt:'', completedAt:'',
+    overallCompleteness:0, overallConfidence:0,
+    summary:{ confirmedCount:0,reliableCount:0,confirmationCount:0,complementCount:0,missingRequiredCount:0,conflictCount:0,optionalAbsentCount:0 },
+    blocks:{ personalData:{status:'',fieldAudits:{}}, experiences:{status:'',items:[]}, education:{status:'',items:[]}, hardSkills:{status:'',items:[]}, languages:{status:'',items:[]}, certifications:{status:'',items:[]}, projects:{status:'',items:[]}, activities:{status:'',items:[]} },
+    questionPlan:[],
+    targetRelevance:{ targetType:'',analyzedKeywords:[],matchingItems:[],missingRelevantItems:[] },
+  };
+}
+function defaultAuditSession() {
+  return { sourceAuditVersion:'',totalQuestions:0,answeredQuestions:0,skippedOptionalQuestions:0,currentQuestionId:'',completed:false };
+}
+function _auditHash(str) {
+  let h=0x811c9dc5;
+  for(let i=0;i<str.length;i++){h^=str.charCodeAt(i);h=(h*0x01000193)>>>0;}
+  return h.toString(16);
+}
+
+/* ── Alteração 03: confiança por campo ── */
+function calcFieldConf(fieldId, value) {
+  if(value===null||value===undefined||value==='') return {confidence:0,status:AUD.MISSING_REQUIRED};
+  const v=String(value).trim();
+  if(!v) return {confidence:0,status:AUD.MISSING_REQUIRED};
+  if(fieldId==='email') return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)?{confidence:90,status:AUD.EXTRACTED_RELIABLE}:{confidence:20,status:AUD.INVALID};
+  if(fieldId==='phone'){ const d=v.replace(/\D/g,''); return d.length<8||d.length>15?{confidence:30,status:AUD.NEEDS_CONFIRMATION}:{confidence:80,status:AUD.EXTRACTED_RELIABLE}; }
+  if(fieldId==='fullName') return (v.length<3||!v.includes(' '))?{confidence:40,status:AUD.NEEDS_CONFIRMATION}:{confidence:85,status:AUD.EXTRACTED_RELIABLE};
+  if(fieldId==='start'||fieldId==='end'){
+    if(/^\d{2}\/\d{4}$/.test(v)){
+      const[mm,yyyy]=v.split('/').map(Number);
+      if(mm<1||mm>12||yyyy<1940||yyyy>2100) return{confidence:20,status:AUD.INVALID};
+      const n=new Date(),ny=n.getFullYear(),nm=n.getMonth()+1;
+      if(fieldId==='end'&&(yyyy>ny||(yyyy===ny&&mm>nm))) return{confidence:30,status:AUD.CONFLICT};
+      return{confidence:85,status:AUD.EXTRACTED_RELIABLE};
+    }
+    if(/^\d{4}$/.test(v)){const y=+v;return(y<1940||y>2100)?{confidence:10,status:AUD.INVALID}:{confidence:60,status:AUD.NEEDS_CONFIRMATION};}
+    return /\d{4}/.test(v)?{confidence:50,status:AUD.NEEDS_CONFIRMATION}:{confidence:20,status:AUD.INVALID};
+  }
+  if(fieldId==='company'||fieldId==='role'){
+    if(v.length<2) return{confidence:20,status:AUD.NEEDS_CONFIRMATION};
+    const gen=['funcionário','empregado','colaborador','assessor'];
+    if(gen.some(g=>v.toLowerCase()===g)) return{confidence:35,status:AUD.NEEDS_COMPLEMENT};
+    return{confidence:75,status:AUD.EXTRACTED_RELIABLE};
+  }
+  if(fieldId==='activities'){
+    if(v.length<40) return{confidence:25,status:AUD.NEEDS_COMPLEMENT};
+    const sh=['responsável por atividades','atividades da área','suporte à área','apoio à equipe'];
+    if(sh.some(s=>v.toLowerCase().includes(s))&&v.length<120) return{confidence:30,status:AUD.NEEDS_COMPLEMENT};
+    return{confidence:70,status:AUD.EXTRACTED_RELIABLE};
+  }
+  if(fieldId==='certName'){
+    if(v.length<3) return{confidence:5,status:AUD.INVALID};
+    const fp=['certidão de nascimento','vacinação','nascimento'];
+    if(fp.some(f=>v.toLowerCase().includes(f))) return{confidence:10,status:AUD.NEEDS_CONFIRMATION};
+    return{confidence:70,status:AUD.EXTRACTED_RELIABLE};
+  }
+  return v.length<2?{confidence:30,status:AUD.NEEDS_CONFIRMATION}:{confidence:65,status:AUD.EXTRACTED_RELIABLE};
+}
+
+/* ── Alterações 12-13: status por item e por bloco ── */
+function deriveItemStatus(fields) {
+  for(const st of AUD_STATUS_PREC){ if(Object.values(fields).some(f=>f&&f.status===st)) return st; }
+  return AUD.NOT_APPLICABLE;
+}
+function deriveBlockStatus(items, isOptional) {
+  if(!items||!items.length) return isOptional?BLKS.OPTIONAL_ABSENT:BLKS.MISSING_REQUIRED;
+  const ss=items.map(i=>i.overallStatus);
+  if(ss.some(s=>s===AUD.CONFLICT))           return BLKS.CONFLICT;
+  if(ss.some(s=>s===AUD.MISSING_REQUIRED))   return BLKS.MISSING_REQUIRED;
+  if(ss.some(s=>s===AUD.NEEDS_CONFIRMATION)) return BLKS.CONFIRMATION_REQUIRED;
+  if(ss.some(s=>s===AUD.NEEDS_COMPLEMENT))   return BLKS.COMPLEMENT_REQUIRED;
+  return BLKS.COMPLETE;
+}
+
+/* ── Helpers internos ── */
+function _mkQ(type,priority,prompt,fieldId,entityId,required,extra){
+  return{id:entityId+'_'+fieldId+'_'+type,type,priority,prompt,fieldId,entityId,required,answered:false,answer:null,targetRelevant:false,...(extra||{})};
+}
+function _avgConf(fields){
+  const vs=Object.values(fields).filter(f=>f&&typeof f.confidence==='number');
+  return vs.length?Math.round(vs.reduce((s,f)=>s+f.confidence,0)/vs.length):0;
+}
+function _okStatus(s){ return s===AUD.CONFIRMED||s===AUD.EXTRACTED_RELIABLE; }
+
+/* ── Alteração 04: auditoria de experiência ── */
+function auditExperienceItem(exp,index){
+  const f={},qs=[],issues=[];
+  const lbl=`${exp.role||'experiência'} em ${exp.company||'?'}`;
+  f.company=exp.company?{...calcFieldConf('company',exp.company),required:true}:{confidence:0,status:AUD.MISSING_REQUIRED,required:true};
+  f.role=exp.role?{...calcFieldConf('role',exp.role),required:true}:{confidence:0,status:AUD.MISSING_REQUIRED,required:true};
+  if(f.role.status===AUD.NEEDS_COMPLEMENT) issues.push('Cargo muito genérico');
+  f.start=exp.start?{...calcFieldConf('start',exp.start),required:true}:{confidence:0,status:AUD.MISSING_REQUIRED,required:true};
+  if(exp.isCurrent){
+    f.end={status:AUD.NOT_APPLICABLE,confidence:100,required:false};
+    f.current={status:AUD.EXTRACTED_RELIABLE,confidence:90,value:true,required:false};
+  } else {
+    f.current={status:AUD.EXTRACTED_RELIABLE,confidence:90,value:false,required:false};
+    if(!exp.end){ f.end={confidence:0,status:AUD.MISSING_REQUIRED,required:true};
+    } else {
+      f.end={...calcFieldConf('end',exp.end),required:true};
+      const sy=parseInt((exp.start||'').split('/').pop()||'0'),ey=parseInt((exp.end||'').split('/').pop()||'0');
+      if(sy&&ey&&ey<sy){ f.end={confidence:10,status:AUD.CONFLICT,required:true}; issues.push('Data de término anterior ao início'); qs.push(_mkQ('RESOLVE_CONFLICT',100,`A data de término da experiência "${lbl}" parece anterior ao início. Qual período está correto?`,'end','exp_'+index,true)); }
+    }
+  }
+  f.activities=exp.activities?{...calcFieldConf('activities',exp.activities),required:true}:{confidence:0,status:AUD.NEEDS_COMPLEMENT,required:true};
+  if(f.activities.status===AUD.NEEDS_COMPLEMENT) qs.push(_mkQ('DEEPEN_ACTIVITY',exp.activities?50:60,`Quais eram suas principais responsabilidades como ${exp.role||'profissional'} em ${exp.company||'essa empresa'}?`,'activities','exp_'+index,true));
+  f.tools=exp.tools?{status:AUD.EXTRACTED_RELIABLE,confidence:70,required:false}:{status:AUD.MISSING_RECOMMENDED,confidence:0,required:false};
+  if(!exp.tools) qs.push(_mkQ('DEEPEN_TOOLS',40,`Quais ferramentas ou sistemas você utilizava como ${exp.role||'profissional'} em ${exp.company||'essa empresa'}?`,'tools','exp_'+index,false));
+  const rval=(exp.results||'').toLowerCase();
+  const rgen=['bons resultados','bom desempenho','resultados positivos','ótimos resultados'];
+  f.results=exp.results?(rgen.some(g=>rval.includes(g))?{status:AUD.NEEDS_COMPLEMENT,confidence:25,required:false}:{status:AUD.EXTRACTED_RELIABLE,confidence:70,required:false}):{status:AUD.MISSING_RECOMMENDED,confidence:0,required:false};
+  if(!_okStatus(f.results.status)) qs.push(_mkQ('DEEPEN_RESULT',40,`Você possui algum resultado concreto da experiência em ${exp.company||'essa empresa'} que possa informar sem estimar ou inventar valores?`,'results','exp_'+index,false,{hint:'Informe apenas resultados que você consiga confirmar. Não é necessário estimar números.',allowSkip:true,skipLabel:'Não tenho resultado mensurável para informar.'}));
+  const compl=_expCompl(f),ovs=deriveItemStatus(f),conf=_avgConf(f);
+  addLog('EXPERIENCE_ITEM_AUDITED',{index,overallStatus:ovs,completenessScore:compl,confidenceScore:conf});
+  return{entityId:'exp_'+index,entityType:'EXPERIENCE',index,overallStatus:ovs,completenessScore:compl,confidenceScore:conf,targetRelevanceScore:0,fields:f,issues,questions:qs};
+}
+function _expCompl(f){
+  let s=0;
+  if(_okStatus(f.company?.status)) s+=15;
+  if(_okStatus(f.role?.status))    s+=15;
+  if(_okStatus(f.start?.status)&&(f.current?.value||_okStatus(f.end?.status))) s+=20;
+  if(_okStatus(f.activities?.status)) s+=25;
+  if(_okStatus(f.tools?.status))   s+=10;
+  if(_okStatus(f.results?.status)) s+=10;
+  return Math.min(100,s);
+}
+
+/* ── Alteração 05: auditoria de formação ── */
+function auditEducationItem(edu,index){
+  const f={},qs=[],issues=[];
+  // Usa 'company' para instituição — valida comprimento, não espaço (instituições podem ser siglas)
+  f.institution=edu.institution?{...calcFieldConf('company',edu.institution),required:true}:{confidence:0,status:AUD.MISSING_REQUIRED,required:true};
+  f.course=edu.course?{confidence:75,status:AUD.EXTRACTED_RELIABLE,required:true}:{confidence:0,status:AUD.MISSING_REQUIRED,required:true};
+  const cl=(edu.course||'').toLowerCase();
+  f.level=edu.level?{confidence:80,status:AUD.EXTRACTED_RELIABLE,required:false}:
+    (/graduação|bacharelado|licenciatura/.test(cl)?{confidence:70,status:AUD.EXTRACTED_RELIABLE,required:false}:
+     /mba|pós-graduação|especializ/.test(cl)?{confidence:70,status:AUD.EXTRACTED_RELIABLE,required:false}:
+     /mestrado/.test(cl)?{confidence:70,status:AUD.EXTRACTED_RELIABLE,required:false}:
+     {confidence:0,status:AUD.MISSING_RECOMMENDED,required:false});
+  f.status=edu.status?{confidence:75,status:AUD.EXTRACTED_RELIABLE,required:true}:{confidence:0,status:AUD.NEEDS_CONFIRMATION,required:true};
+  if(f.status.status===AUD.NEEDS_CONFIRMATION) qs.push(_mkQ('COMPLETE_VALUE',60,`Qual é o status da formação "${edu.course||'curso não identificado'}"? (Concluído, Em andamento, Interrompido, Trancado)`,'status','edu_'+index,true));
+  f.startYear=edu.startYear?(/^\d{4}$/.test(edu.startYear)&&+edu.startYear>=1940&&+edu.startYear<=2100?{confidence:85,status:AUD.EXTRACTED_RELIABLE,required:false}:{confidence:20,status:AUD.INVALID,required:false}):{confidence:0,status:AUD.MISSING_RECOMMENDED,required:false};
+  f.endYear=edu.status==='IN_PROGRESS'?{status:AUD.NOT_APPLICABLE,confidence:100,required:false}:
+    !edu.endYear?{confidence:0,status:AUD.MISSING_RECOMMENDED,required:false}:
+    (!/^\d{4}$/.test(edu.endYear)||+edu.endYear<1940||+edu.endYear>2100)?{confidence:20,status:AUD.INVALID,required:false}:
+    (edu.startYear&&+edu.endYear<+edu.startYear)?(issues.push('Ano de conclusão anterior ao de início'),{confidence:10,status:AUD.CONFLICT,required:false}):
+    {confidence:85,status:AUD.EXTRACTED_RELIABLE,required:false};
+  const compl=_eduCompl(f),ovs=deriveItemStatus(f),conf=_avgConf(f);
+  addLog('EDUCATION_ITEM_AUDITED',{index,overallStatus:ovs,completenessScore:compl});
+  return{entityId:'edu_'+index,entityType:'EDUCATION',index,overallStatus:ovs,completenessScore:compl,confidenceScore:conf,fields:f,issues,questions:qs};
+}
+function _eduCompl(f){
+  let s=0;
+  if(_okStatus(f.institution?.status)) s+=30;
+  if(_okStatus(f.course?.status))      s+=30;
+  if(_okStatus(f.status?.status))      s+=20;
+  if(_okStatus(f.startYear?.status)||_okStatus(f.endYear?.status)) s+=20;
+  return Math.min(100,s);
+}
+
+/* ── Alteração 06: auditoria de skills ── */
+function auditSkillItem(skill,index,sr){
+  const norm=skill.toLowerCase().replace(/[\s\-_]/g,'');
+  const allTxt=((sr.experiences||[]).map(e=>(e.activities||'')+(e.tools||'')).join(' ')).toLowerCase();
+  const inExp=allTxt.includes(skill.toLowerCase());
+  const confidence=inExp?85:65, status=inExp?AUD.EXTRACTED_RELIABLE:AUD.NEEDS_CONFIRMATION;
+  const qs=!inExp?[_mkQ('CONFIRM_SKILL',45,`Você confirma experiência prática com ${skill}?`,'hardSkills','skill_'+index,false)]:[];
+  addLog('SKILL_ITEM_AUDITED',{index,skill,status,confidence});
+  return{entityId:'skill_'+index,entityType:'SKILL',value:skill,normalizedValue:norm,status,confidence,evidenceLocations:inExp?['ACTIVITIES']:[],relevantToTarget:false,overallStatus:status,questions:qs};
+}
+
+/* ── Alteração 07: auditoria de idioma ── */
+function auditLanguageItem(lang,index){
+  const f={},qs=[];
+  f.language=lang.name?{confidence:90,status:AUD.EXTRACTED_RELIABLE}:{confidence:0,status:AUD.MISSING_REQUIRED};
+  if(!lang.level){
+    f.level={confidence:0,status:AUD.NEEDS_COMPLEMENT};
+    qs.push(_mkQ('CONFIRM_LANGUAGE_LEVEL',60,`Qual é o seu nível de ${lang.name||'idioma'}?`,'level','lang_'+index,true));
+  } else {
+    const explicit=lang._levelExplicit!==false;
+    f.level=explicit?{confidence:85,status:AUD.EXTRACTED_RELIABLE}:{confidence:45,status:AUD.NEEDS_CONFIRMATION};
+    if(!explicit) qs.push(_mkQ('CONFIRM_LANGUAGE_LEVEL',55,`Identificamos "${lang.name}" no currículo. Qual é o seu nível exato?`,'level','lang_'+index,false));
+  }
+  const ovs=deriveItemStatus(f);
+  addLog('LANGUAGE_ITEM_AUDITED',{index,name:lang.name,overallStatus:ovs});
+  return{entityId:'lang_'+index,entityType:'LANGUAGE',index,overallStatus:ovs,fields:f,questions:qs};
+}
+
+/* ── Alteração 08: auditoria de certificação ── */
+const _FP_CERTS=['certidão de nascimento','certidão','vacinação','nascimento'];
+function auditCertificationItem(cert,index){
+  const name=(cert.name||'').toLowerCase();
+  const fp=_FP_CERTS.some(f=>name.includes(f));
+  if(!cert.name||cert.name.length<3) return{entityId:'cert_'+index,entityType:'CERTIFICATION',index,overallStatus:AUD.INVALID,fields:{},questions:[],probableFalsePositive:true};
+  if(fp) return{entityId:'cert_'+index,entityType:'CERTIFICATION',index,overallStatus:AUD.NEEDS_CONFIRMATION,fields:{},questions:[_mkQ('CONFIRM_VALUE',70,`Encontramos "${cert.name}" no currículo. Isso é uma certificação profissional?`,'name','cert_'+index,false)],probableFalsePositive:true};
+  const f={};
+  f.name={...calcFieldConf('certName',cert.name),required:true};
+  f.issuer=cert.institution?{confidence:70,status:AUD.EXTRACTED_RELIABLE,required:false}:{confidence:0,status:AUD.MISSING_RECOMMENDED,required:false};
+  f.year=cert.year?{confidence:80,status:AUD.EXTRACTED_RELIABLE,required:false}:{confidence:0,status:AUD.MISSING_RECOMMENDED,required:false};
+  const qs=!cert.institution?[_mkQ('COMPLETE_VALUE',20,`Qual é a emissora da certificação "${cert.name||''}"?`,'institution','cert_'+index,false)]:[];
+  const ovs=deriveItemStatus(f);
+  addLog('CERTIFICATION_ITEM_AUDITED',{index,overallStatus:ovs});
+  return{entityId:'cert_'+index,entityType:'CERTIFICATION',index,overallStatus:ovs,fields:f,questions:qs,probableFalsePositive:false};
+}
+
+/* ── Alteração 09: auditoria de projetos ── */
+function auditProjectItem(proj,index){
+  const f={},qs=[];
+  f.name=proj.name?{confidence:80,status:AUD.EXTRACTED_RELIABLE,required:true}:{confidence:0,status:AUD.MISSING_REQUIRED,required:true};
+  f.description=!proj.description?{confidence:0,status:AUD.NEEDS_COMPLEMENT,required:false}:proj.description.length<30?{confidence:25,status:AUD.NEEDS_COMPLEMENT,required:false}:{confidence:70,status:AUD.EXTRACTED_RELIABLE,required:false};
+  if(f.description.status===AUD.NEEDS_COMPLEMENT) qs.push(_mkQ('DEEPEN_ACTIVITY',30,`Descreva brevemente o projeto "${proj.name||''}" e seu papel nele.`,'description','proj_'+index,false));
+  f.technologies=proj.technologies?{confidence:70,status:AUD.EXTRACTED_RELIABLE,required:false}:{confidence:0,status:AUD.MISSING_RECOMMENDED,required:false};
+  f.result=proj.result?{confidence:70,status:AUD.EXTRACTED_RELIABLE,required:false}:{confidence:0,status:AUD.MISSING_RECOMMENDED,required:false};
+  const ovs=deriveItemStatus(f);
+  addLog('PROJECT_ITEM_AUDITED',{index,overallStatus:ovs});
+  return{entityId:'proj_'+index,entityType:'PROJECT',index,overallStatus:ovs,fields:f,questions:qs};
+}
+
+/* ── Alteração 10: auditoria de atividades complementares ── */
+function auditActivityItem(act,index){
+  const f={};
+  f.description=act.description?{confidence:70,status:AUD.EXTRACTED_RELIABLE,required:false}:{confidence:0,status:AUD.NEEDS_COMPLEMENT,required:false};
+  f.type=act.type?{confidence:80,status:AUD.EXTRACTED_RELIABLE,required:false}:{confidence:0,status:AUD.MISSING_RECOMMENDED,required:false};
+  return{entityId:'act_'+index,entityType:'ACTIVITY',index,overallStatus:deriveItemStatus(f),fields:f,questions:[]};
+}
+
+/* ── Auditoria de dados pessoais ── */
+function _auditPersonalData(pd){
+  const fa={};
+  fa.fullName=calcFieldConf('fullName',pd.fullName);
+  fa.email   =calcFieldConf('email',pd.email);
+  fa.phone   =calcFieldConf('phone',pd.phone);
+  fa.city    =pd.city?{confidence:75,status:AUD.EXTRACTED_RELIABLE}:{confidence:0,status:AUD.MISSING_RECOMMENDED};
+  fa.linkedin=pd.linkedin?{confidence:80,status:AUD.EXTRACTED_RELIABLE}:{confidence:0,status:AUD.OPTIONAL_ABSENT};
+  const ovs=deriveItemStatus({fullName:fa.fullName,email:fa.email,phone:fa.phone});
+  return{status:ovs,fieldAudits:fa};
+}
+
+/* ── Alteração 15: execução da auditoria estrutural ── */
+function runGranularResumeAudit(){
+  if(!S.isExtracted||!S.sourceResume) return;
+  try{
+    addLog('GRANULAR_AUDIT_STARTED');
+    S.resumeAudit=defaultResumeAudit();
+    S.resumeAudit.status='RUNNING';
+    S.resumeAudit.startedAt=new Date().toISOString();
+    S.resumeAudit.sourceResumeHash=_auditHash(JSON.stringify(S.sourceResume));
+    const sr=S.sourceResume,blk=S.resumeAudit.blocks;
+    blk.personalData=_auditPersonalData(S.pd);
+    const expA=(sr.experiences||[]).map((e,i)=>auditExperienceItem(e,i));
+    blk.experiences={status:deriveBlockStatus(expA,false),items:expA};
+    const eduA=(sr.education||[]).map((e,i)=>auditEducationItem(e,i));
+    blk.education={status:deriveBlockStatus(eduA,false),items:eduA};
+    const skA=(sr.skills||[]).map((s,i)=>auditSkillItem(s,i,sr));
+    blk.hardSkills={status:skA.length?deriveBlockStatus(skA,false):BLKS.OPTIONAL_ABSENT,items:skA};
+    const lgA=(sr.languages||[]).map((l,i)=>auditLanguageItem(l,i));
+    blk.languages={status:lgA.length?deriveBlockStatus(lgA,true):BLKS.OPTIONAL_ABSENT,items:lgA};
+    const ctA=(sr.certifications||[]).map((c,i)=>auditCertificationItem(c,i));
+    blk.certifications={status:ctA.length?deriveBlockStatus(ctA,true):BLKS.OPTIONAL_ABSENT,items:ctA};
+    blk.projects={status:BLKS.OPTIONAL_ABSENT,items:[]};
+    blk.activities={status:BLKS.OPTIONAL_ABSENT,items:[]};
+    const allItems=[...expA,...eduA,...skA,...lgA,...ctA];
+    const ac=allItems.map(i=>i.completenessScore||0),avg=ac.length?Math.round(ac.reduce((a,b)=>a+b,0)/ac.length):0;
+    const af=allItems.map(i=>i.confidenceScore||0),avgf=af.length?Math.round(af.reduce((a,b)=>a+b,0)/af.length):0;
+    S.resumeAudit.overallCompleteness=avg; S.resumeAudit.overallConfidence=avgf;
+    _updAuditSummary();
+    S.resumeAudit.questionPlan=_buildQPlan(blk);
+    S.resumeAudit.status='COMPLETED'; S.resumeAudit.completedAt=new Date().toISOString();
+    save();
+    addLog('GRANULAR_AUDIT_COMPLETED',{overallCompleteness:avg,overallConfidence:avgf,totalQuestions:S.resumeAudit.questionPlan.length});
+  }catch(e){
+    console.error('[ATS] runGranularResumeAudit failed:',e);
+    if(S.resumeAudit) S.resumeAudit.status='FAILED';
+    addLog('GRANULAR_AUDIT_FAILED',{error:String(e).slice(0,120)});
+    save();
+  }
+}
+
+function _updAuditSummary(){
+  const blk=S.resumeAudit.blocks;
+  const all=[...(blk.experiences.items||[]),...(blk.education.items||[]),...(blk.hardSkills.items||[]),...(blk.languages.items||[]),...(blk.certifications.items||[])];
+  const sm=S.resumeAudit.summary;
+  sm.confirmedCount     =all.filter(i=>i.overallStatus===AUD.CONFIRMED).length;
+  sm.reliableCount      =all.filter(i=>i.overallStatus===AUD.EXTRACTED_RELIABLE).length;
+  sm.confirmationCount  =all.filter(i=>i.overallStatus===AUD.NEEDS_CONFIRMATION).length;
+  sm.complementCount    =all.filter(i=>i.overallStatus===AUD.NEEDS_COMPLEMENT).length;
+  sm.missingRequiredCount=all.filter(i=>i.overallStatus===AUD.MISSING_REQUIRED).length;
+  sm.conflictCount      =all.filter(i=>i.overallStatus===AUD.CONFLICT).length;
+  sm.optionalAbsentCount=[blk.projects,blk.activities,blk.certifications,blk.languages].filter(b=>b.status===BLKS.OPTIONAL_ABSENT).length;
+}
+
+function _buildQPlan(blk){
+  let qs=[];
+  const fromItems=items=>(items||[]).forEach(item=>(item.questions||[]).forEach(q=>{ if(!q.answered) qs.push({...q,entityType:item.entityType}); }));
+  fromItems(blk.experiences.items); fromItems(blk.education.items); fromItems(blk.hardSkills.items);
+  fromItems(blk.languages.items); fromItems(blk.certifications.items); fromItems(blk.projects.items);
+  const seen=new Set(); qs=qs.filter(q=>{if(seen.has(q.id))return false;seen.add(q.id);return true;});
+  qs.sort((a,b)=>b.priority-a.priority||(b.targetRelevant?1:0)-(a.targetRelevant?1:0));
+  addLog('QUESTION_PLAN_GENERATED',{total:qs.length,required:qs.filter(q=>q.required).length});
+  return qs;
+}
+
+/* ── Alteração 16: relevância do alvo após Skill 05 ── */
+function applyTargetRelevanceAudit(){
+  if(!S.resumeAudit||S.resumeAudit.status!=='COMPLETED') return;
+  try{
+    const t=S.target, blk=S.resumeAudit.blocks;
+    const keywords=[],matchingItems=[],missingItems=[];
+    if(t.type==='SPECIFIC_JOB'&&t.jobDescription){
+      const jd=t.jobDescription.toLowerCase();
+      const allSk=[...(S.sourceResume.skills||[]),...(S.interview.hardSkills||[])];
+      const jdKw=allSk.filter(sk=>jd.includes(sk.toLowerCase()));
+      keywords.push(...jdKw);
+      (blk.hardSkills.items||[]).forEach(item=>{
+        if(jdKw.some(k=>k.toLowerCase()===item.value.toLowerCase())){
+          item.relevantToTarget=true; matchingItems.push(item.value);
+          (item.questions||[]).forEach(q=>{q.targetRelevant=true;q.priority=Math.min(100,q.priority+15);});
+        }
+      });
+      const CANDS=['Power BI','Excel','SQL','Python','SAP','Power Automate','Tableau','R','Java','JavaScript','TypeScript','React','Node.js','AWS','Azure','Docker','Git','Scrum','Agile','Salesforce','Indicadores','KPI','Bloomberg','SWIFT'];
+      CANDS.forEach(kw=>{if(jd.includes(kw.toLowerCase())&&!allSk.some(s=>s.toLowerCase()===kw.toLowerCase())) missingItems.push(kw);});
+    } else if(t.targetRole){ keywords.push(t.targetRole); }
+    S.resumeAudit.targetRelevance={targetType:t.type||'GENERAL_AREA',analyzedKeywords:keywords,matchingItems,missingRelevantItems:missingItems};
+    S.resumeAudit.targetAuditApplied=true;
+    S.resumeAudit.questionPlan=_buildQPlan(blk);
+    save();
+    addLog('TARGET_RELEVANCE_AUDITED',{keywords:keywords.length,matching:matchingItems.length,missing:missingItems.length});
+  }catch(e){ console.error('[ATS] applyTargetRelevanceAudit failed:',e); }
+}
+
+/* ── Alteração 21: confirmação em lote ── */
+function confirmReliableExtractedData(){
+  const blk=S.resumeAudit&&S.resumeAudit.blocks; if(!blk) return;
+  let confirmed=0;
+  const confirmItems=items=>(items||[]).forEach(item=>{
+    if(item.overallStatus===AUD.EXTRACTED_RELIABLE){
+      item.overallStatus=AUD.CONFIRMED;
+      Object.values(item.fields||{}).forEach(f=>{if(f&&f.status===AUD.EXTRACTED_RELIABLE){f.status=AUD.CONFIRMED;confirmed++;}});
+      (item.questions||[]).forEach(q=>{if(!q.required) q.answered=true;});
+    }
+  });
+  confirmItems(blk.experiences.items); confirmItems(blk.education.items); confirmItems(blk.hardSkills.items); confirmItems(blk.languages.items); confirmItems(blk.certifications.items);
+  _updAuditSummary(); save();
+  addLog('RELIABLE_DATA_CONFIRMED',{confirmedFields:confirmed});
+}
+
+/* Tipos de pergunta que exigem preenchimento de lacuna (não mera confirmação) */
+const _GAP_Q_TYPES = new Set([
+  'COMPLETE_VALUE','DEEPEN_ACTIVITY','DEEPEN_TOOLS','DEEPEN_RESULT',
+  'RESOLVE_CONFLICT','ADD_MISSING_REQUIRED',
+]);
+
+/* Verifica se o currículo é profissionalmente vazio (dados pessoais isolados não bastam) */
+function isResumeStructurallyEmpty() {
+  const blk = S.resumeAudit && S.resumeAudit.blocks;
+  if (!blk) return true;
+  const profBlocks = [
+    blk.experiences, blk.education, blk.hardSkills,
+    blk.languages, blk.certifications, blk.projects, blk.activities,
+  ];
+  return !profBlocks.some(b => b && b.items && b.items.length > 0);
+}
+
+function _determineMode() {
+  // Regra 1: auditoria ausente ou falhou → FULL
+  if (!S.resumeAudit || S.resumeAudit.status !== 'COMPLETED') return ITV_MODE.FULL;
+  // Regra 2: currículo vazio → FULL (sem dados profissionais para confirmar)
+  if (isResumeStructurallyEmpty()) return ITV_MODE.FULL;
+  const plan = S.resumeAudit.questionPlan || [];
+  const unanswered = plan.filter(q => !q.answered);
+  const req = unanswered.filter(q => q.required);
+  // Regra 3: existe conflito ou dado inválido nos blocos → GAP_ONLY
+  const blk = S.resumeAudit.blocks;
+  const allItems = [
+    ...(blk.experiences?.items||[]), ...(blk.education?.items||[]),
+    ...(blk.hardSkills?.items||[]), ...(blk.languages?.items||[]),
+    ...(blk.certifications?.items||[]),
+  ];
+  if (allItems.some(i => i.overallStatus === 'CONFLICT' || i.overallStatus === 'INVALID')) return ITV_MODE.GAP_ONLY;
+  // Regra 4: existe pergunta obrigatória de preenchimento/complemento → GAP_ONLY
+  if (req.some(q => _GAP_Q_TYPES.has(q.type))) return ITV_MODE.GAP_ONLY;
+  // Regra 5: apenas confirmações simples ou opcionais → CONFIRMATION_ONLY
+  return ITV_MODE.CONFIRMATION_ONLY;
+}
+
+/* ── Tela de revisão ── */
+function initAuditReviewScreen(){
+  if(!S.resumeAudit||S.resumeAudit.status!=='COMPLETED'){ S.interview.mode=ITV_MODE.FULL; initInterviewScreen(); goScreen('interview'); return; }
+  renderAuditReviewGroups();
+}
+
+function toggleArGroup(id){
+  const el=g(id); if(!el) return;
+  el.classList.toggle('open');
+  const tog=el.querySelector('.ar-group-toggle');
+  if(tog) tog.textContent=el.classList.contains('open')?'▲':'▼';
+}
+
+function renderAuditReviewGroups(){
+  const blk=S.resumeAudit.blocks, sm=S.resumeAudit.summary;
+  const sb=g('ar-stat-bar');
+  if(sb) sb.innerHTML=[{n:sm.reliableCount+sm.confirmedCount,l:'Prontos',cls:'ok'},{n:sm.confirmationCount,l:'Confirmar',cls:'warn'},{n:sm.complementCount,l:'Complementar',cls:'info'},{n:sm.missingRequiredCount,l:'Ausentes',cls:'err'}].map(s=>`<div class="ar-stat ${s.cls}"><span class="ar-stat-n">${s.n}</span><span class="ar-stat-l">${s.l}</span></div>`).join('');
+  const ready=[],needConf=[],needComp=[],miss=[];
+  const catItem=(item,blockType)=>{
+    const lbl=_arItemLabel(item,blockType);
+    const det=item.completenessScore!==undefined?item.completenessScore+'% completo':'';
+    const obj={lbl,det};
+    switch(item.overallStatus){
+      case AUD.CONFIRMED: case AUD.EXTRACTED_RELIABLE: ready.push(obj); break;
+      case AUD.NEEDS_CONFIRMATION: needConf.push(obj); break;
+      case AUD.NEEDS_COMPLEMENT:   needComp.push(obj); break;
+      case AUD.CONFLICT: case AUD.INVALID: case AUD.MISSING_REQUIRED: miss.push(obj); break;
+    }
+  };
+  const pdOvs=blk.personalData&&blk.personalData.status?blk.personalData.status:AUD.NEEDS_CONFIRMATION;
+  (_okStatus(pdOvs)?ready:needConf).push({lbl:'Dados pessoais',det:S.pd.fullName||''});
+  (blk.experiences.items||[]).forEach(i=>catItem(i,'EXPERIENCE'));
+  (blk.education.items||[]).forEach(i=>catItem(i,'EDUCATION'));
+  (blk.hardSkills.items||[]).forEach(i=>catItem(i,'SKILL'));
+  (blk.languages.items||[]).forEach(i=>catItem(i,'LANGUAGE'));
+  (blk.certifications.items||[]).forEach(i=>catItem(i,'CERTIFICATION'));
+  const renderGrp=(bodyId,cntId,items,ico,tagCls,tagTxt)=>{
+    const el=g(bodyId); if(!el) return;
+    el.innerHTML=items.length?items.map(i=>`<div class="ar-item"><span class="ar-item-ico">${ico}</span><div class="ar-item-body"><div class="ar-item-label">${esc(i.lbl)}</div>${i.det?`<div class="ar-item-detail">${esc(i.det)}</div>`:''}<span class="ar-item-tag ${tagCls}">${tagTxt}</span></div></div>`).join(''):`<p style="color:var(--text2);font-size:.875rem;padding:8px 0">Nenhum item.</p>`;
+    const cnt=g(cntId); if(cnt) cnt.textContent=items.length;
+  };
+  renderGrp('ar-body-ready','ar-cnt-ready',ready,'✓','ar-tag-ok','Confiável');
+  renderGrp('ar-body-confirm','ar-cnt-confirm',needConf,'⚠','ar-tag-warn','Confirmar');
+  renderGrp('ar-body-complement','ar-cnt-complement',needComp,'✎','ar-tag-info','Complementar');
+  renderGrp('ar-body-missing','ar-cnt-missing',miss,'✗','ar-tag-err','Ausente');
+  ['ar-g-confirm','ar-g-complement','ar-g-missing'].forEach(id=>{
+    const el=g(id); if(!el) return;
+    const cnt=parseInt(el.querySelector('.ar-group-count')?.textContent||'0');
+    if(cnt>0) el.classList.add('open');
+    const tog=el.querySelector('.ar-group-toggle'); if(tog) tog.textContent=el.classList.contains('open')?'▲':'▼';
+  });
+}
+
+function _arItemLabel(item,type){
+  if(type==='EXPERIENCE'||item.entityType==='EXPERIENCE'){
+    const src=(S.interview.experiences||[])[item.index]||(S.sourceResume.experiences||[])[item.index]||{};
+    return `${src.role||'?'} — ${src.company||'?'}`;
+  }
+  if(type==='EDUCATION'||item.entityType==='EDUCATION'){
+    const src=(S.interview.education||[])[item.index]||(S.sourceResume.education||[])[item.index]||{};
+    return src.course||src.institution||'Formação';
+  }
+  if(type==='LANGUAGE'||item.entityType==='LANGUAGE'){
+    const src=(S.interview.languages||[])[item.index]||(S.sourceResume.languages||[])[item.index]||{};
+    return `${src.name||'Idioma'}${src.level?' — '+src.level:''}`;
+  }
+  if(type==='CERTIFICATION'||item.entityType==='CERTIFICATION'){
+    const src=(S.interview.certifications||[])[item.index]||(S.sourceResume.certifications||[])[item.index]||{};
+    return src.name||'Certificação';
+  }
+  return item.value||item.entityType||'Item';
+}
+
+function onAuditReviewConfirm(){
+  confirmReliableExtractedData();
+  const mode=_determineMode();
+  S.interview.mode=mode;
+  S.interview.auditSession=defaultAuditSession();
+  S.interview.auditSession.sourceAuditVersion=S.resumeAudit.version;
+  const req=(S.resumeAudit.questionPlan||[]).filter(q=>q.required&&!q.answered);
+  S.interview.auditSession.totalQuestions=req.length;
+  S.interview.auditSession.currentQuestionId=_nextQId();
+  save();
+  addLog('ADAPTIVE_INTERVIEW_STARTED',{mode,totalRequired:req.length});
+  initInterviewScreen(); goScreen('interview');
+}
+
+function onAuditReviewFull(){
+  S.interview.mode=ITV_MODE.FULL;
+  S.interview.auditSession=defaultAuditSession();
+  save();
+  addLog('ADAPTIVE_INTERVIEW_STARTED',{mode:ITV_MODE.FULL});
+  initInterviewScreen(); goScreen('interview');
+}
+
+/* ── Alteração 27: progresso ── */
+function _nextQId(){
+  const plan=(S.resumeAudit&&S.resumeAudit.questionPlan)||[];
+  const next=plan.find(q=>!q.answered); return next?next.id:'';
+}
+function updateAuditProgress(){
+  const sess=S.interview.auditSession; if(!sess) return;
+  const answered=sess.answeredQuestions||0, total=sess.totalQuestions||0;
+  const pct=total?Math.round((answered/total)*100):100;
+  const txt=g('adp-q-prog-txt'); if(txt) txt.textContent=total?`${answered} de ${total} obrigatória(s)`:'Revisão concluída';
+  const fill=g('adp-q-bar-fill'); if(fill) fill.style.width=pct+'%';
+}
+
+/* ── Renderização da pergunta adaptativa ── */
+function renderAdaptiveQuestion(){
+  const panel=g('adaptive-panel'); if(!panel) return;
+  const plan=(S.resumeAudit&&S.resumeAudit.questionPlan)||[];
+  const q=plan.find(p=>!p.answered);
+  if(!q){
+    panel.innerHTML=`<div class="adp-q-done"><div class="adp-q-done-title">✓ Revisão concluída</div><div class="adp-q-done-sub">Seus dados foram complementados. Você pode verificar e editar tudo na entrevista completa.</div><button class="btn btn-primary" type="button" onclick="switchToFullInterview()" style="margin-top:8px">Ver todos os campos</button></div>`;
+    if(S.interview.auditSession) S.interview.auditSession.completed=true;
+    save(); addLog('ADAPTIVE_INTERVIEW_COMPLETED'); return;
+  }
+  let extVal='';
+  if(q.entityId&&q.fieldId){
+    if(q.entityId.startsWith('exp_')){const e=(S.interview.experiences||[])[parseInt(q.entityId.slice(4))];if(e)extVal=e[q.fieldId]||'';}
+    else if(q.entityId.startsWith('lang_')){const l=(S.interview.languages||[])[parseInt(q.entityId.slice(5))];if(l)extVal=l[q.fieldId]||'';}
+  }
+  const BLK_LBL={EXPERIENCE:'Experiência',EDUCATION:'Formação',LANGUAGE:'Idioma',CERTIFICATION:'Certificação',SKILL:'Competência',PROJECT:'Projeto'};
+  const blkTag=BLK_LBL[q.entityType||'']||'';
+  const isConf=q.type==='CONFIRM_VALUE'||q.type==='CONFIRM_SKILL';
+  const isLvl=q.type==='CONFIRM_LANGUAGE_LEVEL';
+  const LANG_LVL_OPT={BASIC:'Básico',INTERMEDIATE:'Intermediário',ADVANCED:'Avançado',FLUENT:'Fluente',NATIVE:'Nativo'};
+  let inputHTML='';
+  if(isConf){
+    inputHTML=`<div class="adp-q-opts"><label class="adp-q-opt"><input type="radio" name="aqopt" value="yes"> Sim, confirmo</label><label class="adp-q-opt"><input type="radio" name="aqopt" value="no"> Não, está incorreto</label></div>`;
+  } else if(isLvl){
+    inputHTML=`<div class="adp-q-opts">${Object.entries(LANG_LVL_OPT).map(([v,l])=>`<label class="adp-q-opt"><input type="radio" name="aqopt" value="${v}"> ${l}</label>`).join('')}</div>`;
+  } else {
+    inputHTML=`<textarea id="adp-q-ans" class="finput" rows="3" placeholder="Sua resposta..." style="resize:vertical;min-height:80px;width:100%;margin-bottom:8px" maxlength="800"></textarea>`;
+  }
+  const hintHTML=q.hint?`<div class="adp-q-hint">ℹ ${esc(q.hint)}</div>`:'';
+  const extHTML=extVal?`<div class="adp-q-extracted"><div class="adp-q-ext-label">Extraído do currículo</div><div class="adp-q-ext-value">${esc(extVal)}</div></div>`:'';
+  const skipHTML=(q.allowSkip||!q.required)?`<button type="button" class="adp-q-skip-btn" onclick="onAuditQSkip('${esc(q.id)}','${esc(q.skipLabel||'Pular')}')">Pular</button>`:'';
+  panel.innerHTML=`<div class="adp-q-progress-row"><span id="adp-q-prog-txt"></span><div class="adp-q-bar"><div class="adp-q-bar-fill" id="adp-q-bar-fill" style="width:0%"></div></div></div>${blkTag?`<div class="adp-q-block-tag">${blkTag}</div>`:''}<div class="adp-q-prompt">${esc(q.prompt)}</div>${hintHTML}${extHTML}${inputHTML}<div class="adp-q-nav"><div>${skipHTML}</div><div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><button type="button" class="adp-q-full-btn" onclick="switchToFullInterview()">Ir para entrevista completa</button><button type="button" class="btn btn-primary" onclick="onAuditQNext('${esc(q.id)}')">Confirmar →</button></div></div>`;
+  updateAuditProgress();
+}
+
+function onAuditQNext(qid){
+  const plan=(S.resumeAudit&&S.resumeAudit.questionPlan)||[];
+  const q=plan.find(p=>p.id===qid); if(!q) return;
+  let answer='';
+  const radio=document.querySelector('input[name="aqopt"]:checked');
+  if(radio){ answer=radio.value; } else { const ta=g('adp-q-ans'); if(ta) answer=ta.value.trim(); }
+  if(!answer&&q.required){ alert('Por favor, responda a pergunta ou clique em "Pular" para questões opcionais.'); return; }
+  _applyAuditAnswer(qid,answer); renderAdaptiveQuestion();
+}
+
+function onAuditQSkip(qid,skipLabel){
+  const plan=(S.resumeAudit&&S.resumeAudit.questionPlan)||[];
+  const q=plan.find(p=>p.id===qid); if(!q) return;
+  q.answered=true; q._skipped=true; q.answer=skipLabel||'SKIPPED';
+  if(S.interview.auditSession) S.interview.auditSession.skippedOptionalQuestions++;
+  save(); addLog('AUDIT_OPTIONAL_QUESTION_SKIPPED',{questionId:qid});
+  renderAdaptiveQuestion();
+}
+
+function switchToFullInterview(){
+  S.interview.mode=ITV_MODE.FULL; save();
+  const sb=document.querySelector('#screen-interview .split-body');
+  if(sb) sb.classList.remove('adaptive-active');
+  goBlock(S.interview.currentBlock||'objective');
+}
+
+/* ── Alteração 25: aplicar resposta ── */
+function _applyAuditAnswer(qid,answer){
+  const plan=S.resumeAudit&&S.resumeAudit.questionPlan; if(!plan) return;
+  const q=plan.find(p=>p.id===qid); if(!q) return;
+  q.answered=true; q.answer=answer;
+  const{fieldId,entityId}=q;
+  if(entityId&&fieldId){
+    if(entityId.startsWith('exp_')){const idx=parseInt(entityId.slice(4));const exp=S.interview.experiences[idx];if(exp) exp[fieldId]=answer;}
+    else if(entityId.startsWith('edu_')){const idx=parseInt(entityId.slice(4));const edu=S.interview.education[idx];if(edu) edu[fieldId]=answer;}
+    else if(entityId.startsWith('lang_')){const idx=parseInt(entityId.slice(5));const lang=S.interview.languages[idx];if(lang) lang[fieldId]=answer;}
+    else if(entityId.startsWith('skill_')&&answer==='no'){const idx=parseInt(entityId.slice(6));S.interview.hardSkills=S.interview.hardSkills.filter((_,i)=>i!==idx);}
+  }
+  if(S.interview.auditSession){
+    S.interview.auditSession.answeredQuestions=(plan.filter(p=>p.answered&&!p._skipped)).length;
+    S.interview.auditSession.currentQuestionId=_nextQId();
+  }
+  if(entityId) _reauditEntity(q.entityType,entityId);
+  save(); addLog('AUDIT_QUESTION_ANSWERED',{questionId:qid,entityId,fieldId});
+}
+
+/* ── Alteração 26: reauditoria incremental ── */
+function _reauditEntity(entityType,entityId){
+  if(!S.resumeAudit) return;
+  const blk=S.resumeAudit.blocks;
+  try{
+    if(entityType==='EXPERIENCE'){
+      const idx=parseInt((entityId||'').slice(4));
+      const exp=(S.interview.experiences||[])[idx]; if(!exp) return;
+      const audited=auditExperienceItem(exp,idx);
+      if(blk.experiences.items[idx]) blk.experiences.items[idx]=audited;
+      blk.experiences.status=deriveBlockStatus(blk.experiences.items,false);
+    } else if(entityType==='EDUCATION'){
+      const idx=parseInt((entityId||'').slice(4));
+      const edu=(S.interview.education||[])[idx]; if(!edu) return;
+      const audited=auditEducationItem(edu,idx);
+      if(blk.education.items[idx]) blk.education.items[idx]=audited;
+      blk.education.status=deriveBlockStatus(blk.education.items,false);
+    }
+    _updAuditSummary();
+    addLog('AUDIT_ENTITY_REAUDITED',{entityType,entityId});
+  }catch(e){ console.error('[ATS] _reauditEntity failed:',e); }
+}
+
+/* ── Alteração 32: fallback de erro ── */
+function _auditFallbackMessage(){
+  return 'Não foi possível concluir a revisão automática deste currículo. Seus dados extraídos foram preservados e você pode continuar pela entrevista completa.';
 }
 
 /* =============================================
@@ -2600,15 +3811,19 @@ function esc(s) { return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').repl
 function g(id) { return document.getElementById(id); }
 
 function devRefresh() {
-  const out = g('dev-out');
-  if (!out) return;
-  out.textContent = JSON.stringify({
-    processId:S.processId, screen:S.currentScreen, sub:S.currentSub,
-    sourceFlow:S.sourceFlow, isExtracted:S.isExtracted, status:S.status,
-    pd:S.pd, target:S.target, targetSub:S.targetSub,
-    interview:{ block:S.interview.currentBlock, expCount:S.interview.experiences.length, eduCount:S.interview.education.length, hardSkillCount:(S.interview.hardSkills||[]).length, softSkillCount:(S.interview.softSkills||[]).length, langCount:S.interview.languages.length, certCount:S.interview.certifications.length, projCount:(S.interview.projects||[]).length, actCount:(S.interview.activities||[]).length, confirmed:S.interview.confirmedByUser },
-    log:S.log.slice(-8),
-  }, null, 2);
+  if (!_DEV_ACTIVE) return;
+  const set = (id, v) => { const el = g(id); if (el) el.textContent = v || '—'; };
+  set('dst-screen', S.currentScreen);
+  set('dst-block',  (S.interview && S.interview.currentBlock) || '—');
+  set('dst-flow',   S.sourceFlow || '—');
+  set('dst-target', (S.target && S.target.type) || '—');
+  set('dst-pid',    S.processId ? ('…' + S.processId.slice(-8)) : 'null');
+  document.querySelectorAll('#dev-panel .dev-nav-item, #dev-panel .dev-nav-sub').forEach(b => {
+    b.classList.remove('active');
+    const ss = b.dataset.devScreen === S.currentScreen;
+    if (ss && !b.dataset.devBlock && !b.dataset.devOpt) b.classList.add('active');
+    if (ss && b.dataset.devBlock && b.dataset.devBlock === (S.interview && S.interview.currentBlock)) b.classList.add('active');
+  });
 }
 function toggleDev() {
   const p = g('dev-panel'), b = g('dev-toggle');
@@ -2616,6 +3831,123 @@ function toggleDev() {
   p.setAttribute('aria-hidden', !open);
   b.setAttribute('aria-expanded', open);
   if (open) devRefresh();
+}
+function devTeleport(screen, opts) {
+  if (!S.processId && screen !== 'initial-menu') S.processId = 'DEV_' + Date.now();
+  if (opts && opts.opt) { S.selOrigin = opts.opt; S.sourceFlow = opts.opt === 'EXISTING_RESUME' ? 'EXISTING_RESUME' : 'NEW_RESUME'; }
+  if (screen === 'interview') {
+    initInterviewScreen(); goScreen('interview');
+    if (opts && opts.block) goBlock(opts.block);
+  } else if (screen === 'personal-data') {
+    initPDScreen(); goScreen('personal-data'); goSub('contact');
+  } else if (screen === 'target-definition') {
+    goScreen('target-definition'); goTargetSub('choice');
+  } else if (screen === 'audit') {
+    goScreen('audit');
+    const ld = g('aud-loading'), rs = g('aud-result');
+    if (ld) ld.style.display = 'none';
+    if (rs) { rs.classList.add('on'); showAuditResult(S.audit); }
+  } else if (screen === 'audit-review') {
+    if (!S.resumeAudit || S.resumeAudit.status !== 'COMPLETED') devScenario('PARTIAL');
+    else { initAuditReviewScreen(); goScreen('audit-review'); }
+  } else {
+    goScreen(screen);
+  }
+}
+function devMockData() {
+  S.processId = S.processId || ('DEV_' + Date.now());
+  S.sourceFlow = 'NEW_RESUME'; S.selOrigin = 'NEW_RESUME';
+  S.pd = { fullName:'Ana Lima', email:'ana.lima@email.com', phone:'(11) 91234-5678', city:'São Paulo', state:'SP', country:'Brasil', linkedin:'linkedin.com/in/ana-lima', portfolio:'' };
+  S.fs = { fullName:'VALID', email:'VALID', phone:'VALID', city:'VALID', state:'VALID', country:'VALID', linkedin:'VALID', portfolio:'NOT_PROVIDED' };
+  S.status = 'COMPLETE';
+  S.target = { type:'SPECIFIC_JOB', targetRole:'Analista de Dados', company:'TechCorp', jobDescription:'Python SQL Power BI análise de dados visualização relatórios dashboards', seniority:'MID_LEVEL', secondaryInterests:[] };
+  S.interview.objective = 'Busco uma posição como Analista de Dados para aplicar habilidades em Python e SQL em projetos de alto impacto.';
+  S.interview.experiences = [
+    { role:'Analista de Dados Jr.', company:'DataCorp', start:'Mar/2022', end:null, isCurrent:true, activities:'Desenvolvimento de dashboards\nAnálise de dados de vendas', tools:'Python, SQL, Power BI', results:'Redução de 30% no tempo de relatórios\nAumento de 15% na precisão das métricas' },
+    { role:'Estagiária de BI', company:'StartupX', start:'Jan/2021', end:'Fev/2022', isCurrent:false, activities:'Apoio em análise de dados', tools:'Excel, SQL', results:'Automação de 5 relatórios manuais' }
+  ];
+  S.interview.education = [{ course:'Ciência da Computação', institution:'USP', status:'COMPLETED', startYear:'2017', endYear:'2021' }];
+  S.interview.hardSkills = ['Python','SQL','Power BI','Excel','Pandas'];
+  S.interview.softSkills = ['Comunicação','Pensamento analítico','Proatividade'];
+  S.interview.languages = [{ name:'Inglês', level:'ADVANCED' }, { name:'Espanhol', level:'INTERMEDIATE' }];
+  S.interview.certifications = [{ name:'Google Data Analytics', institution:'Google', year:'2023' }];
+  S.interview.projects = [{ id:'p1', name:'Dashboard de Vendas', description:'Painel interativo de KPIs', technologies:'Python, Plotly, SQL', result:'Adotado por 3 times comerciais' }];
+  S.interview.activities = []; S.interview.confirmedByUser = false;
+  save(); devRefresh();
+  const btn = g('dev-mock');
+  if (btn) { const o = btn.textContent; btn.textContent = '✓ Dados populados!'; setTimeout(() => btn.textContent = o, 2000); }
+}
+function devReset() {
+  if (!confirm('Limpar todo o estado e recarregar?')) return;
+  try { localStorage.removeItem(STORAGE_KEY); } catch(e) {}
+  location.reload();
+}
+
+/* Dev: Cenários Sprint 04.3 */
+function devScenario(type) {
+  if (!_DEV_ACTIVE) return;
+  S.processId = S.processId || ('DEV_' + Date.now());
+  S.sourceFlow = 'EXISTING_RESUME'; S.selOrigin = 'EXISTING_RESUME';
+  S.isExtracted = true;
+  S.pd = { fullName:'Dev User', email:'dev@dev.com', phone:'(11) 99999-0000', city:'São Paulo', state:'SP', country:'Brasil', linkedin:'linkedin.com/in/dev', portfolio:'' };
+  S.fs = { fullName:'VALID', email:'VALID', phone:'VALID', city:'VALID', state:'VALID', country:'VALID', linkedin:'VALID', portfolio:'NOT_PROVIDED' };
+  S.status = 'COMPLETE';
+
+  if (type === 'COMPLETE') {
+    S.sourceResume = {
+      experiences:[
+        { role:'Gerente de Projetos', company:'TechCorp', start:'01/2021', end:null, isCurrent:true, activities:'Gestão de equipe de 10 pessoas, planejamento de sprints, apresentação de resultados para diretoria e stakeholders.', tools:'Jira, Confluence, Excel, Power BI', results:'Entrega de 3 projetos antes do prazo.' },
+        { role:'Analista de Projetos', company:'StartupY', start:'03/2018', end:'12/2020', isCurrent:false, activities:'Análise de requisitos, elaboração de documentação técnica e acompanhamento de cronogramas de projetos estratégicos.', tools:'MS Project, Excel, SQL', results:'Redução de 20% em retrabalho.' },
+      ],
+      education:[{ course:'Administração de Empresas', institution:'FGV', status:'COMPLETED', startYear:'2014', endYear:'2018' }],
+      skills:['Excel','Power BI','SQL','Jira','MS Project'],
+      languages:[{ name:'Inglês', level:'ADVANCED', _levelExplicit:true }, { name:'Espanhol', level:'BASIC', _levelExplicit:true }],
+      certifications:[{ name:'PMP - Project Management Professional', institution:'PMI', year:'2022' }],
+      links:[],
+    };
+  } else if (type === 'PARTIAL') {
+    S.sourceResume = {
+      experiences:[{ role:'Analista', company:'Empresa ABC', start:'06/2022', end:null, isCurrent:true, activities:'Suporte à área de TI.', tools:'', results:'' }],
+      education:[{ course:'Sistemas de Informação', institution:'UNESP', status:null, startYear:'2019', endYear:'' }],
+      skills:['Excel'], languages:[{ name:'Inglês', level:'', _levelExplicit:true }],
+      certifications:[], links:[],
+    };
+  } else if (type === 'CONFLICT') {
+    S.sourceResume = {
+      experiences:[
+        { role:'Dev Backend', company:'ConfCorp', start:'01/2024', end:'06/2023', isCurrent:false, activities:'Desenvolvimento de APIs REST com Java Spring Boot para integração com sistemas bancários.', tools:'Java, Spring, PostgreSQL', results:'' },
+      ],
+      education:[], skills:[], languages:[], certifications:[], links:[],
+    };
+  }
+
+  S.interview.experiences   = (S.sourceResume.experiences||[]).map(e=>({...e}));
+  S.interview.education     = (S.sourceResume.education||[]).map(e=>({...e}));
+  S.interview.hardSkills    = [...(S.sourceResume.skills||[])];
+  S.interview.languages     = (S.sourceResume.languages||[]).map(l=>({...l}));
+  S.interview.certifications= (S.sourceResume.certifications||[]).map(c=>({...c}));
+  S.target = { type:'SPECIFIC_JOB', targetRole:'Dev', company:null, jobDescription:'Python SQL Power BI análise de dados', seniority:'MID_LEVEL', secondaryInterests:[], confirmedByUser:true };
+
+  try {
+    runGranularResumeAudit();
+    applyTargetRelevanceAudit();
+  } catch(e) { console.error('[DEV] cenário falhou:', e); }
+
+  save(); devRefresh();
+  initAuditReviewScreen();
+  goScreen('audit-review');
+}
+
+function devSetMode(mode) {
+  if (!_DEV_ACTIVE) return;
+  S.interview.mode = mode;
+  if (mode !== 'FULL' && !S.resumeAudit) {
+    devScenario('PARTIAL');
+    return;
+  }
+  S.interview.auditSession = S.interview.auditSession || defaultAuditSession();
+  save(); devRefresh();
+  initInterviewScreen(); goScreen('interview');
 }
 
 /* =============================================
@@ -2636,12 +3968,9 @@ function onStart() {
    ============================================= */
 function onCardSelect(opt) {
   S.selOrigin = opt;
-  document.querySelectorAll('.card-opt').forEach(c => {
-    const sel = c.dataset.opt === opt;
-    c.classList.toggle('sel', sel);
-    c.setAttribute('aria-checked', sel ? 'true' : 'false');
+  document.querySelectorAll('.origin-action-btn').forEach(c => {
+    c.setAttribute('aria-checked', c.dataset.opt === opt ? 'true' : 'false');
   });
-  const btn = g('btn-origin-go'); btn.disabled=false; btn.removeAttribute('aria-disabled');
   addLog('CARD_SELECTED', { opt });
 }
 
@@ -2662,8 +3991,7 @@ function onOriginConfirm() {
 
 function onOriginBack() {
   S.selOrigin = null;
-  document.querySelectorAll('.card-opt').forEach(c => { c.classList.remove('sel'); c.setAttribute('aria-checked','false'); });
-  const btn = g('btn-origin-go'); btn.disabled=true; btn.setAttribute('aria-disabled','true');
+  document.querySelectorAll('.origin-action-btn').forEach(c => c.setAttribute('aria-checked','false'));
   addLog('RETURN_TO_INITIAL_MENU');
   goScreen('initial-menu');
 }
@@ -2970,8 +4298,15 @@ function onTargetConfirm() {
   S.updatedAt = new Date().toISOString();
   addLog('CONFIRM_TARGET', { action:'CONFIRM_TARGET', type:S.target.type, nextStep:'directed_interview' });
   save();
-  initInterviewScreen();
-  goScreen('interview');
+  if (S.isExtracted && S.resumeAudit && S.resumeAudit.status === 'COMPLETED') {
+    applyTargetRelevanceAudit();
+    initAuditReviewScreen();
+    goScreen('audit-review');
+  } else {
+    S.interview.mode = ITV_MODE.FULL;
+    initInterviewScreen();
+    goScreen('interview');
+  }
 }
 
 function onAddInterest() {
@@ -3136,7 +4471,19 @@ function initInterviewScreen() {
   showProfileBanner();
   renderResumeImportBanner();
   extractAdaptiveQuestions();
-  goBlock(S.interview.currentBlock || 'objective');
+  const sb = document.querySelector('#screen-interview .split-body');
+  const mode = S.interview.mode || ITV_MODE.FULL;
+  if (sb) {
+    if (mode !== ITV_MODE.FULL) {
+      sb.classList.add('adaptive-active');
+      renderAdaptiveQuestion();
+    } else {
+      sb.classList.remove('adaptive-active');
+      goBlock(S.interview.currentBlock || 'objective');
+    }
+  } else {
+    goBlock(S.interview.currentBlock || 'objective');
+  }
 }
 
 function showProfileBanner() {
@@ -3701,13 +5048,32 @@ function startFormatting() {
   runFormattingCycle(0);
 }
 
+const FMT_SECTIONS = ['Objetivo','Experiência','Formação','Skills','Idiomas','Certificações'];
+
+function updateFmtCard(activeIdx) {
+  document.querySelectorAll('#fmt-resume-card .fmt-card-section').forEach((sec, i) => {
+    sec.classList.remove('fmt-sec-active', 'fmt-sec-done');
+    if (activeIdx < 0) return;
+    if (activeIdx >= FMT_STEPS.length) { sec.classList.add('fmt-sec-done'); return; }
+    if (i < activeIdx)        sec.classList.add('fmt-sec-done');
+    else if (i === activeIdx) sec.classList.add('fmt-sec-active');
+  });
+}
+
 function renderFmtSteps(activeIdx) {
-  g('fmt-steps-list').innerHTML = FMT_STEPS.map((s, i) => {
-    let cls = '', ico = '·';
-    if (i < activeIdx)       { cls = 'step-done';   ico = '✓'; }
-    else if (i === activeIdx){ cls = 'step-active'; ico = '→'; }
-    return `<div class="fmt-step ${cls}"><span class="fmt-step-ico">${ico}</span>${esc(s.label)}</div>`;
+  const total = FMT_STEPS.length;
+  const pct = activeIdx < 0 ? 0 : activeIdx >= total ? 100 : Math.round((activeIdx / total) * 100);
+  const bar = g('fmt-progress-bar');
+  if (bar) bar.style.width = pct + '%';
+  const ctr = g('fmt-step-counter');
+  if (ctr) ctr.textContent = activeIdx < 0 ? 'Iniciando…' : activeIdx >= total ? 'Concluído' : (activeIdx + 1) + ' de ' + total;
+  g('fmt-steps-list').innerHTML = FMT_SECTIONS.map((label, i) => {
+    let cls = '', icoChar = '○', icoClass = 'fmt-step-ico';
+    if (i < activeIdx)        { cls = 'step-done';   icoChar = '✓'; }
+    else if (i === activeIdx) { cls = 'step-active'; icoChar = '⟳'; icoClass = 'fmt-step-ico fmt-ico-spin'; }
+    return `<div class="fmt-step ${cls}"><span class="${icoClass}">${icoChar}</span>${esc(label)}</div>`;
   }).join('');
+  updateFmtCard(activeIdx);
 }
 
 function runFormattingCycle(idx) {
@@ -3762,13 +5128,13 @@ function buildResumeMarkdown() {
     },
     hardSkills: () => {
       if (!iv.hardSkills.length) return;
-      lines.push('\n## HARD SKILLS\n');
+      lines.push('\n## COMPETÊNCIAS TÉCNICAS\n');
       lines.push(iv.hardSkills.join(' * '));
       lines.push('\n---');
     },
     softSkills: () => {
       if (!iv.softSkills.length) return;
-      lines.push('\n## SOFT SKILLS\n');
+      lines.push('\n## COMPETÊNCIAS COMPORTAMENTAIS\n');
       lines.push(iv.softSkills.join(' * '));
       lines.push('\n---');
     },
@@ -4194,10 +5560,10 @@ function startAudit() {
 
 function renderAudSteps(activeIdx) {
   g('aud-steps-list').innerHTML = AUD_STEPS.map((s, i) => {
-    let cls = '', ico = '·';
-    if (i < activeIdx)       { cls = 'step-done';   ico = '✓'; }
-    else if (i === activeIdx){ cls = 'step-active'; ico = '→'; }
-    return `<div class="aud-step ${cls}"><span class="aud-step-ico">${ico}</span>${esc(s.label)}</div>`;
+    let cls = '', icoChar = '○', icoClass = 'aud-step-ico';
+    if (i < activeIdx)        { cls = 'step-done';   icoChar = '✓'; }
+    else if (i === activeIdx) { cls = 'step-active'; icoChar = '⟳'; icoClass = 'aud-step-ico aud-ico-spin'; }
+    return `<div class="aud-step ${cls}"><span class="${icoClass}">${icoChar}</span>${esc(s.label)}</div>`;
   }).join('');
 }
 
@@ -4582,7 +5948,7 @@ function markdownToHTML(md) {
   lines.forEach(line => {
     if (line.startsWith('# ')) {
       if (inList) { html += '</ul>'; inList = false; }
-      html += '<h1>' + fmtInline(line.slice(2)) + '</h1>';
+      html += '<h1>' + fmtInline(line.slice(2)) + '</h1><span class="rv-name-rule"></span>';
       firstBodyLine = true;
     } else if (line.startsWith('## ')) {
       if (inList) { html += '</ul>'; inList = false; }
@@ -4804,9 +6170,9 @@ function bind() {
   g('hero-img').addEventListener('error', () => imgErr('hero-wrap','initial_menu','Plano de fundo - menu inicial.png'));
 
   /* Tela 2 */
-  document.querySelectorAll('.card-opt').forEach(c => {
-    c.addEventListener('click', () => onCardSelect(c.dataset.opt));
-    c.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' '){e.preventDefault();onCardSelect(c.dataset.opt);} });
+  document.querySelectorAll('.origin-action-btn').forEach(c => {
+    c.addEventListener('click', () => { onCardSelect(c.dataset.opt); onOriginConfirm(); });
+    c.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' '){e.preventDefault();onCardSelect(c.dataset.opt);onOriginConfirm();} });
   });
   g('btn-origin-go').addEventListener('click', onOriginConfirm);
   g('btn-origin-back').addEventListener('click', onOriginBack);
@@ -4859,6 +6225,14 @@ function bind() {
   g('f-interest-input').addEventListener('keydown', e => { if(e.key==='Enter'){e.preventDefault();onAddInterest();} });
   g('td-img').addEventListener('error', () => imgErr('td-img-panel','target_definition','Definição de publico alvo.png'));
 
+  /* Skill 04.3 — Tela de revisão de auditoria */
+  const btnArBack = g('btn-ar-back');
+  if (btnArBack) btnArBack.addEventListener('click', () => { addLog('AUDIT_REVIEW_BACK'); goScreen('target-definition'); });
+  const btnArConfirm = g('btn-ar-confirm');
+  if (btnArConfirm) btnArConfirm.addEventListener('click', onAuditReviewConfirm);
+  const btnArFull = g('btn-ar-full');
+  if (btnArFull) btnArFull.addEventListener('click', onAuditReviewFull);
+
   /* Skill 06 — tabs */
   document.querySelectorAll('.blk-tab').forEach(tab =>
     tab.addEventListener('click', () => goBlock(tab.dataset.blk)));
@@ -4874,6 +6248,7 @@ function bind() {
     goScreen('delivery');
   });
   g('itv-objective').addEventListener('input', updateObjCount);
+  g('btn-obj-back').addEventListener('click', () => { addLog('BACK_FROM_INTERVIEW_OBJECTIVE'); goScreen('target-definition'); });
   g('btn-obj-skip').addEventListener('click', () => { S.interview.objective=''; save(); goBlock('experience'); });
   g('btn-obj-next').addEventListener('click', () => { S.interview.objective=(g('itv-objective').value||'').trim(); save(); addLog('OBJECTIVE_SAVED'); goBlock('experience'); });
 
@@ -4939,15 +6314,23 @@ function bind() {
   g('btn-restart').addEventListener('click', () => { reset(); location.reload(); });
 
   /* Dev panel */
-  if (DEV_MODE) {
-    g('dev-toggle').addEventListener('click', toggleDev);
+  if (_DEV_ACTIVE) {
+    const tog = g('dev-toggle'), pan = g('dev-panel');
+    if (tog) tog.style.removeProperty('display');
+    if (pan) pan.style.removeProperty('display');
+    tog.addEventListener('click', toggleDev);
     g('dev-close').addEventListener('click', toggleDev);
     document.addEventListener('keydown', e => { if(e.ctrlKey&&e.key==='d'){e.preventDefault();toggleDev();} });
+    document.querySelectorAll('#dev-panel [data-dev-screen]').forEach(btn => {
+      btn.addEventListener('click', () => devTeleport(btn.dataset.devScreen, { block: btn.dataset.devBlock || null, opt: btn.dataset.devOpt || null }));
+    });
+    g('dev-mock').addEventListener('click', devMockData);
+    g('dev-reset').addEventListener('click', devReset);
+    devRefresh();
   } else {
-    const devBtn = g('dev-toggle');
-    const devPanel = g('dev-panel');
-    if (devBtn)   { devBtn.style.display = 'none'; }
-    if (devPanel) { devPanel.style.display = 'none'; devPanel.setAttribute('aria-hidden', 'true'); }
+    const devBtn = g('dev-toggle'), devPanel = g('dev-panel');
+    if (devBtn)   devBtn.style.display = 'none';
+    if (devPanel) devPanel.style.display = 'none';
     addLog('DEV_MODE_DISABLED', { devMode: false });
   }
 }
@@ -4980,7 +6363,7 @@ function init() {
   checkStorage();
   load();
   const screen = S.currentScreen;
-  if (S.processId && screen && screen !== 'initial-menu') {
+  if (S.processId && screen && screen !== 'initial-menu' && screen !== 'origin-selection') {
     goScreen(screen);
     if (screen === 'personal-data') {
       initPDScreen(); goSub(S.currentSub || 'contact');
