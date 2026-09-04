@@ -6369,6 +6369,9 @@ function init() {
       initPDScreen(); goSub(S.currentSub || 'contact');
     } else if (screen === 'target-definition') {
       initTargetScreen(); goTargetSub(S.targetSub || 'choice');
+    } else if (screen === 'audit-review') {
+      if (S.resumeAudit && S.resumeAudit.status === 'COMPLETED') { initAuditReviewScreen(); goScreen('audit-review'); }
+      else { S.interview.mode = ITV_MODE.FULL; initInterviewScreen(); goScreen('interview'); }
     } else if (screen === 'interview') {
       initInterviewScreen();
     } else if (screen === 'formatting') {
