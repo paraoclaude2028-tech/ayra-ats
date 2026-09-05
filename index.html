@@ -433,6 +433,8 @@ input,select,textarea{font-family:inherit;font-size:inherit}
 .dev-nav-sub{display:block;width:100%;text-align:left;padding:3px 14px 3px 28px;background:none;border:none;color:#475569;font-family:'Courier New',monospace;font-size:.625rem;cursor:pointer;transition:background .1s,color .1s;white-space:nowrap}
 .dev-nav-sub:hover{background:#1E293B;color:#94A3B8}
 .dev-nav-sub.active{color:#60A5FA;font-weight:700}
+.dev-nav-note{padding:2px 14px 4px 28px;font-size:.5rem;color:#1e3a5f;font-style:italic;letter-spacing:.01em;line-height:1.4}
+.dev-nav-sect.dev-nav-sect-scenario{color:#92400e;border-top:1px solid #1e293b;margin-top:4px;padding-top:10px}
 .dev-actions{padding:10px 14px;border-top:1px solid #1e293b;display:flex;flex-direction:column;gap:6px;flex-shrink:0}
 .dev-action-btn{padding:6px 10px;border:1px solid #334155;border-radius:4px;background:#1E293B;color:#94A3B8;font-family:'Courier New',monospace;font-size:.6875rem;cursor:pointer;text-align:left;transition:background .1s,color .1s;width:100%}
 .dev-action-btn:hover{background:#334155;color:#F1F5F9}
@@ -2183,14 +2185,23 @@ input,select,textarea{font-family:inherit;font-size:inherit}
     <div class="dev-state-row"><span class="dev-state-key">ProcessId</span><span class="dev-state-val" id="dst-pid">—</span></div>
   </div>
   <nav class="dev-nav" aria-label="Navegação de desenvolvimento">
-    <div class="dev-nav-sect">TELAS</div>
+    <div class="dev-nav-sect">FLUXO PRINCIPAL</div>
     <button class="dev-nav-item" data-dev-screen="initial-menu">S01 — Menu inicial</button>
     <button class="dev-nav-item" data-dev-screen="origin-selection">S02 — Origem</button>
     <button class="dev-nav-sub"  data-dev-screen="origin-selection" data-dev-opt="NEW_RESUME">→ Novo currículo</button>
     <button class="dev-nav-sub"  data-dev-screen="origin-selection" data-dev-opt="EXISTING_RESUME">→ Currículo existente</button>
+    <div class="dev-nav-note">Novo: S02→S03 · Existente: S02→S04→S03</div>
     <button class="dev-nav-item" data-dev-screen="personal-data">S03 — Dados Pessoais</button>
     <button class="dev-nav-item" data-dev-screen="resume-upload">S04 — Upload</button>
     <button class="dev-nav-item" data-dev-screen="target-definition">S05 — Objetivo</button>
+    <button class="dev-nav-item" data-dev-screen="audit-review">S04.3 — Revisão Auditoria</button>
+    <div class="dev-nav-sect dev-nav-sect-scenario">CENÁRIOS DE TESTE S04.3</div>
+    <button class="dev-nav-sub" id="dev-scenario-complete"    onclick="devScenario('COMPLETE')">→ CV Completo (CONFIRMATION_ONLY)</button>
+    <button class="dev-nav-sub" id="dev-scenario-partial"     onclick="devScenario('PARTIAL')">→ CV Parcial (GAP_ONLY)</button>
+    <button class="dev-nav-sub" id="dev-scenario-conflict"    onclick="devScenario('CONFLICT')">→ Conflito de Datas</button>
+    <button class="dev-nav-sub" id="dev-scenario-mode-full"   onclick="devSetMode('FULL')">→ Forçar modo FULL</button>
+    <button class="dev-nav-sub" id="dev-scenario-mode-gap"    onclick="devSetMode('GAP_ONLY')">→ Forçar GAP_ONLY</button>
+    <button class="dev-nav-sub" id="dev-scenario-mode-conf"   onclick="devSetMode('CONFIRMATION_ONLY')">→ Forçar CONFIRMATION_ONLY</button>
     <button class="dev-nav-item" data-dev-screen="interview">S06 — Entrevista</button>
     <button class="dev-nav-sub"  data-dev-screen="interview" data-dev-block="objective">→ Objetivo</button>
     <button class="dev-nav-sub"  data-dev-screen="interview" data-dev-block="experience">→ Experiência</button>
@@ -2202,19 +2213,9 @@ input,select,textarea{font-family:inherit;font-size:inherit}
     <button class="dev-nav-sub"  data-dev-screen="interview" data-dev-block="projects">→ Projetos</button>
     <button class="dev-nav-sub"  data-dev-screen="interview" data-dev-block="activities">→ Atividades</button>
     <button class="dev-nav-sub"  data-dev-screen="interview" data-dev-block="review">→ Revisão</button>
-    <button class="dev-nav-item" data-dev-screen="audit-review">S04.3 — Revisão Auditoria</button>
     <button class="dev-nav-item" data-dev-screen="formatting">S07 — Formatação</button>
     <button class="dev-nav-item" data-dev-screen="audit">S08 — Auditoria</button>
     <button class="dev-nav-item" data-dev-screen="delivery">S09 — Entrega</button>
-  </nav>
-  <div class="dev-nav-sect" style="margin-top:12px">CENÁRIOS 04.3</div>
-  <nav class="dev-nav" aria-label="Cenários Sprint 04.3">
-    <button class="dev-nav-sub" id="dev-scenario-complete"    onclick="devScenario('COMPLETE')">→ CV Completo (CONFIRMATION_ONLY)</button>
-    <button class="dev-nav-sub" id="dev-scenario-partial"     onclick="devScenario('PARTIAL')">→ CV Parcial (GAP_ONLY)</button>
-    <button class="dev-nav-sub" id="dev-scenario-conflict"    onclick="devScenario('CONFLICT')">→ Conflito de Datas</button>
-    <button class="dev-nav-sub" id="dev-scenario-mode-full"   onclick="devSetMode('FULL')">→ Forçar modo FULL</button>
-    <button class="dev-nav-sub" id="dev-scenario-mode-gap"    onclick="devSetMode('GAP_ONLY')">→ Forçar GAP_ONLY</button>
-    <button class="dev-nav-sub" id="dev-scenario-mode-conf"   onclick="devSetMode('CONFIRMATION_ONLY')">→ Forçar CONFIRMATION_ONLY</button>
   </nav>
   <div class="dev-actions">
     <button class="dev-action-btn" id="dev-mock">⚡ Popular dados de teste</button>
