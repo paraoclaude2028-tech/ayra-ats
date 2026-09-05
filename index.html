@@ -3453,6 +3453,33 @@ function _determineMode() {
   return ITV_MODE.CONFIRMATION_ONLY;
 }
 
+/* ── Guard de conclusão: verifica pendências obrigatórias no questionPlan e nos blocos ── */
+function canCompleteAdaptiveInterview(){
+  if(!S.resumeAudit||S.resumeAudit.status!=='COMPLETED') return{ok:true,count:0,firstQ:null};
+  const plan=S.resumeAudit.questionPlan||[];
+  const pending=plan.filter(q=>q.required&&!q.answered);
+  const blk=S.resumeAudit.blocks;
+  const allItems=[
+    ...(blk.experiences?.items||[]),...(blk.education?.items||[]),
+    ...(blk.hardSkills?.items||[]),...(blk.languages?.items||[]),
+    ...(blk.certifications?.items||[]),
+  ];
+  const hasBlocking=allItems.some(i=>
+    i.overallStatus===AUD.CONFLICT||i.overallStatus===AUD.INVALID||i.overallStatus===AUD.MISSING_REQUIRED
+  );
+  if(pending.length===0&&!hasBlocking) return{ok:true,count:0,firstQ:null};
+  return{ok:false,count:pending.length||1,firstQ:pending[0]||null};
+}
+
+/* Reativa painel adaptativo e posiciona na primeira pendência obrigatória */
+function goToFirstPendingQ(){
+  const sb=document.querySelector('#screen-interview .split-body');
+  if(sb) sb.classList.add('adaptive-active');
+  renderAdaptiveQuestion();
+  const msgEl=g('itv-validation-msg');
+  if(msgEl) msgEl.classList.remove('on');
+}
+
 /* ── Tela de revisão ── */
 function initAuditReviewScreen(){
   if(!S.resumeAudit||S.resumeAudit.status!=='COMPLETED'){ S.interview.mode=ITV_MODE.FULL; initInterviewScreen(); goScreen('interview'); return; }
@@ -3592,7 +3619,7 @@ function renderAdaptiveQuestion(){
   const hintHTML=q.hint?`<div class="adp-q-hint">ℹ ${esc(q.hint)}</div>`:'';
   const extHTML=extVal?`<div class="adp-q-extracted"><div class="adp-q-ext-label">Extraído do currículo</div><div class="adp-q-ext-value">${esc(extVal)}</div></div>`:'';
   const skipHTML=(q.allowSkip||!q.required)?`<button type="button" class="adp-q-skip-btn" onclick="onAuditQSkip('${esc(q.id)}','${esc(q.skipLabel||'Pular')}')">Pular</button>`:'';
-  panel.innerHTML=`<div class="adp-q-progress-row"><span id="adp-q-prog-txt"></span><div class="adp-q-bar"><div class="adp-q-bar-fill" id="adp-q-bar-fill" style="width:0%"></div></div></div>${blkTag?`<div class="adp-q-block-tag">${blkTag}</div>`:''}<div class="adp-q-prompt">${esc(q.prompt)}</div>${hintHTML}${extHTML}${inputHTML}<div class="adp-q-nav"><div>${skipHTML}</div><div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><button type="button" class="adp-q-full-btn" onclick="switchToFullInterview()">Ir para entrevista completa</button><button type="button" class="btn btn-primary" onclick="onAuditQNext('${esc(q.id)}')">Confirmar →</button></div></div>`;
+  panel.innerHTML=`<div class="adp-q-progress-row"><span id="adp-q-prog-txt"></span><div class="adp-q-bar"><div class="adp-q-bar-fill" id="adp-q-bar-fill" style="width:0%"></div></div></div>${blkTag?`<div class="adp-q-block-tag">${blkTag}</div>`:''}<div class="adp-q-prompt">${esc(q.prompt)}</div>${hintHTML}${extHTML}${inputHTML}<div id="adp-q-err" style="color:var(--error);font-size:.8125rem;display:none;margin-top:4px;margin-bottom:2px"></div><div class="adp-q-nav"><div>${skipHTML}</div><div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><button type="button" class="adp-q-full-btn" onclick="switchToFullInterview()">Ir para entrevista completa</button><button type="button" class="btn btn-primary" onclick="onAuditQNext('${esc(q.id)}')">Confirmar →</button></div></div>`;
   updateAuditProgress();
 }
 
@@ -3602,7 +3629,12 @@ function onAuditQNext(qid){
   let answer='';
   const radio=document.querySelector('input[name="aqopt"]:checked');
   if(radio){ answer=radio.value; } else { const ta=g('adp-q-ans'); if(ta) answer=ta.value.trim(); }
-  if(!answer&&q.required){ alert('Por favor, responda a pergunta ou clique em "Pular" para questões opcionais.'); return; }
+  if(!answer&&q.required){
+    const errEl=g('adp-q-err');
+    if(errEl){errEl.textContent='Esta resposta é obrigatória antes de continuar.';errEl.style.display='block';}
+    return;
+  }
+  const errEl=g('adp-q-err'); if(errEl) errEl.style.display='none';
   _applyAuditAnswer(qid,answer); renderAdaptiveQuestion();
 }
 
@@ -4899,6 +4931,22 @@ function onInterviewConfirm() {
     if (msgEl) { msgEl.innerHTML = msgs.map(m=>`<div>${esc(m)}</div>`).join(''); msgEl.classList.add('on'); }
     return;
   }
+  // Guard: pendências obrigatórias da auditoria granular impedem o avanço para S07
+  const block=canCompleteAdaptiveInterview();
+  if(!block.ok){
+    if(msgEl){
+      const fq=block.firstQ;
+      const snippet=fq?esc(fq.prompt.length>70?fq.prompt.slice(0,70)+'…':fq.prompt):'';
+      msgEl.innerHTML=
+        '<div><strong>Existem informações obrigatórias que ainda precisam ser corrigidas ou confirmadas antes de continuar.</strong></div>'+
+        '<div style="margin-top:4px">'+block.count+' pendência(s) obrigatória(s) restante(s).</div>'+
+        (snippet?'<div style="margin-top:4px;font-size:.8125rem;opacity:.85">'+snippet+'</div>':'')+
+        '<div style="margin-top:10px"><button type="button" class="btn btn-sec" style="font-size:.8125rem;padding:6px 14px" onclick="goToFirstPendingQ()">Ir à primeira pendência</button></div>';
+      msgEl.classList.add('on');
+    }
+    addLog('INTERVIEW_BLOCKED_BY_PENDING',{count:block.count,firstQId:block.firstQ&&block.firstQ.id});
+    return;
+  }
   if (msgEl) msgEl.classList.remove('on');
   S.interview.confirmedByUser = true;
   S.updatedAt = new Date().toISOString();
@@ -5038,6 +5086,12 @@ const FMT_STEPS = [
 ];
 
 function startFormatting() {
+  // Guard de segurança: não depende apenas de botão disabled ou elemento oculto
+  const block=canCompleteAdaptiveInterview();
+  if(!block.ok){
+    addLog('FORMATTING_BLOCKED_BY_PENDING',{count:block.count});
+    goScreen('interview'); initInterviewScreen(); return;
+  }
   S.resume.formattingStatus = 'AWAITING_FORMATTING';
   S.resume.markdown = null;
   save();
