@@ -2193,6 +2193,7 @@ input,select,textarea{font-family:inherit;font-size:inherit}
     <div class="dev-nav-note">Novo: S02→S03 · Existente: S02→S04→S03</div>
     <button class="dev-nav-item" data-dev-screen="personal-data">S03 — Dados Pessoais</button>
     <button class="dev-nav-item" data-dev-screen="resume-upload">S04 — Upload</button>
+    <button class="dev-nav-sub" id="dev-scenario-pdf-fallback" onclick="devScenarioPdfFallback()">→ PDF sem extração</button>
     <button class="dev-nav-item" data-dev-screen="target-definition">S05 — Objetivo</button>
     <button class="dev-nav-item" data-dev-screen="audit-review">S04.3 — Revisão Auditoria</button>
     <div class="dev-nav-sect dev-nav-sect-scenario">CENÁRIOS DE TESTE S04.3</div>
@@ -2865,13 +2866,18 @@ function showSmartFallback(ext, extracted) {
   const isPdfOrImg = ['pdf','png','jpg','jpeg','webp'].includes(ext);
   if (hd)  hd.textContent  = isPdfOrImg ? '⚠ Não foi possível extrair o conteúdo automaticamente' : '⚠ Dados não encontrados automaticamente';
   if (sub) sub.textContent = isPdfOrImg
-    ? 'Não foi possível extrair automaticamente o conteúdo deste arquivo. Você pode continuar preenchendo manualmente ou enviar uma versão TXT/DOCX para obter melhor pré-preenchimento.'
+    ? 'Recebemos seu arquivo PDF, mas este formato ainda não permite extração automática completa neste navegador. Você pode preencher ou colar abaixo as informações do currículo para continuar.'
     : 'Alguns campos essenciais não foram localizados. Preencha abaixo para continuar — você poderá revisar tudo na próxima etapa.';
   if (extracted.fullName) { const el = g('fb-name');    if (el) el.value = extracted.fullName; }
   if (extracted.email)    { const el = g('fb-email');   if (el) el.value = extracted.email; }
   if (extracted.phone)    { const el = g('fb-phone');   if (el) el.value = extracted.phone; }
   if (extracted.linkedin) { const el = g('fb-linkedin');if (el) el.value = extracted.linkedin; }
   fb.classList.add('on');
+  requestAnimationFrame(() => {
+    fb.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    const firstInput = fb.querySelector('input');
+    if (firstInput) setTimeout(() => firstInput.focus(), 400);
+  });
 }
 
 /* Alteração 09: Painel completo de extração */
@@ -3008,7 +3014,8 @@ function applyExtraction(extracted, sourceLabel, sourceResume) {
   save();
   addLog('EXTRACTION_APPLIED',              { source: sourceLabel, fields: applied });
   addLog('EXTRACTION_CONFIDENCE_CALCULATED',{ confidence: conf, level });
-  runGranularResumeAudit();
+  const _hasContent = applied.length > 0 || (sr.experiences||[]).length > 0 || (sr.education||[]).length > 0 || (sr.skills||[]).length > 0;
+  if (_hasContent) runGranularResumeAudit();
 }
 
 function renderExtractStatus(extracted, ext) {
@@ -3971,6 +3978,29 @@ function devScenario(type) {
   goScreen('audit-review');
 }
 
+function devScenarioPdfFallback() {
+  if (!_DEV_ACTIVE) return;
+  S.processId = S.processId || ('DEV_' + Date.now());
+  S.sourceFlow = 'EXISTING_RESUME'; S.selOrigin = 'EXISTING_RESUME';
+  goScreen('resume-upload');
+  setTimeout(() => {
+    const fname = g('upl-fname');
+    const chosen = g('upl-chosen');
+    const btn = g('btn-upl-analyze');
+    if (fname) fname.textContent = 'cv.simulado-pdf.pdf (DEV — 245 KB)';
+    if (chosen) chosen.classList.add('on');
+    g('upl-fallback').classList.remove('on');
+    g('upl-ext-status').classList.remove('on');
+    addLog('DEV_PDF_SCENARIO_LOADED');
+    if (btn) { btn.disabled = true; btn.textContent = 'Analisando...'; btn.setAttribute('aria-busy', 'true'); }
+    setTimeout(() => {
+      showSmartFallback('pdf', {});
+      addLog('PDF_FALLBACK_RENDERED', { ext: 'pdf', source: 'DEV' });
+      if (btn) { btn.disabled = false; btn.textContent = 'Analisar currículo'; btn.setAttribute('aria-busy', 'false'); }
+    }, 800);
+  }, 150);
+}
+
 function devSetMode(mode) {
   if (!_DEV_ACTIVE) return;
   S.interview.mode = mode;
@@ -4068,17 +4098,27 @@ async function onAnalyze() {
   const file = g('upl-file').files[0];
   if (!file) return;
   const btn = g('btn-upl-analyze');
-  btn.disabled = true; btn.textContent = 'Analisando...';
+  btn.disabled = true; btn.textContent = 'Analisando...'; btn.setAttribute('aria-busy', 'true');
   g('upl-fallback').classList.remove('on');
   g('upl-ext-status').classList.remove('on');
-  addLog('EXTRACTION_STARTED', { name: file.name });
+  addLog('UPLOAD_ANALYZE_CLICKED');
 
   const ext = file.name.split('.').pop().toLowerCase();
+  addLog('UPLOAD_ANALYZE_STARTED', { ext });
+
   let extracted  = {};
   let rawText    = '';
   let sourceResume = { experiences: [], education: [], skills: [], languages: [], certifications: [], links: [] };
 
   try {
+    if (file.size === 0) {
+      const w = g('docx-compat-warn');
+      if (w) { w.innerHTML = '<div class="docx-compat-warn-title" role="alert">⚠ Arquivo vazio</div>O arquivo selecionado não contém dados. Selecione outro documento para continuar.'; w.classList.add('on'); }
+      return;
+    }
+
+    addLog('UPLOAD_EXTENSION_DETECTED', { ext });
+
     if (ext === 'txt' || ext === 'rtf') {
       rawText   = await file.text();
       extracted = extractFromText(rawText);
@@ -4098,7 +4138,6 @@ async function onAnalyze() {
             '</ul></div>';
           w.classList.add('on');
         }
-        btn.disabled = false; btn.textContent = 'Analisar currículo';
         showSmartFallback(ext, {});
         return;
       }
@@ -4106,54 +4145,49 @@ async function onAnalyze() {
       extracted = await extractFromDocx(buf);
       rawText   = _lastDocxText;
       if (Object.keys(extracted).length === 0) {
-        addLog('DOCX_PARSE_FAILED', { name: file.name, reason: 'empty_extraction' });
+        addLog('DOCX_PARSE_FAILED', { reason: 'empty_extraction' });
         showDocxParseError();
         showSmartFallback(ext, {});
-        btn.disabled = false; btn.textContent = 'Analisar currículo';
         return;
       }
       addLog('DOCX_EXTRACTION_COMPLETED', { fields: Object.keys(extracted) });
     } else {
-      addLog('PDF_FALLBACK_TRIGGERED', { ext, reason: 'format_not_extractable_client_side' });
+      addLog('PDF_FALLBACK_STARTED', { ext, reason: 'format_not_extractable_client_side' });
     }
 
     if (rawText) {
-      /* Alterações 03-07: extração profunda */
       sourceResume.experiences = extractExperiences(rawText);
       if (sourceResume.experiences.length) addLog('EXPERIENCES_EXTRACTED', { count: sourceResume.experiences.length });
-
       sourceResume.education = extractEducation(rawText);
       if (sourceResume.education.length) addLog('EDUCATION_EXTRACTED', { count: sourceResume.education.length });
-
       sourceResume.skills = extractSkills(rawText);
       if (sourceResume.skills.length) addLog('SKILLS_EXTRACTED', { skills: sourceResume.skills.slice(0,10) });
-
       sourceResume.links = extractLinks(rawText);
-
       sourceResume.languages = extractLanguages(rawText);
       if (sourceResume.languages.length) addLog('LANGUAGES_EXTRACTED', { count: sourceResume.languages.length });
-
       sourceResume.certifications = extractCertifications(rawText);
       if (sourceResume.certifications.length) addLog('CERTIFICATIONS_EXTRACTED', { count: sourceResume.certifications.length });
-
       S.extraction.detectedSections = detectSections(rawText);
     }
+
+    applyExtraction(extracted, ext, sourceResume);
+    renderExtractStatus(extracted, ext);
+    addLog('UPLOAD_ANALYZE_FINISHED', { confidence: S.extraction.confidence, level: S.extraction.confidenceLevel });
+
+    const needsFallback = !extracted.fullName || !extracted.email || !extracted.phone;
+    if (needsFallback) {
+      showSmartFallback(ext, extracted);
+      addLog('PDF_FALLBACK_RENDERED', { ext });
+    } else {
+      setTimeout(() => { initPDScreen(); goScreen('personal-data'); goSub('contact'); }, 900);
+    }
   } catch(e) {
-    console.error('[ATS] Extraction error:', e);
-    addLog('EXTRACTION_ERROR', { error: e.message });
-  }
-
-  applyExtraction(extracted, ext, sourceResume);
-  renderExtractStatus(extracted, ext);
-  addLog('EXTRACTION_COMPLETED', { confidence: S.extraction.confidence, level: S.extraction.confidenceLevel });
-
-  btn.disabled = false; btn.textContent = 'Analisar currículo';
-
-  const needsFallback = !extracted.fullName || !extracted.email || !extracted.phone;
-  if (needsFallback) {
-    showSmartFallback(ext, extracted);
-  } else {
-    setTimeout(() => { initPDScreen(); goScreen('personal-data'); goSub('contact'); }, 900);
+    addLog('UPLOAD_ANALYZE_FAILED', { error: (e.message||'').slice(0,120) });
+    const w = g('docx-compat-warn');
+    if (w) { w.innerHTML = '<div class="docx-compat-warn-title" role="alert">⚠ Não foi possível analisar automaticamente este arquivo.</div>O arquivo continua selecionado e você pode tentar novamente, trocar o documento ou continuar pelo preenchimento manual.'; w.classList.add('on'); }
+    showSmartFallback(ext || 'unknown', extracted);
+  } finally {
+    btn.disabled = false; btn.textContent = 'Analisar currículo'; btn.setAttribute('aria-busy', 'false');
   }
 }
 
