@@ -4102,6 +4102,7 @@ async function onAnalyze() {
   g('upl-fallback').classList.remove('on');
   g('upl-ext-status').classList.remove('on');
   addLog('UPLOAD_ANALYZE_CLICKED');
+  await new Promise(r => setTimeout(r, 0)); // garante render do estado "Analisando..." antes de prosseguir
 
   const ext = file.name.split('.').pop().toLowerCase();
   addLog('UPLOAD_ANALYZE_STARTED', { ext });
