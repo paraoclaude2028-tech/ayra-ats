@@ -851,18 +851,29 @@ input,select,textarea{font-family:inherit;font-size:inherit}
 .resume-preview hr.rv-sep{border:none;border-top:1px solid #E5E7EB;margin:10px 0 0}
 .resume-preview .rv-period{font-size:9pt;color:#555;margin:1px 0 4px;font-style:italic}
 .resume-preview .rv-subsection{font-size:9pt;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:.06em;margin:8px 0 2px}
+.rv-exp-block{break-inside:avoid;page-break-inside:avoid;margin-bottom:4px}
+.rv-edu-item{break-inside:avoid;page-break-inside:avoid}
+.dlv-page-indicator{max-width:794px;width:100%;margin:10px auto 0;padding:10px 16px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);font-size:.8125rem;color:var(--text2);display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.dlv-pi-left{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.dlv-pi-badge{font-weight:700;padding:2px 10px;border-radius:999px;font-size:.75rem;white-space:nowrap}
+.dlv-pi-ok{background:#D1FAE5;color:#065F46}.dlv-pi-warn{background:#FEF3C7;color:#92400E}.dlv-pi-err{background:#FEE2E2;color:#991B1B}
+.dlv-pi-detail{font-size:.75rem;color:var(--text3)}
+.dlv-print-hint{max-width:794px;width:100%;margin:6px auto 0;font-size:.75rem;color:var(--text3);padding:0 2px}
 
 @media print{
   .screen{display:none!important}
   #screen-delivery{display:flex!important;flex-direction:column;background:#fff!important;min-height:auto!important}
-  .dlv-topbar,.dlv-footer,.dev-btn,#dev-panel,
+  .dlv-topbar,.dlv-footer,.dev-btn,#dev-panel,.dlv-page-indicator,.dlv-print-hint,
   .dlv-exec-summary,.dlv-certificate,.dlv-confirm-bar,.dlv-confirmed-bar,.dlv-blocked-banner,
   .split-img,.upload-bg-img,#storage-warn,.docx-compat-warn,.storage-warn{display:none!important}
   .dlv-body{padding:0!important;display:block!important}
   .split{display:block!important}
   .split-body{padding:0!important;max-width:100%!important;width:100%!important}
-  .resume-preview{box-shadow:none!important;width:100%!important;border-radius:0!important;min-height:auto!important;padding:20px 32px!important}
-  @page{margin:12mm 15mm}
+  .resume-preview{box-shadow:none!important;width:210mm!important;max-width:210mm!important;box-sizing:border-box!important;border-radius:0!important;min-height:auto!important;overflow:visible!important;margin:0 auto!important;background:#fff!important}
+  .rv-exp-block{break-inside:avoid;page-break-inside:avoid}
+  .rv-edu-item{break-inside:avoid;page-break-inside:avoid}
+  .resume-preview h2{break-after:avoid;page-break-after:avoid}
+  @page{size:A4 portrait;margin:0}
 }
 @media(max-width:700px){.resume-preview{padding:28px 20px}.dlv-topbar-name{display:none}}
 </style>
@@ -2135,6 +2146,11 @@ input,select,textarea{font-family:inherit;font-size:inherit}
     <div id="dlv-certificate" class="dlv-certificate hidden" role="region" aria-label="Certificado de aprovação"></div>
     <!-- Sprint 09.1: Banner de bloqueio -->
     <div id="dlv-blocked-banner" class="dlv-blocked-banner" role="alert"></div>
+    <!-- Indicador de paginação -->
+    <div id="dlv-page-indicator" class="dlv-page-indicator" role="status" aria-live="polite" style="display:none"></div>
+    <p class="dlv-print-hint" id="dlv-print-hint" style="display:none">
+      Na janela de impressão, certifique-se de que <strong>Cabeçalhos e rodapés</strong> está <strong>desativado</strong> e o destino é <strong>Salvar como PDF</strong>.
+    </p>
     <div class="resume-preview" id="resume-preview" aria-label="Prévia do currículo"></div>
     <div class="dlv-footer">
       <p class="dlv-footer-note">
@@ -2217,6 +2233,10 @@ input,select,textarea{font-family:inherit;font-size:inherit}
     <button class="dev-nav-item" data-dev-screen="formatting">S07 — Formatação</button>
     <button class="dev-nav-item" data-dev-screen="audit">S08 — Auditoria</button>
     <button class="dev-nav-item" data-dev-screen="delivery">S09 — Entrega</button>
+    <button class="dev-nav-sub" onclick="devScenarioS09('SHORT')">→ CV curto (1 exp)</button>
+    <button class="dev-nav-sub" onclick="devScenarioS09('MEDIUM')">→ CV médio (2 exp)</button>
+    <button class="dev-nav-sub" onclick="devScenarioS09('LONG')">→ CV longo (3+ exp)</button>
+    <button class="dev-nav-sub" onclick="devScenarioS09('OVERFLOW')">→ Overflow (bloqueia PDF)</button>
   </nav>
   <div class="dev-actions">
     <button class="dev-action-btn" id="dev-mock">⚡ Popular dados de teste</button>
@@ -3997,6 +4017,78 @@ function devScenarioPdfFallback() {
   }, 150);
 }
 
+function devScenarioS09(type) {
+  if (!_DEV_ACTIVE) return;
+  const base = {
+    processId: 'DEV_S09_' + Date.now(),
+    sourceFlow:'EXISTING_RESUME', selOrigin:'EXISTING_RESUME', isExtracted:true,
+    pd:{ fullName:'Guilherme Seixas', email:'guilherme@email.com', phone:'(21) 99000-0000', city:'Rio de Janeiro', state:'RJ', country:'Brasil', linkedin:'linkedin.com/in/guilhermeseixas', portfolio:'' },
+    fs:{ fullName:'CONFIRMED', email:'CONFIRMED', phone:'CONFIRMED', city:'CONFIRMED', state:'CONFIRMED', country:'CONFIRMED', linkedin:'CONFIRMED', portfolio:'NOT_PROVIDED' },
+    target:{ type:'SPECIFIC_JOB', targetRole:'Especialista em Experiência do Cliente', company:'Nubank', jobDescription:'NPS CX dados pesquisa qualitativa quantitativa liderança', seniority:'MID_LEVEL', secondaryInterests:[], confirmedByUser:true },
+  };
+  const expBase = (r,c,s,e,isCurrent,act,tools,results) => ({ role:r, company:c, start:s, end:e, isCurrent, activities:act, tools, results });
+  const exp1 = expBase('Especialista em Experiência do Cliente','Nubank','03/2022',null,true,
+    'Liderei pesquisas de NPS com mais de 500 respondentes mensais.\nCriei dashboards de acompanhamento de satisfação em Looker Studio.\nImplementei ciclos de fechamento de loop com equipes de produto.',
+    'Looker Studio, Python, Qualtrics, Jira',
+    'Aumento de 12 pontos no NPS em 6 meses.\nRedução de 18% no churn de clientes de alto valor.\nCriação de framework de pesquisa adotado por 3 squads.');
+  const exp2 = expBase('Analista de CX Sênior','Itaú Unibanco','06/2019','02/2022',false,
+    'Conduzi análises de jornada do cliente para o app de mobile banking.\nGerenciei pesquisas qualitativas com clientes PJ e PF.\nColaborei com squads de produto em sprints de discovery.',
+    'Medallia, Excel, Power BI, Miro',
+    'Melhoria de 22% no score de satisfação do app.\nEntrega de 3 estudos de usabilidade com impacto direto em produto.\nReconhecimento interno como melhor projeto de CX em 2021.');
+  const exp3 = expBase('Analista de Pesquisa de Mercado','Kantar','01/2017','05/2019',false,
+    'Coordenei estudos quantitativos e qualitativos para clientes do setor financeiro.\nGerenciei painéis online com até 2.000 participantes.\nApresentei resultados para C-level de empresas clientes.',
+    'SPSS, R, Qualtrics, Excel',
+    'Entrega de 15 projetos anuais com 100% de prazo.\nDesenvolvimento de metodologia de segmentação premiada internamente.');
+  const exp4 = expBase('Estagiário de Pesquisa','Nielsen','07/2015','12/2016',false,
+    'Apoiei coleta de dados em campo e análise de dados de consumo.\nOrganizei relatórios semanais de tracking de marcas.',
+    'Excel, SPSS',
+    'Contribuí para 8 projetos de clientes do varejo.');
+
+  const edu = [{ course:'Administração de Empresas', institution:'PUC-Rio', status:'COMPLETED', startYear:'2013', endYear:'2017' }];
+  const certs = [
+    { name:'CX Management — CXPA', institution:'CXPA', year:'2023' },
+    { name:'Google Data Analytics', institution:'Coursera', year:'2022' },
+  ];
+  const hardSkills = ['NPS','CX Analytics','Pesquisa Qualitativa','Pesquisa Quantitativa','Looker Studio','Power BI','Python','Qualtrics','Medallia','SQL'];
+  const softSkills = ['Liderança','Comunicação executiva','Orientação a dados','Colaboração multifuncional'];
+  const langs = [{ name:'Inglês', level:'ADVANCED', _levelExplicit:true },{ name:'Espanhol', level:'BASIC', _levelExplicit:true }];
+
+  S.log = [];
+  Object.assign(S, base);
+  S.status = 'EXTRACTED_NOT_CONFIRMED';
+  S.extraction = { confidence:85, confidenceLevel:'HIGH', sourceType:'docx', extractedFields:['fullName','email','phone'], missingFields:[], detectedSections:[], extractionVersion:'EXTRACT_V1.2' };
+  S.audit = { status:'APPROVED', score:88, warnings:[], blockers:[], pillars:{}, pillarScores:{ content:90,atsMatch:85,completeness:88,integrity:100 }, scoreBreakdown:{}, auditVersion:'DEV_AUDIT_' + Date.now(), timeline:[], previewAllowed:true, exportAllowed:true };
+  S.delivery = { confirmed:true, confirmedAt:new Date().toISOString(), confirmedAuditVersion:S.audit.auditVersion, hash:null, report:{ exportedAt:null, resumeVersion:null, auditVersion:S.audit.auditVersion, atsScore:88, status:'APPROVED', fileName:null }, exports:[] };
+  S.interview = { currentBlock:'review', objective:'Atuar como especialista em experiência do cliente, contribuindo com análise de dados e pesquisa aplicada para melhorar produtos e serviços.', experiences:[], education:edu, hardSkills, softSkills, languages:langs, certifications:certs, projects:[], activities:[], adaptiveQuestions:[], confirmedByUser:true, importedFromResume:{ hydrated:false, importedExperiences:0, importedEducation:0, importedSkills:0, importedLanguages:0, importedCertifications:0, importedAt:'' }, importCoverage:0, importQuality:'', importedSkillsSet:[], mode:'CONFIRMATION_ONLY', auditSession:null };
+  S.resumeAudit = null;
+
+  if (type === 'SHORT')    { S.interview.experiences = [exp1]; }
+  else if (type === 'MEDIUM') { S.interview.experiences = [exp1, exp2]; }
+  else if (type === 'LONG')   { S.interview.experiences = [exp1, exp2, exp3]; }
+  else if (type === 'OVERFLOW') { S.interview.experiences = [exp1, exp2, exp3, exp4]; }
+
+  S.resume.markdown         = buildResumeMarkdown();
+  S.resume.version          = 'v1_' + Date.now();
+  S.resume.generatedAt      = new Date().toISOString();
+  S.resume.generatorVersion = 'SKILL07_V1.2';
+  S.resume.formattingStatus = 'FORMATTING_COMPLETED';
+  buildResumeMetrics();
+  generateResumeHash(); // calcula e persiste S.delivery.hash a partir do markdown atual
+  save(); devRefresh();
+  addLog('DEV_S09_SCENARIO_LOADED', { type });
+
+  const preview = g('resume-preview');
+  if (preview) {
+    preview.innerHTML = markdownToHTML(S.resume.markdown);
+    requestAnimationFrame(() => {
+      const fitResult = preflightSinglePage();
+      _clearProfileStyles(preview);
+      renderPageIndicator(fitResult);
+    });
+  }
+  goScreen('delivery');
+}
+
 function devSetMode(mode) {
   if (!_DEV_ACTIVE) return;
   S.interview.mode = mode;
@@ -5075,18 +5167,19 @@ function sortExperiences() {
 
 function buildExperienceSection(exp) {
   const lines = [];
-  lines.push('**' + exp.role + '** – ' + exp.company);
-  lines.push(exp.start + ' – ' + (exp.isCurrent ? 'Atual' : (exp.end || '')));
+  lines.push('[[EXP_START]]');
+  lines.push('**' + (exp.role || '').trim() + '** – ' + (exp.company || '').trim());
+  lines.push((exp.start || '') + ' – ' + (exp.isCurrent ? 'Atual' : (exp.end || '')));
   if (exp.activities && exp.activities.trim()) {
     lines.push('_Atividades:_');
-    exp.activities.split('\n').map(l => l.trim()).filter(Boolean).forEach(l => lines.push('* ' + l));
+    exp.activities.split(/\r?\n/).map(l => l.trim()).filter(Boolean).forEach(l => lines.push('* ' + l));
   }
-  if (exp.tools && exp.tools.trim()) lines.push('_Ferramentas:_ ' + exp.tools);
+  if (exp.tools && exp.tools.trim()) lines.push('_Ferramentas:_ ' + exp.tools.trim());
   if (exp.results && exp.results.trim()) {
     lines.push('_Resultados:_');
-    exp.results.split('\n').map(l => l.trim()).filter(Boolean).forEach(l => lines.push('* ' + l));
+    exp.results.split(/\r?\n/).map(l => l.trim()).filter(Boolean).forEach(l => lines.push('* ' + l));
   }
-  lines.push('');
+  lines.push('[[EXP_END]]');
   return lines;
 }
 
@@ -5206,9 +5299,10 @@ function buildResumeMarkdown() {
       if (!iv.education.length) return;
       lines.push('\n## FORMAÇÃO ACADÊMICA\n');
       iv.education.forEach(e => {
-        lines.push('**' + e.course + '** – ' + e.institution);
-        lines.push((EDU_STATUS[e.status] || e.status) + ' | ' + e.startYear + (e.endYear ? '–' + e.endYear : ''));
-        lines.push('');
+        lines.push('[[EDU_START]]');
+        lines.push('**' + (e.course || '').trim() + '** – ' + (e.institution || '').trim());
+        lines.push((EDU_STATUS[e.status] || e.status || '') + ' | ' + (e.startYear || '') + (e.endYear ? '–' + e.endYear : ''));
+        lines.push('[[EDU_END]]');
       });
       lines.push('---');
     },
@@ -5969,7 +6063,15 @@ function initDelivery() {
 
   /* Alteração 10: Preview aprimorado */
   const preview = g('resume-preview');
-  if (preview) preview.innerHTML = markdownToHTML(S.resume.markdown || '');
+  if (preview) {
+    preview.innerHTML = markdownToHTML(S.resume.markdown || '');
+    // Mede e exibe indicador de paginação após o preview ser renderizado
+    requestAnimationFrame(() => {
+      const fitResult = preflightSinglePage();
+      _clearProfileStyles(preview); // restaura estilos de tela — a compactação só é aplicada no momento da impressão
+      renderPageIndicator(fitResult);
+    });
+  }
 
   save();
 }
@@ -6028,10 +6130,32 @@ function markdownToHTML(md) {
   if (!md) return '<p style="color:#9CA3AF;font-style:italic">Nenhum conteúdo gerado.</p>';
   const lines = md.split('\n');
   let html = '', inList = false, firstBodyLine = false;
-  const PERIOD_RE = /^[A-Za-zÀ-ÿ]+\/\d{4}\s*[–-]/;
+  const PERIOD_RE = /^[A-Za-zÀ-ÿ]+\/\d{4}\s*[–\-]/;
   const SUBSECTION_RE = /^_[^_]+:_\s*$/;
 
   lines.forEach(line => {
+    // Marcadores de bloco (break-inside: avoid)
+    if (line === '[[EXP_START]]') {
+      if (inList) { html += '</ul>'; inList = false; }
+      html += '<div class="rv-exp-block">';
+      return;
+    }
+    if (line === '[[EXP_END]]') {
+      if (inList) { html += '</ul>'; inList = false; }
+      html += '</div>';
+      return;
+    }
+    if (line === '[[EDU_START]]') {
+      if (inList) { html += '</ul>'; inList = false; }
+      html += '<div class="rv-edu-item">';
+      return;
+    }
+    if (line === '[[EDU_END]]') {
+      if (inList) { html += '</ul>'; inList = false; }
+      html += '</div>';
+      return;
+    }
+
     if (line.startsWith('# ')) {
       if (inList) { html += '</ul>'; inList = false; }
       html += '<h1>' + fmtInline(line.slice(2)) + '</h1><span class="rv-name-rule"></span>';
@@ -6085,20 +6209,163 @@ function getFileName() {
   return (slug || 'Candidato') + '_CV_' + ver;
 }
 
+/* =============================================
+   PREFLIGHT PDF — PERFIS DE COMPACTAÇÃO
+   ============================================= */
+const MM_TO_PX     = 3.7795;
+const A4_H_PX      = Math.round(297 * MM_TO_PX); // 1123
+const A4_W_PX      = Math.round(210 * MM_TO_PX); // 794
+
+const PRINT_PROFILES = {
+  NORMAL:       { label:'NORMAL',       fontSize:'10pt',  lineHeight:1.25, h2Mt:'16px', h2Mb:'5px',  hrMt:'8px',  padV:10, padH:12 },
+  COMPACT:      { label:'COMPACT',      fontSize:'9pt',   lineHeight:1.18, h2Mt:'10px', h2Mb:'4px',  hrMt:'5px',  padV:8,  padH:10 },
+  ULTRA_COMPACT:{ label:'ULTRA_COMPACT',fontSize:'8.2pt', lineHeight:1.12, h2Mt:'6px',  h2Mb:'3px',  hrMt:'3px',  padV:7,  padH:9  },
+};
+
+function _applyProfileStyles(el, p) {
+  // Atribuições individuais — NÃO usa cssText para não apagar width, boxSizing ou outros estilos existentes
+  const pv = Math.round(p.padV * MM_TO_PX), ph = Math.round(p.padH * MM_TO_PX);
+  el.style.fontSize   = p.fontSize;
+  el.style.lineHeight = String(p.lineHeight);
+  el.style.padding    = pv + 'px ' + ph + 'px';
+  // Descendentes
+  el.querySelectorAll('p, li').forEach(n => { n.style.fontSize = p.fontSize; n.style.lineHeight = String(p.lineHeight); });
+  el.querySelectorAll('h2').forEach(h => { h.style.marginTop = p.h2Mt; h.style.marginBottom = p.h2Mb; });
+  el.querySelectorAll('hr.rv-sep').forEach(hr => { hr.style.marginTop = p.hrMt; });
+}
+
+function _clearProfileStyles(el) {
+  // Limpa apenas as propriedades que _applyProfileStyles define — não apaga width nem outras
+  el.style.fontSize   = '';
+  el.style.lineHeight = '';
+  el.style.padding    = '';
+  el.querySelectorAll('p, li').forEach(n => { n.style.fontSize = ''; n.style.lineHeight = ''; });
+  el.querySelectorAll('h2').forEach(h => { h.style.marginTop = ''; h.style.marginBottom = ''; });
+  el.querySelectorAll('hr.rv-sep').forEach(hr => { hr.style.marginTop = ''; });
+}
+
+function measureResumeForSinglePage(profileKey) {
+  const el = g('resume-preview');
+  if (!el) return { fits:false, profile:profileKey, contentHeight:0, availableHeight:A4_H_PX, overflowPx:0, pct:0 };
+  const p = PRINT_PROFILES[profileKey] || PRINT_PROFILES.NORMAL;
+
+  // Força largura A4 explicitamente para medição fiel ao impresso
+  // _applyProfileStyles() NÃO toca width — garantido pela implementação sem cssText
+  const prevW = el.style.width;
+  el.style.width = A4_W_PX + 'px'; // 794px = 210mm @ 96dpi
+  _applyProfileStyles(el, p);
+
+  const wDuring = el.style.width; // deve permanecer '794px'
+  const h = el.scrollHeight;
+
+  // Restaura largura inline original (CSS class mantém 794px para tela)
+  el.style.width = prevW;
+
+  return {
+    fits:            h <= A4_H_PX,
+    profile:         profileKey,
+    contentHeight:   h,
+    availableHeight: A4_H_PX,
+    overflowPx:      Math.max(0, h - A4_H_PX),
+    pct:             Math.round((h / A4_H_PX) * 100),
+    _widthDuringMeasure: wDuring, // para diagnóstico
+  };
+}
+
+function preflightSinglePage() {
+  let result;
+  for (const key of ['NORMAL','COMPACT','ULTRA_COMPACT']) {
+    result = measureResumeForSinglePage(key);
+    if (result.fits) break;
+  }
+  // Keep last applied profile for printing; restore screen styles after measurement if not printing
+  return result;
+}
+
+function sanitizeResumeForExport() {
+  const md  = S.resume.markdown || '';
+  const warns = [];
+  if (/posição\(ões\)/i.test(md))      warns.push('• Texto "posição(ões)" detectado — considere revisar o resumo profissional.');
+  if (/Candidato\(a\)/i.test(md))      warns.push('• Texto "Candidato(a)" detectado — ajuste para um idioma específico.');
+  if (/  /.test(md))                   warns.push('• Espaços duplos detectados no conteúdo.');
+  if (/\n{3,}/.test(md))              warns.push('• Linhas em branco excessivas detectadas.');
+  // Verifica nome/cidade no estado visual (pd)
+  const city = (S.pd.city || '');
+  if (/[a-z][A-Z]/.test(city) || city.length > 1 && /[^a-zA-ZÀ-ÿ\s\-]/.test(city))
+    warns.push('• Possível erro de digitação em Cidade: "' + city + '" — verifique antes de exportar.');
+  return warns;
+}
+
+function renderPageIndicator(fitResult) {
+  const el  = g('dlv-page-indicator');
+  const hint = g('dlv-print-hint');
+  if (!el) return;
+  if (!fitResult) { el.style.display = 'none'; if (hint) hint.style.display = 'none'; return; }
+  el.style.display = '';
+  if (hint) hint.style.display = '';
+  const { fits, profile, pct, overflowPx } = fitResult;
+  const badgeCls = fits ? 'dlv-pi-ok' : 'dlv-pi-err';
+  const badgeTxt = fits ? '1 página A4' : 'Acima do limite';
+  const statusTxt = fits
+    ? 'Pronto para exportar'
+    : 'Conteúdo acima do limite de uma página (' + Math.round(overflowPx) + 'px de overflow)';
+  el.innerHTML =
+    '<div class="dlv-pi-left">' +
+    '<span class="dlv-pi-badge ' + badgeCls + '">' + badgeTxt + '</span>' +
+    '<span class="dlv-pi-detail">Perfil: <strong>' + profile + '</strong> · ' + pct + '% utilizado · ' + statusTxt + '</span>' +
+    '</div>';
+}
+
 function downloadPDF() {
   const err = checkExportIntegrity();
   if (err) { addLog('EXPORT_BLOCKED', { type:'PDF', reason: err }); alert(err); return; }
+
+  /* Preflight — escolhe o menor perfil que cabe em uma página */
+  const fitResult = preflightSinglePage();
+  renderPageIndicator(fitResult);
+
+  if (!fitResult.fits) {
+    addLog('PDF_EXPORT_BLOCKED_BY_OVERFLOW', {
+      profile:       fitResult.profile,
+      contentHeight: fitResult.contentHeight,
+      availableHeight: fitResult.availableHeight,
+      overflowPx:    fitResult.overflowPx,
+    });
+    const el = g('resume-preview');
+    if (el) _clearProfileStyles(el); // restaura estilos de tela
+    alert(
+      'O currículo ainda ultrapassa o limite de uma página.\n\n' +
+      'Reorganize ou resuma algumas informações antes de exportar.\n\n' +
+      'Altura: ' + Math.round(fitResult.contentHeight) + 'px · Limite: ' + A4_H_PX + 'px · Overflow: ' + Math.round(fitResult.overflowPx) + 'px'
+    );
+    return;
+  }
+
+  /* Sanitização — avisa mas não bloqueia */
+  const warns = sanitizeResumeForExport();
+  if (warns.length > 0) {
+    const ok = confirm('Sugestões de revisão antes de exportar:\n\n' + warns.join('\n') + '\n\nDeseja continuar?');
+    if (!ok) { const el = g('resume-preview'); if (el) _clearProfileStyles(el); return; }
+  }
+
   const fn = getFileName();
-  /* Alteração 04: metadados via title do documento */
   const prevTitle = document.title;
-  document.title = fn;
-  addLog('PDF_EXPORTED', { filename: fn + '.pdf', version: S.resume.version });
-  /* Alteração 08: histórico de exportação */
+  document.title = fn; // limpa título — remove URL e timestamp do cabeçalho do navegador
+  addLog('PDF_EXPORTED', { filename: fn + '.pdf', version: S.resume.version, profile: fitResult.profile });
   S.delivery.exports.push({ type:'PDF', timestamp: new Date().toISOString(), version: S.resume.version || null });
   S.delivery.exports = S.delivery.exports.slice(-10);
   save();
+
+  const cleanup = () => {
+    document.title = prevTitle;
+    const el = g('resume-preview');
+    if (el) _clearProfileStyles(el); // restaura estilos de tela após impressão
+    renderPageIndicator(fitResult); // mantém indicador atualizado
+  };
+  window.addEventListener('afterprint', cleanup, { once: true });
+  setTimeout(cleanup, 8000); // fallback: alguns navegadores não disparam afterprint
+
   window.print();
-  setTimeout(() => { document.title = prevTitle; }, 2000);
 }
 
 /* ---- DOCX: CRC32 ---- */
