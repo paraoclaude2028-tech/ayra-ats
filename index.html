@@ -3980,24 +3980,20 @@ function devScenario(type) {
 
 function devScenarioPdfFallback() {
   if (!_DEV_ACTIVE) return;
-  S.processId = S.processId || ('DEV_' + Date.now());
+  resetUpload();
+  S.log = [];
+  S.processId = 'DEV_' + Date.now();
   S.sourceFlow = 'EXISTING_RESUME'; S.selOrigin = 'EXISTING_RESUME';
+  S.isExtracted = false; S.resumeAudit = null;
   goScreen('resume-upload');
+  // Injeta File sintético .pdf — onAnalyze() segue o caminho real de produção
   setTimeout(() => {
-    const fname = g('upl-fname');
-    const chosen = g('upl-chosen');
-    const btn = g('btn-upl-analyze');
-    if (fname) fname.textContent = 'cv.simulado-pdf.pdf (DEV — 245 KB)';
-    if (chosen) chosen.classList.add('on');
-    g('upl-fallback').classList.remove('on');
-    g('upl-ext-status').classList.remove('on');
+    const fakeFile = new File(['%PDF-1.4 simulado DEV'], 'curriculo-teste.pdf', { type: 'application/pdf' });
+    const dt = new DataTransfer();
+    dt.items.add(fakeFile);
+    g('upl-file').files = dt.files;
+    onFileSelected(fakeFile);
     addLog('DEV_PDF_SCENARIO_LOADED');
-    if (btn) { btn.disabled = true; btn.textContent = 'Analisando...'; btn.setAttribute('aria-busy', 'true'); }
-    setTimeout(() => {
-      showSmartFallback('pdf', {});
-      addLog('PDF_FALLBACK_RENDERED', { ext: 'pdf', source: 'DEV' });
-      if (btn) { btn.disabled = false; btn.textContent = 'Analisar currículo'; btn.setAttribute('aria-busy', 'false'); }
-    }, 800);
   }, 150);
 }
 
